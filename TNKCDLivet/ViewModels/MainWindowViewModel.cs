@@ -62,6 +62,8 @@ namespace TNKCDLivet.ViewModels
 
         public void Initialize()
         {
+            var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogon");
+            Messenger.Raise(message);
         }
     }
 }
