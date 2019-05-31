@@ -12,7 +12,7 @@ namespace TNKCDLivet.Models
     public class Employee : NotificationObject
     {
         /*
-         * NotificationObjectはプロパティ変更通知の仕組みを実装したオブジェクトです。
+         * NotificationObjectはプロパティ変更通知の仕組みを実装したオブジェクトです@。
          */
 
         #region Id

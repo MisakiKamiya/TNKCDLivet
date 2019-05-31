@@ -19,6 +19,7 @@ namespace TNKCDLivet.ViewModels
     {
         /* コマンド、プロパティの定義にはそれぞれ 
          * 
+         * 
          *  lvcom    : ViewModelCommand
          *  lvcomn   : ViewModelCommand(CanExecute無)
          *  llcom    : ListenerCommand(パラメータ有のコマンド)
