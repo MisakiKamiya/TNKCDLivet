@@ -21,6 +21,17 @@ namespace TNKCDLivet.Services
             this.Client = new HttpClient();
             this.BaseUrl = "https://localhost:5000";
         }
+
+        public Task<List<Employee>> GetEmployeeAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Ka>> GetKaAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Employee> LogonAsync(Employee employee)
         {
             var jObject = JsonConvert.SerializeObject(employee);

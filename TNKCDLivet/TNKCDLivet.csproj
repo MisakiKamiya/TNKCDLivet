@@ -59,6 +59,10 @@
     <Compile Include="Services\RestService.cs" />
     <Compile Include="ViewModels\LogonViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\UserPropertiesViewModel.cs" />
+    <Compile Include="Views\UserProperties.xaml.cs">
+      <DependentUpon>UserProperties.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\Logon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +82,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UserProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Model.cs" />
@@ -113,6 +121,11 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.2</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\emoihamedorikun.png" />
+    <Resource Include="image\emoi_haikei.jpg" />
+    <Resource Include="image\hamedorikun.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

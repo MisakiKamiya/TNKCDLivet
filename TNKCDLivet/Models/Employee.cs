@@ -73,6 +73,7 @@ namespace TNKCDLivet.Models
             }
         }
 
+
         #endregion
 
         #region NameKana
@@ -138,6 +139,13 @@ namespace TNKCDLivet.Models
             IRestService rest = new RestService();
             Employee authorizedUser = await rest.LogonAsync(this);
             return authorizedUser;
+        }
+
+        public async Task<List<Employee>> GetEmployeeAsync()
+        {
+            IRestService rest = new RestService();
+            List<Employee> employee = await rest.GetEmployeeAsync();
+            return employee;
         }
     }
 }

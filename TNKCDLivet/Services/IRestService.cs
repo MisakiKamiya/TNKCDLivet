@@ -10,6 +10,8 @@ namespace TNKCDLivet.Services
     interface IRestService
     {
         Task<Employee> LogonAsync(Employee employee);
+        Task<List<Employee>> GetEmployeeAsync();
+        Task<List<Ka>> GetKaAsync();
     }
 }
 
