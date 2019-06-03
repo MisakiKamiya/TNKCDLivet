@@ -1,7 +1,13 @@
-﻿using Livet;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Livet;
+
 namespace TNKCDLivet.Models
 {
-    internal class Ka
+    public class Work : NotificationObject
     {
         #region Id
 
@@ -41,43 +47,23 @@ namespace TNKCDLivet.Models
 
         #endregion
 
-        #region KaName
+        #region 
 
-        private int _KaName;
+        private int _WorkRelation;
 
-        public int KaName
+        public int WorkRelation
         {
             get
-            { return _KaName; }
+            { return _WorkRelation; }
             set
             { 
-                if (_KaName == value)
+                if (_WorkRelation == value)
                     return;
-                _KaName = value;
+                _WorkRelation = value;
                 RaisePropertyChanged();
             }
         }
 
         #endregion
-
-        #region Busyo
-
-        private Busyo _Busyo;
-
-        public Busyo Busyo
-        {
-            get
-            { return _Busyo; }
-            set
-            { 
-                if (_Busyo == value)
-                    return;
-                _Busyo = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        #endregion       
-
     }
 }
