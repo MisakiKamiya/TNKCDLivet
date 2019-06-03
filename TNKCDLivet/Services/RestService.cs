@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TNKCDLivet.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TNKCDLivet.Services
 {
@@ -22,15 +23,47 @@ namespace TNKCDLivet.Services
             this.BaseUrl = "https://localhost:5000";
         }
 
-        public Task<List<Employee>> GetEmployeeAsync()
+        public async Task<List<Employee>> GetEmployeeAsync()
         {
-            throw new NotImplementedException();
+            List<Employee> responseEmployee = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Employee");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseEmployee = JsonConvert.DeserializeObject<List<Employee>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetEmployeeAsync: " + e);
+            }
+            return responseEmployee;
         }
 
-        public Task<List<Ka>> GetKaAsync()
+        public async Task<List<Ka>> GetKaAsync()
         {
-            throw new NotImplementedException();
+            List<Ka> responseKa = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Ka");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseKa = JsonConvert.DeserializeObject<List<Ka>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetKa: " + e);
+            }
+            return responseKa;
         }
+
+
+
+
 
         public async Task<Employee> LogonAsync(Employee employee)
         {

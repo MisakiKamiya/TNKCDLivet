@@ -9,7 +9,7 @@ using TNKCDLivet.Services;
 
 namespace TNKCDLivet.Models
 {
-    internal class Ka : NotificationObject
+    public class Ka : NotificationObject
     {
 
         #region Id
@@ -67,10 +67,6 @@ namespace TNKCDLivet.Models
             }
         }
 
-        internal Task<List<Ka>> GetKaAsync()
-        {
-            throw new NotImplementedException();
-        }
 
 
 

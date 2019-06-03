@@ -54,7 +54,7 @@
             <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="65" Height="55" Width="175"/>
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="185" Height="55" Width="175"/>
 
-            <DataGrid Name="dataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" >
+            <DataGrid Name="dataGrid" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200"  >
                 //SelectionChanged="DataGrid_SelectionChanged"//
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="名前" Binding="{Binding Employee.Name}" Width="50"/>
