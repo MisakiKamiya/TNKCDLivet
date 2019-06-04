@@ -1,4 +1,9 @@
-﻿using Livet;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Livet;
+using TNKCDLivet.Services;
+
 namespace TNKCDLivet.Models
 {
     internal class Ka
@@ -58,6 +63,8 @@ namespace TNKCDLivet.Models
             }
         }
 
+       
+
         #endregion
 
         #region Busyo
@@ -77,7 +84,13 @@ namespace TNKCDLivet.Models
             }
         }
 
-        #endregion       
+        #endregion
+
+        private void RaisePropertyChanged()
+        {
+            throw new NotImplementedException();
+        }
+        
 
     }
 }

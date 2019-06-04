@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TNKCDLivet.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TNKCDLivet.Services
 {
@@ -20,6 +21,8 @@ namespace TNKCDLivet.Services
             this.Client = new HttpClient();
             this.BaseUrl = "https://localhost:5000";
         }
+        
+
         public async Task<Employee> LogonAsync(Employee employee)
         {
             var jObject = JsonConvert.SerializeObject(employee);
@@ -29,7 +32,7 @@ namespace TNKCDLivet.Services
             //Adding header of the contenttype
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            Employee responseEmployee = null;
+            Employee responseUser = null;
             try
             {
                 var response = await Client.PostAsync(this.BaseUrl + "/api/Logon", content);
@@ -37,7 +40,7 @@ namespace TNKCDLivet.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
-                    responseEmployee = JsonConvert.DeserializeObject<Employee>(responseContent);
+                    responseUser = JsonConvert.DeserializeObject<Employee>(responseContent);
                 }
             }
             catch (Exception e)
@@ -45,11 +48,11 @@ namespace TNKCDLivet.Services
                 // TODO
                 System.Diagnostics.Debug.WriteLine("Exception in RestService.LogonAsync: " + e);
             }
-            return responseEmployee;
+            return responseUser;
         }
 
-       
+
     }
 }
-    
+
 

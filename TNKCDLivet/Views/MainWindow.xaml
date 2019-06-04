@@ -6,12 +6,18 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:TNKCDLivet.Views"
         xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
-        Title="MainWindow" Height="350" Width="525">
+        Title="掲示板" Height="720" Width="740">
+    
+    <Window.Background>
+        <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     
+    
+
     <i:Interaction.Triggers>
     
     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
@@ -33,9 +39,74 @@
             <l:TransitionInteractionMessageAction/>
         </l:InteractionMessageTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="ShowThanksCardCreate" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowDepartmentMst" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowUserMst" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowWorkRelation" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+
+        <l:InteractionMessageTrigger MessageKey="ShowCardCount" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+
+
+
     </i:Interaction.Triggers>
     
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="344*" />
+            <ColumnDefinition Width="173*" />
+        </Grid.ColumnDefinitions>
+
+
+        <DataGrid Name="TNKCDList" ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="16,10,10,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="送信日" Binding="{Binding DateSend}" />
+                <DataGridTextColumn Header="To" Binding="{Binding EmployeeTo.Name}" />
+                <DataGridTextColumn Header="From" Binding="{Binding EmployeeFrom.Name}" />
+                <DataGridTextColumn Header="タイトル" Binding="{Binding Title}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+            <StackPanel Grid.Column="2">
+                <ComboBox Width="140" SelectedIndex="0" Margin="20">
+                    <ComboBoxItem Content="名簿(To)"  />
+            </ComboBox>
+            
+                <Button Content="カード作成" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
+                <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />
+                <Button Content="部署関連情報" Margin="10" Command="{Binding ShowBusyoRelationCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+                <Button Content="事例抽出" Margin="10"  Command="{Binding ShowJireiTyuusyutuCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+                <Button Content="アカウント管理" Margin="10" Command="{Binding ShowUserMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+                <Button Content="部署・課管理" Margin="10" Command="{Binding ShowDepartmentMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+                <Button Content="業務関連度" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />
+                <Button Content="マニュアル" Margin="10" Command="{Binding ShowManualCommand}" />
+                <Button Content="ログアウト" Margin="10"  />
+            </StackPanel>
+       
     </Grid>
 </Window>

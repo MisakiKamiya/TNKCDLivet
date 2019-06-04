@@ -60,8 +60,63 @@
     <Compile Include="Models\Work.cs" />
     <Compile Include="Services\IRestService.cs" />
     <Compile Include="Services\RestService.cs" />
+    <Compile Include="ViewModels\CardCountViewModel.cs" />
+    <Compile Include="ViewModels\CreateUserViewModel.cs" />
+    <Compile Include="ViewModels\DepartmentEditViewModel.cs" />
+    <Compile Include="ViewModels\PickupViewModel.cs" />
+    <Compile Include="ViewModels\TNKCDCreateViewModel.cs" />
     <Compile Include="ViewModels\LogonViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\TNKCDDetailViewModel.cs" />
+    <Compile Include="ViewModels\UserEditViewModel.cs" />
+    <Compile Include="ViewModels\WorkRelationViewModel.cs" />
+    <Compile Include="Views\CardCount.xaml.cs">
+      <DependentUpon>CardCount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateUser.xaml.cs">
+      <DependentUpon>CreateUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DepartmentEdit.xaml.cs">
+      <DependentUpon>DepartmentEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pickup.xaml.cs">
+      <DependentUpon>Pickup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TNKCDCreate.xaml.cs">
+      <DependentUpon>TNKCDCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TNKCDDetail.xaml.cs">
+      <DependentUpon>TNKCDDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserEdit.xaml.cs">
+      <DependentUpon>UserEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserProperties.xaml.cs">
+      <DependentUpon>UserProperties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorkRelation.xaml.cs">
+      <DependentUpon>WorkRelation.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\CardCount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DepartmentEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pickup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TNKCDCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Logon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,6 +129,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\UserPropertiesViewModel.cs" />
     <Compile Include="Views\Logon.xaml.cs">
       <DependentUpon>Logon.xaml</DependentUpon>
     </Compile>
@@ -81,6 +137,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\TNKCDDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkRelation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Model.cs" />
@@ -116,6 +188,65 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.2</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\emoi_haikei.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="img\aho.jpg" />
+    <Content Include="img\air.png" />
+    <Content Include="img\backcara.png" />
+    <Content Include="img\D112EB7B-B390-4E0D-9BEC-5266A96FD0DE.jpeg" />
+    <Content Include="img\date - コピー.jpg" />
+    <Content Include="img\date.jpg" />
+    <Content Include="img\emoihamedorikun.png" />
+    <Content Include="img\gurahu - コピー.jpg" />
+    <Content Include="img\gurahu.jpg" />
+    <Content Include="img\gurasan.png" />
+    <Content Include="img\haikeisan.jpg" />
+    <Content Include="img\hamedorikun.png" />
+    <Content Include="img\Heart.jpg" />
+    <Content Include="img\keiziban.jpg" />
+    <Content Include="img\Love.png" />
+    <Content Include="img\mailoff.png" />
+    <Content Include="img\mailon.png" />
+    <Content Include="img\manzi2.png" />
+    <Content Include="img\modern-welcome-sign-post-with-neon-light-style_23-2147913912.jpg" />
+    <Content Include="img\nezumi.png" />
+    <Content Include="img\nukitasi.png" />
+    <Content Include="img\nukitasi_emoi.jpg" />
+    <Content Include="img\paty_hamedorikun.jpg" />
+    <Content Include="img\purple-glowing-rounded-square-banner_1189-1552.jpg" />
+    <Content Include="img\qruppo.png" />
+    <Content Include="img\rezero.jpg" />
+    <Content Include="img\smile.jpg" />
+    <Content Include="img\suuzi.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701 - コピー %282%29.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701 - コピー %283%29.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701 - コピー %284%29.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701 - コピー - コピー %282%29 - コピー.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701 - コピー - コピー %282%29.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701 - コピー - コピー %283%29 - コピー.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701 - コピー - コピー.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701 - コピー.jpg" />
+    <Content Include="img\thank-you-composition-with-neon-light-style_23-2147828701.jpg" />
+    <Content Include="img\tstLove.2png.png" />
+    <Content Include="img\tstLove.png" />
+    <Content Include="img\tstLove3.png" />
+    <Content Include="img\wan.png" />
+    <Content Include="img\zatukora - コピー.jpg" />
+    <Content Include="img\ziken.png" />
+    <Content Include="img\^^.png" />
+    <Content Include="img\たばこ.png" />
+    <Content Include="img\とかした顔.png" />
+    <Content Include="img\ケツバン.jpg" />
+    <Content Include="img\タイトルなし.jpg" />
+    <Content Include="img\卍.png" />
+    <Content Include="img\名画.png" />
+    <Content Include="img\地図.png" />
+    <Content Include="img\新しいテキスト ドキュメント %283%29.txt" />
+    <Content Include="img\新しいビットマップ イメージ.bmp" />
+    <Content Include="img\薬物をねだる生物.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

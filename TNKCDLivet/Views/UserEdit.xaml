@@ -1,0 +1,61 @@
+﻿<Window x:Class="TNKCDLivet.Views.UserEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+        xmlns:v="clr-namespace:TNKCDLivet.Views"
+        xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
+        Title="アカウント編集" Height="720" Width="740">
+
+    <Window.Background>
+        <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+
+    <Window.DataContext>
+        <vm:UserEditViewModel/>
+    </Window.DataContext>
+    
+     <i:Interaction.Triggers>
+     
+     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
+        
+        <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
+        <i:EventTrigger EventName="ContentRendered">
+            <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
+        </i:EventTrigger>
+
+        <!--Windowが閉じたタイミングでViewModelのDisposeメソッドが呼ばれます-->
+        <i:EventTrigger EventName="Closed">
+            <l:DataContextDisposeAction/>
+        </i:EventTrigger>
+
+        <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
+
+    </i:Interaction.Triggers>
+    
+    <Grid>
+        <Canvas Grid.ColumnSpan="2">
+            <TextBlock Text="ユーザー名" Foreground="white"  FontSize="40" Canvas.Left="115" Canvas.Top="87" Height="55" Width="175"/>
+            <TextBox Width="195" Canvas.Left="115" Canvas.Top="147" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            <TextBlock Text="ふりがな" Foreground="white"  FontSize="40" Canvas.Left="355" Canvas.Top="87" Height="55" Width="175"/>
+            <TextBox Text="{Binding User.Name}" Width="200" Canvas.Left="355" Canvas.Top="147" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            <Button Background="White" Canvas.Top="505" Content="編集" Height="50" Width="165" FontSize="30" Command="{Binding LogonCommand}"  Canvas.Left="265"/>
+            <TextBlock Text="メールアドレス" Foreground="white"  FontSize="36" Canvas.Left="115" Canvas.Top="360" Height="55" Width="195"/>
+            <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="115" Canvas.Top="220" Height="55" Width="175"/>
+            <TextBox Text="{Binding User.Mail}" Width="195" Canvas.Left="115" Canvas.Top="420" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            <ComboBox Width="180" Canvas.Left="115" Canvas.Top="280" Height="55" SelectedIndex='0' FontSize="40" RenderTransformOrigin="0.361,2.909">
+                <ComboBoxItem Content="Eric" TabIndex='0' Width="350" Canvas.Left="180" Canvas.Top="165" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            </ComboBox>
+            <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="355" Canvas.Top="220" Height="55" Width="65"/>
+            <ComboBox Width="180" Canvas.Left="355" Canvas.Top="280" Height="55" SelectedIndex='0' FontSize="40" RenderTransformOrigin="0.361,2.909">
+                <ComboBoxItem Content="Eric" TabIndex='0' Width="350" Canvas.Left="180" Canvas.Top="165" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            </ComboBox>
+            <TextBlock Text="パスワード" Foreground="white"  FontSize="36" Canvas.Left="355" Canvas.Top="360" Height="55" Width="195"/>
+            <TextBox Text="{Binding User.Password}" Width="195" Canvas.Left="360" Canvas.Top="420" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+
+        </Canvas>
+    </Grid>
+</Window>

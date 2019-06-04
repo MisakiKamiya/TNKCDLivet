@@ -47,7 +47,7 @@ namespace TNKCDLivet.Models
 
         #endregion
 
-        #region 
+        #region WorkRelation
 
         private int _WorkRelation;
 
