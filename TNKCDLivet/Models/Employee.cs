@@ -160,6 +160,11 @@ namespace TNKCDLivet.Models
             return authorizedEmployee;
         }
 
-
+        public async Task<List<Employee>> GetEmployeeAsync()
+        {
+            IRestService rest = new RestService();
+            List<Employee> employee = await rest.GetEmployeeAsync();
+            return employee;
+        }
     }
 }

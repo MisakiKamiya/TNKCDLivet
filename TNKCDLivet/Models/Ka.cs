@@ -51,9 +51,9 @@ namespace TNKCDLivet.Models
 
         #region KaName
 
-        private int _KaName;
+        private string _KaName;
 
-        public int KaName
+        public string KaName
         {
             get
             { return _KaName; }
@@ -90,10 +90,7 @@ namespace TNKCDLivet.Models
         #endregion
 
         
-        private void RaisePropertyChanged()
-        {
-            throw new NotImplementedException();
-        }
+        
         
 
     }
