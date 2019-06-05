@@ -11,8 +11,13 @@ namespace TNKCDLivet.Services
     {
         // Logon REST API Client
         Task<Employee> LogonAsync(Employee employee);
-        Task<List<Employee>> GetEmployeeAsync();
+
         Task<List<TNKCD>> GetTNKCDAsync();
 
+        //Workの情報やり取り用
+        Task<List<Work>> GetWorkAsync();
+
+        //Employeeの情報やり取り用
+        Task<List<Employee>> GetEmployeeAsync();
     }
 }

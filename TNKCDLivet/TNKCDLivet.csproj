@@ -70,6 +70,9 @@
     <Compile Include="ViewModels\TNKCDDetailViewModel.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />
     <Compile Include="ViewModels\WorkRelationViewModel.cs" />
+    <Compile Include="Views\BusyoRelation.xaml.cs">
+      <DependentUpon>BusyoRelation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CardCount.xaml.cs">
       <DependentUpon>CardCount.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,10 @@
     <Compile Include="Views\WorkRelation.xaml.cs">
       <DependentUpon>WorkRelation.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\BusyoRelation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CardCount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

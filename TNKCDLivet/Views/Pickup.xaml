@@ -48,11 +48,15 @@
                 <DataGridTextColumn Header="To" Binding="{Binding EmployeeTo.Name}" />
                 <DataGridTextColumn Header="From" Binding="{Binding EmployeeFrom.Name}" />
                 <DataGridTextColumn Header="タイトル" Binding="{Binding Title}" />
-                <DataGridTextColumn Header="業務関連度" Binding="{Binding Work}" />
+                <DataGridTextColumn Header="業務関連度" Binding="{Binding Work.WorkRelation}" />
             </DataGrid.Columns>
         </DataGrid>
 
-        
+        <StackPanel  Grid.Column="2">
+            <ComboBox  ItemsSource="{Binding Work,Mode=OneWay}" SelectedValuePath="Id" DisplayMemberPath="WorkRelation" 
+                       Margin="10"/>
+           
+        </StackPanel>
 
     </Grid>
 </Window>

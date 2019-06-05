@@ -35,31 +35,28 @@
     </i:Interaction.Triggers>
 
     <Grid >
-        <ComboBox SelectedIndex="0" Margin="145,84,385,0" VerticalAlignment="Top" 
-                  RenderTransformOrigin="0.45,0.636" Height="31">
-            <ComboBoxItem Content="To" FontSize="20" Height="45" Width="165" />
-        </ComboBox>
 
-        <ComboBox SelectedIndex="0" Margin="453,84,78,0" VerticalAlignment="Top" 
-                  RenderTransformOrigin="0.45,0.636" Height="31">
-            <ComboBoxItem Content="From" FontSize="20" Height="45" Width="165" />
-        </ComboBox>
 
-        <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="453,138,78,434"/>
+        <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
+                       FontSize="15" Height="30" Width="165" Margin="145,85,385,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+
+        <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
+                       FontSize="15" Height="30" Width="165" Margin="455,85,80,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+
+        <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="455,145,80,500"/>
 
         <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-            Text="Title:" FontSize="20" Height="42" Width="476"  Margin="145,186,0,0" />
+            Text="Title:" FontSize="15" Height="42" Width="476"  Margin="145,185,0,0" />
 
         <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-            Text="Body:" FontSize="20" Height="194" Width="476"  Margin="147,249,0,0" />
+            Text="Body:" FontSize="15" Height="194" Width="476"  Margin="145,250,0,0" />
 
-        <ComboBox SelectedIndex="0" Margin="147,465,437,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636">
-            <ComboBoxItem Content="業務関連度" FontSize="20" Height="45" Width="165" />
-        </ComboBox>
+        <ComboBox  ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" 
+                       FontSize="15" Height="25" Margin="145,465,415,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
-        <Button Content="Send" Margin="299,512,238,147" Command="{Binding Command}" />
+        <Button Content="Send" Margin="300,510,240,150" Command="{Binding Command}" />
 
-        <Button Content="Clear" Margin="299,572,238,87" Command="{Binding Command}" />
+        <Button Content="Clear" Margin="300,570,240,90" Command="{Binding Command}" />
 
     </Grid>
 </Window>

@@ -59,8 +59,58 @@ namespace TNKCDLivet.ViewModels
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
          
-        public void Initialize()
+      
+       #region Work
+        private List<Work> _Work;
+
+        public List<Work> Work
         {
+            get
+            { return _Work; }
+            set
+            {
+                if (_Work == value)
+                {
+                    return;
+                }
+
+                _Work = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+       #region Employee
+        private List<Employee> _Employee;
+
+        public List<Employee> Employee
+        {
+            get
+            { return _Employee; }
+            set
+            {
+                if (_Employee == value)
+                {
+                    return;
+                }
+
+                _Employee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+
+
+        public async void Initialize()
+        {
+
+            Work work = new Work();
+            this.Work = await work.GetWorkAsync();
+
+            Employee employee = new Employee();
+            this.Employee = await employee.GetEmployeeAsync();
+
         }
     }
 }

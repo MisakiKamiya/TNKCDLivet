@@ -166,6 +166,5 @@ namespace TNKCDLivet.Models
             List<Employee> employee = await rest.GetEmployeeAsync();
             return employee;
         }
-
     }
 }
