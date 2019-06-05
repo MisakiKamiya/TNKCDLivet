@@ -80,7 +80,7 @@ namespace TNKCDLivet.Models
         #region NameKana
 
         private string _NameKana;
-        [JsonProperty("KanaName")]
+        [JsonProperty("NameKana")]
 
         public string NameKana
         {

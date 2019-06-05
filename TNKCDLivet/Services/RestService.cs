@@ -71,7 +71,6 @@ namespace TNKCDLivet.Services
             }
             return responseTNKCD;
         }
-
         public async Task<List<Work>> GetWorkAsync()
         {
             List<Work> responseWork = null;
@@ -90,7 +89,6 @@ namespace TNKCDLivet.Services
             }
             return responseWork;
         }
-
         public async Task<List<Employee>> GetEmployeeAsync()
         {
             List<Employee> responseEmployee = null;
@@ -109,13 +107,6 @@ namespace TNKCDLivet.Services
             }
             return responseEmployee;
         }
-
-        
-
-
-
-
-        #endregion
 
     }
 }

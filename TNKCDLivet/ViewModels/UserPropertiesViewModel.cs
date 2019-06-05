@@ -12,15 +12,31 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using TNKCDLivet.Models;
+using TNKCDLivet.Services;
 using System.Windows;
 
 namespace TNKCDLivet.ViewModels
 {
     public class UserPropertiesViewModel : ViewModel
     {
-        public void Initialize()
+        #region Employee
+       private List<Employee> _Employee;
+
+        public List<Employee> Employee
         {
+            get
+            { return _Employee; }
+            set
+            {
+                if (_Employee == value)
+                    return;
+                _Employee = value;
+                RaisePropertyChanged();
+            }
         }
+        #endregion
+       
+        
 
         #region UserCreateCommand
         private ViewModelCommand _UserCreateCommand;
@@ -51,5 +67,11 @@ namespace TNKCDLivet.ViewModels
 
         }
         #endregion
+
+        public async void Initialize()
+        {
+            Employee employee = new Employee();
+            this.Employee = await employee.GetEmployeeAsync();
+        }
     }
 }
