@@ -70,6 +70,27 @@ namespace TNKCDLivet.Services
             }
             return responseTNKCD;
         }
+
+        public async Task<List<Work>> GetWorkAsync()
+        {
+            List<Work> responseWork = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Work");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseWork = JsonConvert.DeserializeObject<List<Work>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetWorkAsync: " + e);
+            }
+            return responseWork;
+        }
+
+        
     }
 }
 
