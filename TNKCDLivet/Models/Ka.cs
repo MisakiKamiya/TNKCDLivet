@@ -1,4 +1,5 @@
-﻿using Livet;
+﻿using System;
+using Livet;
 namespace TNKCDLivet.Models
 {
     internal class Ka
@@ -77,7 +78,12 @@ namespace TNKCDLivet.Models
             }
         }
 
-        #endregion       
+        private void RaisePropertyChanged()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
     }
 }

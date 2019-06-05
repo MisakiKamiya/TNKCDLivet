@@ -81,6 +81,11 @@ namespace TNKCDLivet.Models
             }
         }
 
+        public static implicit operator string(Busyo v)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

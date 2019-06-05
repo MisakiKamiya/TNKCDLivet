@@ -62,6 +62,14 @@
     <Compile Include="Services\RestService.cs" />
     <Compile Include="ViewModels\LogonViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Page Include="Views\BusyoRelation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DepertmentEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Logon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,6 +81,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\BusyoRelation.xaml.cs">
+      <DependentUpon>BusyoRelation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DepertmentEdit.xaml.cs">
+      <DependentUpon>DepertmentEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Logon.xaml.cs">
       <DependentUpon>Logon.xaml</DependentUpon>
