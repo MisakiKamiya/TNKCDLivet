@@ -6,8 +6,13 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:TNKCDLivet.Views"
         xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
-        Title="Logon" Height="350" Width="525">
-    
+        Title="Login" Height="720" Width="740">
+
+    <Window.Background>
+        <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+
+
     <Window.DataContext>
         <vm:LogonViewModel/>
     </Window.DataContext>
@@ -36,12 +41,17 @@
     </i:Interaction.Triggers>
     
     <Grid>
-        <StackPanel>
-            <TextBlock Text="Name:"/>
-            <TextBox Text="{Binding Employee.Name}"/>
-            <TextBlock Text="Password:"/>
-            <TextBox Text="{Binding Employee.Password}"/>
-            <Button Content="Logon" Command="{Binding LogonCommand}"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="237*"/>
+        </Grid.ColumnDefinitions>
+        <Canvas Grid.ColumnSpan="1">
+            <TextBlock Text="ユーザー名" Foreground="white"  FontSize="40" Canvas.Left="180" Canvas.Top="105" Height="55" Width="175"/>
+            <TextBox Text="{Binding Employee.Name}" Background="black" Foreground="white"  FontSize="40" Grid.Column="1" Canvas.Left="190" Canvas.Top="170" Width="350"/>
+            <TextBlock Text="パスワード" Foreground="white"  FontSize="40" Grid.Column="1" Canvas.Left="189" Canvas.Top="290"/>
+            <TextBox Text="{Binding Employee.Password}" Background="black" Foreground="white"  FontSize="40" Grid.Column="1" Canvas.Left="193" Canvas.Top="355" Width="347"/>
+            <Button Background="White" Canvas.Left="240" Canvas.Top="495" Content="ログイン" Height="50" Width="230" FontSize="30" Command="{Binding LogonCommand}"/>
+
+        </Canvas>
     </Grid>
 </Window>

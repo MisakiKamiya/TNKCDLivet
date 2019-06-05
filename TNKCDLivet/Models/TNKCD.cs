@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Livet;
+using Newtonsoft.Json;
+using TNKCDLivet.Services;
 
 namespace TNKCDLivet.Models
 {
@@ -199,5 +201,12 @@ namespace TNKCDLivet.Models
 
         #endregion
 
+
+        public async Task<List<TNKCD>> GetTNKCDAsync()
+        {
+            IRestService rest = new RestService();
+            List<TNKCD> tnkcd = await rest.GetTNKCDAsync();
+            return tnkcd;
+        }
     }
 }

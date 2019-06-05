@@ -12,58 +12,280 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using TNKCDLivet.Models;
+using System.Windows;
 
 namespace TNKCDLivet.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
-        /* コマンド、プロパティの定義にはそれぞれ 
-         * 
-         *  lvcom    : ViewModelCommand
-         *  lvcomn   : ViewModelCommand(CanExecute無)
-         *  llcom    : ListenerCommand(パラメータ有のコマンド)
-         *  llcomn   : ListenerCommand(パラメータ有のコマンド・CanExecute無)
-         *  lprop    : 変更通知プロパティ
-         *  lsprop   : 変更通知プロパティ(ショートバージョン)
-         *  
-         * を使用してください。
-         * 
-         * Modelが十分にリッチであるならコマンドにこだわる必要はありません。
-         * View側のコードビハインドを使用しないMVVMパターンの実装を行う場合でも、ViewModelにメソッドを定義し、
-         * LivetCallMethodActionなどから直接メソッドを呼び出してください。
-         * 
-         * ViewModelのコマンドを呼び出せるLivetのすべてのビヘイビア・トリガー・アクションは
-         * 同様に直接ViewModelのメソッドを呼び出し可能です。
-         */
+       
+        #region ThanksCardsProperty
+        private List<TNKCD> _ThanksCards;
 
-        /* ViewModelからViewを操作したい場合は、View側のコードビハインド無で処理を行いたい場合は
-         * Messengerプロパティからメッセージ(各種InteractionMessage)を発信する事を検討してください。
-         */
+        public List<TNKCD> ThanksCards
+        {
+            get
+            { return _ThanksCards; }
+            set
+            { 
+                if (_ThanksCards == value)
+                {
+                    return;
+                }
 
-        /* Modelからの変更通知などの各種イベントを受け取る場合は、PropertyChangedEventListenerや
-         * CollectionChangedEventListenerを使うと便利です。各種ListenerはViewModelに定義されている
-         * CompositeDisposableプロパティ(LivetCompositeDisposable型)に格納しておく事でイベント解放を容易に行えます。
-         * 
-         * ReactiveExtensionsなどを併用する場合は、ReactiveExtensionsのCompositeDisposableを
-         * ViewModelのCompositeDisposableプロパティに格納しておくのを推奨します。
-         * 
-         * LivetのWindowテンプレートではViewのウィンドウが閉じる際にDataContextDisposeActionが動作するようになっており、
-         * ViewModelのDisposeが呼ばれCompositeDisposableプロパティに格納されたすべてのIDisposable型のインスタンスが解放されます。
-         * 
-         * ViewModelを使いまわしたい時などは、ViewからDataContextDisposeActionを取り除くか、発動のタイミングをずらす事で対応可能です。
-         */
+                _ThanksCards = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion        
 
-        /* UIDispatcherを操作する場合は、DispatcherHelperのメソッドを操作してください。
-         * UIDispatcher自体はApp.xaml.csでインスタンスを確保してあります。
-         * 
-         * LivetのViewModelではプロパティ変更通知(RaisePropertyChanged)やDispatcherCollectionを使ったコレクション変更通知は
-         * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
-         */
+        #region ShowThanksCardCreateCommand
+        private ViewModelCommand _ShowThanksCardCreateCommand;
+
+        public ViewModelCommand ShowThanksCardCreateCommand
+        {
+            get
+            {
+                if (_ShowThanksCardCreateCommand == null)
+                {
+                    _ShowThanksCardCreateCommand = new ViewModelCommand(ShowThanksCardCreate);
+                }
+                return _ShowThanksCardCreateCommand;
+            }
+        }
+
+        public void ShowThanksCardCreate()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowThanksCardCreate");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                TNKCDCreateViewModel ViewModel = new TNKCDCreateViewModel();
+                var message = new TransitionMessage(typeof(Views.TNKCDCreate), ViewModel, TransitionMode.Modal, "ShowThanksCardCreate");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
+        #region ShowUserMstCommand
+        private ViewModelCommand _ShowUserMstCommand;
+
+        public ViewModelCommand ShowUserMstCommand
+        {
+            get
+            {
+                if (_ShowUserMstCommand == null)
+                {
+                    _ShowUserMstCommand = new ViewModelCommand(ShowUserMst);
+                }
+                return _ShowUserMstCommand;
+            }
+        }
+
+        public void ShowUserMst()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowUserMst");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive); 
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                UserPropertiesViewModel ViewModel = new UserPropertiesViewModel();
+                var message = new TransitionMessage(typeof(Views.UserProperties), ViewModel, TransitionMode.Modal, "ShowUserMst");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
+        #region ShowDepartmentMstCommand
+        private ViewModelCommand _ShowDepartmentMstCommand;
+
+        public ViewModelCommand ShowDepartmentMstCommand
+        {
+            get
+            {
+                if (_ShowDepartmentMstCommand == null)
+                {
+                    _ShowDepartmentMstCommand = new ViewModelCommand(ShowDepartmentMst);
+                }
+                return _ShowDepartmentMstCommand;
+            }
+        }
+
+        public void ShowDepartmentMst()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowDepartmentMst");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                DepartmentEditViewModel ViewModel = new DepartmentEditViewModel();
+                var message = new TransitionMessage(typeof(Views.DepartmentEdit), ViewModel, TransitionMode.Modal, "ShowDepartmentMst");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
+        #region ShowCardCountCommand
+        private ViewModelCommand _ShowCardCountCommand;
+
+        public ViewModelCommand ShowCardCountCommand
+        {
+            get
+            {
+                if (_ShowCardCountCommand == null)
+                {
+                    _ShowCardCountCommand = new ViewModelCommand(ShowCardCount);
+                }
+                return _ShowCardCountCommand;
+            }
+        }
+
+        public void ShowCardCount()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowCardCount");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                CardCountViewModel ViewModel = new CardCountViewModel();
+                var message = new TransitionMessage(typeof(Views.CardCount), ViewModel, TransitionMode.Modal, "ShowCardCount");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
+        #region ShowWorkRelationCommand
+        private ViewModelCommand _ShowWorkRelationCommand;
+
+        public ViewModelCommand ShowWorkRelationCommand
+        {
+            get
+            {
+                if (_ShowWorkRelationCommand == null)
+                {
+                    _ShowWorkRelationCommand = new ViewModelCommand(ShowWorkRelation);
+                }
+                return _ShowWorkRelationCommand;
+            }
+        }
+
+        public void ShowWorkRelation()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowWorkRelation");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                WorkRelationViewModel ViewModel = new WorkRelationViewModel();
+                var message = new TransitionMessage(typeof(Views.WorkRelation), ViewModel, TransitionMode.Modal, "ShowWorkRelation");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
+        #region ShowPickupCommand
+        private ViewModelCommand _ShowPickupCommand;
+
+        public ViewModelCommand ShowPickupCommand
+        {
+            get
+            {
+                if (_ShowPickupCommand == null)
+                {
+                    _ShowPickupCommand = new ViewModelCommand(ShowPickup);
+                }
+                return _ShowPickupCommand;
+            }
+        }
+
+        public void ShowPickup()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowPickup");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                PickupViewModel ViewModel = new PickupViewModel();
+                var message = new TransitionMessage(typeof(Views.Pickup), ViewModel, TransitionMode.Modal, "ShowPickup");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
+        #region TNKCD
+        private List<TNKCD> _TNKCD;
+
+        public List<TNKCD> TNKCD
+        {
+            get
+            { return _TNKCD; }
+            set
+            {
+                if (_TNKCD == value)
+                    return;
+                _TNKCD = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        
 
         public void Initialize()
         {
             var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogon");
             Messenger.Raise(message);
         }
+        public async void Initialize2()
+        {
+
+            TNKCD tnkcd = new TNKCD();
+            this.TNKCD = await tnkcd.GetTNKCDAsync();
+
+        }
+
     }
-}
+       }

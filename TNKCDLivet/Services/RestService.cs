@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TNKCDLivet.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 
 namespace TNKCDLivet.Services
 {
@@ -20,6 +22,8 @@ namespace TNKCDLivet.Services
             this.Client = new HttpClient();
             this.BaseUrl = "https://localhost:5000";
         }
+        
+
         public async Task<Employee> LogonAsync(Employee employee)
         {
             var jObject = JsonConvert.SerializeObject(employee);
@@ -48,8 +52,25 @@ namespace TNKCDLivet.Services
             return responseEmployee;
         }
 
-       
+        public async Task<List<TNKCD>> GetTNKCDAsync()
+        {
+            List<TNKCD> responseTNKCD = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/TNKCD");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseTNKCD = JsonConvert.DeserializeObject<List<TNKCD>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetTAsync: " + e);
+            }
+            return responseTNKCD;
+        }
     }
 }
-    
+
 

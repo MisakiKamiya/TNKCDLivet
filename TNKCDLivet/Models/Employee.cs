@@ -73,6 +73,8 @@ namespace TNKCDLivet.Models
             }
         }
 
+        
+
         #endregion
 
         #region NameKana
@@ -132,12 +134,32 @@ namespace TNKCDLivet.Models
 
         #endregion
 
+        #region Ka
+
+        private Ka _Ka;
+        [JsonProperty("Ka")]
+        public Ka Ka
+        {
+            get
+            { return _Ka; }
+            set
+            {
+                if (_Ka == value)
+                    return;
+                _Ka = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion
 
         public async Task<Employee> LogonAsync()
         {
             IRestService rest = new RestService();
-            Employee authorizedUser = await rest.LogonAsync(this);
-            return authorizedUser;
+            Employee authorizedEmployee = await rest.LogonAsync(this);
+            return authorizedEmployee;
         }
+
+
     }
 }
