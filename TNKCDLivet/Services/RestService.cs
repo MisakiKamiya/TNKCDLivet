@@ -70,6 +70,25 @@ namespace TNKCDLivet.Services
             }
             return responseTNKCD;
         }
+
+        public async Task<List<Employee>> GetEmployeeAsync()
+        {
+            List<Employee> responseEmployee = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Employee");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseEmployee = JsonConvert.DeserializeObject<List<Employee>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetEmployeeAsync: " + e);
+            }
+            return responseEmployee;
+        }
     }
 }
 
