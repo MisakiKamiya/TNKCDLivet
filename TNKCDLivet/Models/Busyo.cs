@@ -45,7 +45,7 @@ namespace TNKCDLivet.Models
         }
         #endregion
 
-        #region Busyo
+        #region BusyoName
 
         private string _BusyoName;
 

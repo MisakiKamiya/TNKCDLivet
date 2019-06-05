@@ -22,8 +22,7 @@ namespace TNKCDLivet.Services
             this.Client = new HttpClient();
             this.BaseUrl = "https://localhost:5000";
         }
-        
-
+        #region LOGON
         public async Task<Employee> LogonAsync(Employee employee)
         {
             var jObject = JsonConvert.SerializeObject(employee);
@@ -51,7 +50,9 @@ namespace TNKCDLivet.Services
             }
             return responseEmployee;
         }
+        #endregion
 
+        #region ALLGET        
         public async Task<List<TNKCD>> GetTNKCDAsync()
         {
             List<TNKCD> responseTNKCD = null;
@@ -90,7 +91,32 @@ namespace TNKCDLivet.Services
             return responseWork;
         }
 
+        public async Task<List<Employee>> GetEmployeeAsync()
+        {
+            List<Employee> responseEmployee = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Employee");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseEmployee = JsonConvert.DeserializeObject<List<Employee>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetEmployeeAsync: " + e);
+            }
+            return responseEmployee;
+        }
+
         
+
+
+
+
+        #endregion
+
     }
 }
 

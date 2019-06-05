@@ -42,9 +42,11 @@
             <TextBlock Text="業務関連度" FontSize="30" Canvas.Left="180" Canvas.Top="69" />
 
             <!-- 部署・課の選択と削除ボタン -->
-            <ComboBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="186" SelectedIndex='0' RenderTransformOrigin="0.361,2.909">
-                <ComboBoxItem FontSize="25" Content="simeji" TabIndex='0'/>
-            </ComboBox>
+            
+            
+            <ComboBox  ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" 
+                       FontSize="30"  Width="300" Canvas.Left="180" Canvas.Top="186" SelectedIndex='0' RenderTransformOrigin="0.361,2.909" />
+            
             <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="186"/>
 
             <!-- 変更ボタン -->

@@ -96,6 +96,26 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region Employee
+        private List<Employee> _Employee;
+
+        public List<Employee> Employee
+        {
+            get
+            { return _Employee; }
+            set
+            {
+                if (_Employee == value)
+                {
+                    return;
+                }
+
+                _Employee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
 
         public async void Initialize()
         {
@@ -104,6 +124,9 @@ namespace TNKCDLivet.ViewModels
 
             Work work = new Work();
             this.Work = await work.GetWorkAsync();
+
+            Employee employee = new Employee();
+            this.Employee = await employee.GetEmployeeAsync();
         }
     }
 }
