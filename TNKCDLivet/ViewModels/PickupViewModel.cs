@@ -58,9 +58,30 @@ namespace TNKCDLivet.ViewModels
          * LivetのViewModelではプロパティ変更通知(RaisePropertyChanged)やDispatcherCollectionを使ったコレクション変更通知は
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
-         
-        public void Initialize()
+
+        
+
+        #region TNKCD
+        private List<TNKCD> _TNKCD;
+
+        public List<TNKCD> TNKCD
         {
+            get
+            { return _TNKCD; }
+            set
+            {
+                if (_TNKCD == value)
+                    return;
+                _TNKCD = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+        
+        public async void Initialize()
+        {
+            TNKCD tnkcd = new TNKCD();
+            this.TNKCD = await tnkcd.GetTNKCDAsync();
         }
     }
 }

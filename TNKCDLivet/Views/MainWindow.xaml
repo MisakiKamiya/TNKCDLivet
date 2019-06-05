@@ -29,6 +29,10 @@
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
         </i:EventTrigger>
 
+        <i:EventTrigger EventName="ContentRendered">
+            <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize2"/>
+        </i:EventTrigger>
+
         <!--Windowが閉じたタイミングでViewModelのDisposeメソッドが呼ばれます-->
         <i:EventTrigger EventName="Closed">
             <l:DataContextDisposeAction/>
@@ -70,7 +74,11 @@
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
-
+        <l:InteractionMessageTrigger MessageKey="ShowPickup" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
 
 
     </i:Interaction.Triggers>
@@ -88,19 +96,18 @@
                 <DataGridTextColumn Header="To" Binding="{Binding EmployeeTo.Name}" />
                 <DataGridTextColumn Header="From" Binding="{Binding EmployeeFrom.Name}" />
                 <DataGridTextColumn Header="タイトル" Binding="{Binding Title}" />
-            </DataGrid.Columns>
+            </DataGrid.Columns >
         </DataGrid>
 
 
-            <StackPanel Grid.Column="2">
-                <ComboBox Width="140" SelectedIndex="0" Margin="20">
-                    <ComboBoxItem Content="名簿(To)"  />
-            </ComboBox>
+        <StackPanel  Grid.Column="2">
+            <ComboBox  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" />
             
+                
                 <Button Content="カード作成" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
                 <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />
                 <Button Content="部署関連情報" Margin="10" Command="{Binding ShowBusyoRelationCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-                <Button Content="事例抽出" Margin="10"  Command="{Binding ShowJireiTyuusyutuCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+                <Button Content="事例抽出" Margin="10"  Command="{Binding ShowPickupCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
                 <Button Content="アカウント管理" Margin="10" Command="{Binding ShowUserMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
                 <Button Content="部署・課管理" Margin="10" Command="{Binding ShowDepartmentMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
                 <Button Content="業務関連度" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />

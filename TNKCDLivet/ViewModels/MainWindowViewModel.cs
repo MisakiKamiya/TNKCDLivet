@@ -93,7 +93,7 @@ namespace TNKCDLivet.ViewModels
         public void ShowUserMst()
         {
             System.Diagnostics.Debug.WriteLine("ShowUserMst");
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive); 
 
             try
             {
@@ -219,6 +219,42 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region ShowPickupCommand
+        private ViewModelCommand _ShowPickupCommand;
+
+        public ViewModelCommand ShowPickupCommand
+        {
+            get
+            {
+                if (_ShowPickupCommand == null)
+                {
+                    _ShowPickupCommand = new ViewModelCommand(ShowPickup);
+                }
+                return _ShowPickupCommand;
+            }
+        }
+
+        public void ShowPickup()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowPickup");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                PickupViewModel ViewModel = new PickupViewModel();
+                var message = new TransitionMessage(typeof(Views.Pickup), ViewModel, TransitionMode.Modal, "ShowPickup");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
         #region TNKCD
         private List<TNKCD> _TNKCD;
 
@@ -236,10 +272,20 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        
+
         public void Initialize()
         {
             var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogon");
             Messenger.Raise(message);
         }
+        public async void Initialize2()
+        {
+
+            TNKCD tnkcd = new TNKCD();
+            this.TNKCD = await tnkcd.GetTNKCDAsync();
+
+        }
+
     }
-}
+       }

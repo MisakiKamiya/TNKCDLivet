@@ -201,5 +201,12 @@ namespace TNKCDLivet.Models
 
         #endregion
 
+
+        public async Task<List<TNKCD>> GetTNKCDAsync()
+        {
+            IRestService rest = new RestService();
+            List<TNKCD> tnkcd = await rest.GetTNKCDAsync();
+            return tnkcd;
+        }
     }
 }

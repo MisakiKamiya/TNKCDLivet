@@ -9,6 +9,7 @@ using TNKCDLivet.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+
 namespace TNKCDLivet.Services
 {
     class RestService : IRestService
@@ -32,7 +33,7 @@ namespace TNKCDLivet.Services
             //Adding header of the contenttype
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            Employee responseUser = null;
+            Employee responseEmployee = null;
             try
             {
                 var response = await Client.PostAsync(this.BaseUrl + "/api/Logon", content);
@@ -40,7 +41,7 @@ namespace TNKCDLivet.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
-                    responseUser = JsonConvert.DeserializeObject<Employee>(responseContent);
+                    responseEmployee = JsonConvert.DeserializeObject<Employee>(responseContent);
                 }
             }
             catch (Exception e)
@@ -48,10 +49,27 @@ namespace TNKCDLivet.Services
                 // TODO
                 System.Diagnostics.Debug.WriteLine("Exception in RestService.LogonAsync: " + e);
             }
-            return responseUser;
+            return responseEmployee;
         }
 
-
+        public async Task<List<TNKCD>> GetTNKCDAsync()
+        {
+            List<TNKCD> responseTNKCD = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/TNKCD");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseTNKCD = JsonConvert.DeserializeObject<List<TNKCD>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetTAsync: " + e);
+            }
+            return responseTNKCD;
+        }
     }
 }
 

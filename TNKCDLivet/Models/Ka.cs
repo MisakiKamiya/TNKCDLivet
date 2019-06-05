@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Livet;
+using Newtonsoft.Json;
 using TNKCDLivet.Services;
 
 namespace TNKCDLivet.Models
 {
-    internal class Ka
+    public class Ka : NotificationObject
     {
         #region Id
 
@@ -86,6 +89,7 @@ namespace TNKCDLivet.Models
 
         #endregion
 
+        
         private void RaisePropertyChanged()
         {
             throw new NotImplementedException();
