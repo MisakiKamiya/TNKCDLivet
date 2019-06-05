@@ -45,7 +45,7 @@
             <ComboBoxItem Content="From" FontSize="20" Height="45" Width="165" />
         </ComboBox>
 
-        <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="453,138,78,434"/>
+        <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="453,142,78,504"/>
 
         <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
             Text="Title:" FontSize="20" Height="42" Width="476"  Margin="145,186,0,0" />

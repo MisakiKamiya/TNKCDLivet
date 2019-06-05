@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Livet;
+using TNKCDLivet.Services;
 
 namespace TNKCDLivet.Models
 {
@@ -64,6 +65,16 @@ namespace TNKCDLivet.Models
             }
         }
 
+
+
         #endregion
+
+
+        public async Task<List<Work>> GetWorkAsync()
+        {
+            IRestService rest = new RestService();
+            List<Work> work = await rest.GetWorkAsync();
+            return work;
+        }
     }
 }

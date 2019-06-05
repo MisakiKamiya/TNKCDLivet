@@ -101,7 +101,7 @@
 
 
         <StackPanel  Grid.Column="2">
-            <ComboBox  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" />
+            <ComboBox  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" Margin="10"/>
             
                 
                 <Button Content="カード作成" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
