@@ -71,6 +71,8 @@ namespace TNKCDLivet.Services
             }
             return responseTNKCD;
         }
+
+
         public async Task<List<Work>> GetWorkAsync()
         {
             List<Work> responseWork = null;
@@ -89,6 +91,9 @@ namespace TNKCDLivet.Services
             }
             return responseWork;
         }
+
+
+
         public async Task<List<Employee>> GetEmployeeAsync()
         {
             List<Employee> responseEmployee = null;
@@ -108,7 +113,99 @@ namespace TNKCDLivet.Services
             return responseEmployee;
         }
 
+
+        public async Task<List<Ka>> GetKaAsync()
+        {
+            List<Ka> responseKa = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Ka");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseKa = JsonConvert.DeserializeObject<List<Ka>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetTAsync: " + e);
+            }
+            return responseKa;
+        }
+
+        public async Task<List<Busyo>> GetBusyoAsync()
+        {
+            List<Busyo> responseBusyo = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Busyoes");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseBusyo = JsonConvert.DeserializeObject<List<Busyo>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetTAsync: " + e);
+            }
+            return responseBusyo;
+        }
+        #endregion
+
+        public async Task<Employee> PostEmployeeAsync(Employee employee)
+        {
+            var jObject = JsonConvert.SerializeObject(employee);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Employee responseEmployee = null;
+            try
+            {
+                var response = await Client.PostAsync(this.BaseUrl + "/api/Employee", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseEmployee = JsonConvert.DeserializeObject<Employee>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PostEmployeeAsync: " + e);
+            }
+            return responseEmployee;
+        }
+
+
+
+        public async Task<Work> PostWorkAsync(Work work)
+        {
+            var jObject = JsonConvert.SerializeObject(work);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Work responseWork = null;
+            try
+            {
+                var response = await Client.PostAsync(this.BaseUrl + "/api/Work", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseWork = JsonConvert.DeserializeObject<Work>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PostWorkAsync: " + e);
+            }
+            return responseWork;
+        }
+
     }
 }
-
-

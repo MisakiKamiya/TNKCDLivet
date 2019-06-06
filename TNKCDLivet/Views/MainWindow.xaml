@@ -15,9 +15,9 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    
-    
 
+
+    
     <i:Interaction.Triggers>
     
     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
@@ -91,11 +91,11 @@
 
 
         <DataGrid Name="TNKCDList" ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="16,10,10,10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="送信日" Binding="{Binding DateSend}" />
-                <DataGridTextColumn Header="To" Binding="{Binding EmployeeTo.Name}" />
-                <DataGridTextColumn Header="From" Binding="{Binding EmployeeFrom.Name}" />
-                <DataGridTextColumn Header="タイトル" Binding="{Binding Title}" />
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="送信日" Binding="{Binding DateSend}"  IsReadOnly="True"/>
+                <DataGridTextColumn Header="To" Binding="{Binding EmployeeTo.Name}" IsReadOnly="True" />
+                <DataGridTextColumn Header="From" Binding="{Binding EmployeeFrom.Name}" IsReadOnly="True" />
+                <DataGridTextColumn Header="タイトル" Binding="{Binding Title}"  IsReadOnly="True"/>
             </DataGrid.Columns >
         </DataGrid>
 

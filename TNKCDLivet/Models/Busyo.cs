@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Livet;
+using Newtonsoft.Json;
+using TNKCDLivet.Services;
 
 namespace TNKCDLivet.Models
 {
@@ -82,5 +84,13 @@ namespace TNKCDLivet.Models
         }
 
         #endregion
+
+        public async Task<List<Busyo>> GetBusyoAsync()
+        {
+            IRestService rest = new RestService();
+            List<Busyo> busyo = await rest.GetBusyoAsync();
+            return busyo;
+        }
+
     }
 }
