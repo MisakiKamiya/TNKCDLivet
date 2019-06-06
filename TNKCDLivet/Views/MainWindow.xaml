@@ -7,30 +7,26 @@
         xmlns:v="clr-namespace:TNKCDLivet.Views"
         xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
         Title="掲示板" Height="720" Width="740">
-    
+
     <Window.Background>
         <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
     </Window.Background>
-    
+
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    
-    
+
+
 
     <i:Interaction.Triggers>
-    
-    	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
-    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
-    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
-        
+
+        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+        <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+        <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
         <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
         <i:EventTrigger EventName="ContentRendered">
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
-        </i:EventTrigger>
-
-        <i:EventTrigger EventName="ContentRendered">
-            <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize2"/>
         </i:EventTrigger>
 
         <!--Windowが閉じたタイミングでViewModelのDisposeメソッドが呼ばれます-->
@@ -50,6 +46,12 @@
         </l:InteractionMessageTrigger>
 
         <l:InteractionMessageTrigger MessageKey="ShowDepartmentMst" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowBusyoRelation" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション 
                  Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
@@ -82,38 +84,39 @@
 
 
     </i:Interaction.Triggers>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="344*" />
             <ColumnDefinition Width="173*" />
         </Grid.ColumnDefinitions>
 
-
-        <DataGrid Name="TNKCDList" ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="16,10,10,10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="送信日" Binding="{Binding DateSend}" />
-                <DataGridTextColumn Header="To" Binding="{Binding EmployeeTo.Name}" />
-                <DataGridTextColumn Header="From" Binding="{Binding EmployeeFrom.Name}" />
-                <DataGridTextColumn Header="タイトル" Binding="{Binding Title}" />
-            </DataGrid.Columns >
-        </DataGrid>
+        <ListView x:Name="TNKCD" ItemsSource="{Binding TNKCD}" Margin="16,10,10,10">
+            <ListView.View>
+                <GridView ColumnHeaderToolTip="People">
+                    <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}" />
+                    <GridViewColumn Header="To" DisplayMemberBinding="{Binding EmployeeTo.Name}" />
+                    <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFrom.Name}" />
+                    <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
 
         <StackPanel  Grid.Column="2">
-            <ComboBox  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" Margin="10"/>
-            
-                
-                <Button Content="カード作成" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
-                <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />
-                <Button Content="部署関連情報" Margin="10" Command="{Binding ShowBusyoRelationCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-                <Button Content="事例抽出" Margin="10"  Command="{Binding ShowPickupCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-                <Button Content="アカウント管理" Margin="10" Command="{Binding ShowUserMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-                <Button Content="部署・課管理" Margin="10" Command="{Binding ShowDepartmentMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-                <Button Content="業務関連度" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />
-                <Button Content="マニュアル" Margin="10" Command="{Binding ShowManualCommand}" />
-                <Button Content="ログアウト" Margin="10"  />
-            </StackPanel>
-       
+            <TextBlock Margin="10" ><Run Text="To一覧▼" Foreground="White" FontSize="15" /></TextBlock>
+            <ComboBox  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" Margin="10,0,12,0" />
+
+            <Button Content="カード作成" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
+            <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />
+            <Button Content="部署関連情報" Margin="10" Command="{Binding ShowBusyoRelationCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+            <Button Content="事例抽出" Margin="10"  Command="{Binding ShowPickupCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+            <Button Content="アカウント管理" Margin="10" Command="{Binding ShowUserMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+            <Button Content="部署・課管理" Margin="10" Command="{Binding ShowDepartmentMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+            <Button Content="業務関連度" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />
+            <Button Content="マニュアル" Margin="10" Command="{Binding ShowManualCommand}" />
+            <Button Content="ログアウト" Margin="10"  />
+        </StackPanel>
+
     </Grid>
 </Window>

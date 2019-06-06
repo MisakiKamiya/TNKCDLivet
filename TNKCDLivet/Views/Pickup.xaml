@@ -6,12 +6,12 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:TNKCDLivet.Views"
         xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
-        Title="Pickup" Height="350" Width="525">
+        Title="事例抽出画面" Height="720" Width="740">
 
     <Window.Background>
         <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
     </Window.Background>
-    
+ 
     <Window.DataContext>
         <vm:PickupViewModel/>
     </Window.DataContext>
@@ -42,20 +42,23 @@
             <ColumnDefinition Width="173*" />
         </Grid.ColumnDefinitions>
 
-        <DataGrid Name="TNKCDList" ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="16,10,10,10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="送信日" Binding="{Binding DateSend}" />
-                <DataGridTextColumn Header="To" Binding="{Binding EmployeeTo.Name}" />
-                <DataGridTextColumn Header="From" Binding="{Binding EmployeeFrom.Name}" />
-                <DataGridTextColumn Header="タイトル" Binding="{Binding Title}" />
-                <DataGridTextColumn Header="業務関連度" Binding="{Binding Work.WorkRelation}" />
-            </DataGrid.Columns>
-        </DataGrid>
+
+        <ListView x:Name="TNKCD" ItemsSource="{Binding TNKCD}" Margin="16,10,10,10">
+            <ListView.View>
+                <GridView ColumnHeaderToolTip="People">
+                    <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}" />
+                    <GridViewColumn Header="To" DisplayMemberBinding="{Binding EmployeeTo.Name}" />
+                    <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFrom.Name}" />
+                    <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="業務関連度" DisplayMemberBinding="{Binding Work.WorkRelation}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <StackPanel  Grid.Column="2">
-            <ComboBox  ItemsSource="{Binding Work,Mode=OneWay}" SelectedValuePath="Id" DisplayMemberPath="WorkRelation" 
-                       Margin="10"/>
-           
+            <TextBlock Margin="10" ><Run Text="業務関連度▼" Foreground="White" FontSize="15" /></TextBlock>
+            <ComboBox  ItemsSource="{Binding Work, Mode=OneWay}" SelectedValuePath="Id"  DisplayMemberPath="WorkRelation" />
+
         </StackPanel>
 
     </Grid>

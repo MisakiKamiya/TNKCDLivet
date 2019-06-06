@@ -19,6 +19,10 @@ namespace TNKCDLivet.Services
         Task<List<Work>> GetWorkAsync();
 
         //Employeeの情報やり取り用
-        Task<List<Employee>> GetEmployeeAsync();
+        Task<List<Employee>> PutEmployeeAsync();
+        
+
+        //Busyoの情報やり取り用
+        Task<List<Busyo>> GetBusyoAsync();
     }
 }

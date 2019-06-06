@@ -32,6 +32,10 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -58,7 +62,8 @@
             <Button Content="作成" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="470"/>
 
             <!-- 戻るボタン -->
-            <Button Content="戻る" FontSize="20" Height="40" Width="50" Canvas.Right="20" Canvas.Top="619" RenderTransformOrigin="0.62,3" Canvas.Left="657"/>
+            <Button Content="戻る" FontSize="20" Height="40" Width="50" Canvas.Right="20" Canvas.Top="619" RenderTransformOrigin="0.62,3" Canvas.Left="657"
+                    Command="{Binding CloseCommand}"/>
         </Canvas>
     </Grid>
 

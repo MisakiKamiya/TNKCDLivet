@@ -80,7 +80,7 @@ namespace TNKCDLivet.Models
         #region NameKana
 
         private string _NameKana;
-        [JsonProperty("KanaName")]
+        [JsonProperty("NameKana")]
 
         public string NameKana
         {
@@ -163,8 +163,10 @@ namespace TNKCDLivet.Models
         public async Task<List<Employee>> GetEmployeeAsync()
         {
             IRestService rest = new RestService();
-            List<Employee> employee = await rest.GetEmployeeAsync();
+            List<Employee> employee = await rest.PutEmployeeAsync();
             return employee;
         }
+
+   
     }
 }

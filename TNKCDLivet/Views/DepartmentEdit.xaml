@@ -15,13 +15,13 @@
     <Window.DataContext>
         <vm:DepartmentEditViewModel/>
     </Window.DataContext>
-    
-     <i:Interaction.Triggers>
-     
-     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
-    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
-    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
-        
+
+    <i:Interaction.Triggers>
+
+        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+        <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+        <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
         <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
         <i:EventTrigger EventName="ContentRendered">
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
@@ -35,7 +35,7 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
-    
+
     <Grid>
         <Canvas>
             <TextBlock Height="280" Width="450" Canvas.Left="140" Canvas.Top="30" Background="Violet" />
@@ -44,9 +44,10 @@
             <TextBlock Text="課" FontSize="30" Canvas.Left="250" Canvas.Top="360" />
 
             <!-- 部署・課の選択と削除ボタン -->
-            <ComboBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="70" SelectedIndex='0' RenderTransformOrigin="0.361,2.909">
-                <ComboBoxItem FontSize="25" Content="simeji" TabIndex='0'/>
-            </ComboBox>
+
+            <ComboBox  ItemsSource="{Binding Busyo}" SelectedValuePath="Id" DisplayMemberPath="BusyoName" Canvas.Left="182" Canvas.Top="72" Height="42" Width="299" SelectionChanged="ComboBox_SelectionChanged"/>
+
+
             <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="70"/>
 
             <ComboBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="400" SelectedIndex='0' RenderTransformOrigin="0.361,2.909">

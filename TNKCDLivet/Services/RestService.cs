@@ -91,7 +91,7 @@ namespace TNKCDLivet.Services
             return responseWork;
         }
 
-        public async Task<List<Employee>> GetEmployeeAsync()
+        public async Task<List<Employee>> PutEmployeeAsync()
         {
             List<Employee> responseEmployee = null;
             try
@@ -110,13 +110,32 @@ namespace TNKCDLivet.Services
             return responseEmployee;
         }
 
-        
+        public async Task<List<Busyo>> GetBusyoAsync()
+        {
+            List<Busyo> responseBusyo = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Busyoes");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseBusyo = JsonConvert.DeserializeObject<List<Busyo>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetBusyoAsync: " + e);
+            }
+            return responseBusyo;
+        }
+
 
 
 
 
         #endregion
 
+  
     }
 }
 

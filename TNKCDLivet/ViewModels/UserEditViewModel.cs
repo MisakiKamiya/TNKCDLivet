@@ -12,6 +12,7 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using TNKCDLivet.Models;
+using System.Windows;
 
 namespace TNKCDLivet.ViewModels
 {
@@ -58,9 +59,27 @@ namespace TNKCDLivet.ViewModels
          * LivetのViewModelではプロパティ変更通知(RaisePropertyChanged)やDispatcherCollectionを使ったコレクション変更通知は
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
-         
-        public void Initialize()
+
+        #region Employee
+        private List<Employee> _Employee;
+
+        public List<Employee> Employee
         {
+            get
+            { return _Employee; }
+            set
+            {
+                if (_Employee == value)
+                    return;
+                _Employee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        public async void Initialize()
+        {
+    
         }
     }
 }
