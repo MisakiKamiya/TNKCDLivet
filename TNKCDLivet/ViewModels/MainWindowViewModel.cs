@@ -255,6 +255,42 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region ShowBusyoRelationCommand
+        private ViewModelCommand _ShowBusyoRelationCommand;
+
+        public ViewModelCommand ShowBusyoRelationCommand
+        {
+            get
+            {
+                if (_ShowBusyoRelationCommand == null)
+                {
+                    _ShowBusyoRelationCommand = new ViewModelCommand(ShowBusyoRelation);
+                }
+                return _ShowBusyoRelationCommand;
+            }
+        }
+
+        public void ShowBusyoRelation()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowBusyoRelation");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                BusyoRelationViewModel ViewModel = new BusyoRelationViewModel();
+                var message = new TransitionMessage(typeof(Views.BusyoRelation), ViewModel, TransitionMode.Modal, "ShowBusyoRelation");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
         #region TNKCD
         private List<TNKCD> _TNKCD;
 
@@ -274,18 +310,17 @@ namespace TNKCDLivet.ViewModels
 
         
 
-        public void Initialize()
+        public async  void Initialize()
         {
             var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogon");
             Messenger.Raise(message);
-        }
-        public async void Initialize2()
-        {
+
 
             TNKCD tnkcd = new TNKCD();
             this.TNKCD = await tnkcd.GetTNKCDAsync();
 
         }
+        
 
     }
        }

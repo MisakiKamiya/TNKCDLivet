@@ -58,28 +58,28 @@ namespace TNKCDLivet.ViewModels
          * LivetのViewModelではプロパティ変更通知(RaisePropertyChanged)やDispatcherCollectionを使ったコレクション変更通知は
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
-
         #region Busyo
+        private List<Busyo> _Busyo;
 
-        private string _MyProperty;
-
-        public string MyProperty
+        public List<Busyo> Busyo
         {
             get
-            { return _MyProperty; }
+            { return _Busyo; }
             set
-            { 
-                if (_MyProperty == value)
+            {
+                if (_Busyo == value)
                     return;
-                _MyProperty = value;
+                _Busyo = value;
                 RaisePropertyChanged();
             }
         }
-
         #endregion
 
-        public void Initialize()
+        public async void Initialize()
         {
+            Busyo busyo = new Busyo();
+            this.Busyo = await busyo.GetBusyoAsync();
+
         }
     }
 }

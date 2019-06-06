@@ -60,6 +60,7 @@
     <Compile Include="Models\Work.cs" />
     <Compile Include="Services\IRestService.cs" />
     <Compile Include="Services\RestService.cs" />
+    <Compile Include="ViewModels\BusyoRelationViewModel.cs" />
     <Compile Include="ViewModels\CardCountViewModel.cs" />
     <Compile Include="ViewModels\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\DepartmentEditViewModel.cs" />

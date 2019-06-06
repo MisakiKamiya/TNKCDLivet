@@ -7,10 +7,14 @@
         xmlns:v="clr-namespace:TNKCDLivet.Views"
         xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
         Title="BusyoRelation" Height="720" Width="740">
-    
-    <!--Window.DataContext>
+
+    <Window.Background>
+        <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
+
+    <Window.DataContext>
         <vm:BusyoRelationViewModel/>
-    </Window.DataContext-->
+    </Window.DataContext>
     
      <i:Interaction.Triggers>
      
@@ -38,11 +42,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox FontSize="25" SelectedIndex='0' Grid.Column="0" Margin="30,140,30,500">
-            <ComboBoxItem Content="管理部"/>
-        </ComboBox>
+       
+        <ComboBox  ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" Margin="30,140,30,500" FontSize="25" />
 
-        <DataGrid ItemsSource="{Binding Busyo}" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="25" Grid.Column="1" Margin="0,100,30,200">
+        <DataGrid ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="25" Grid.Column="1" Margin="0,100,30,200">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="部署" Binding="{Binding Busyo}" Width="1*"/>
                 <DataGridTextColumn Header="カード枚数" Width="1*"/>
