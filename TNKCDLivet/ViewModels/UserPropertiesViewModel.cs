@@ -68,6 +68,30 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region UserDeleteCommand
+        private ListenerCommand<Employee> _UserDeleteCommand;
+
+        public ListenerCommand<Employee> UserDeleteCommand
+        {
+            get
+            {
+                if (_UserDeleteCommand == null)
+                {
+                    _UserDeleteCommand = new ListenerCommand<Employee>(UserDelete);
+                }
+                return _UserDeleteCommand;
+            }
+        }
+
+        public async void UserDelete(Employee Employee)
+        {
+            System.Diagnostics.Debug.WriteLine("DeleteCommand" + Employee.Id);
+            Employee deletedUser = await Employee.DeleteEmployeeAsync(Employee.Id);
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowUserMst"));
+            this.Initialize();
+        }
+        #endregion
+
         public async void Initialize()
         {
             Employee employee = new Employee();

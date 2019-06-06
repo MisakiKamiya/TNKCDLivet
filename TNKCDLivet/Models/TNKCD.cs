@@ -205,8 +205,20 @@ namespace TNKCDLivet.Models
         public async Task<List<TNKCD>> GetTNKCDAsync()
         {
             IRestService rest = new RestService();
-            List<TNKCD> tnkcd = await rest.GetTNKCDAsync();
-            return tnkcd;
+            List<TNKCD> tNKCD = await rest.GetTNKCDAsync();
+            return tNKCD;
+        }
+        public async Task<TNKCD> PostTNKCDAsync(TNKCD tNKCD)
+        {
+            IRestService rest = new RestService();
+            TNKCD createdTNKCD = await rest.PostTNKCDAsync(tNKCD);
+            return createdTNKCD;
+        }
+        public async Task<TNKCD> DeleteTNKCDAsync(int Id)
+        {
+            IRestService rest = new RestService();
+            TNKCD deletedTNKCD = await rest.DeleteTNKCDAsync(Id);
+            return deletedTNKCD;
         }
     }
 }

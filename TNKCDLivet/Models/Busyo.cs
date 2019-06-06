@@ -91,6 +91,18 @@ namespace TNKCDLivet.Models
             List<Busyo> busyo = await rest.GetBusyoAsync();
             return busyo;
         }
+        public async Task<Busyo> PostBusyoAsync(Busyo busyo)
+        {
+            IRestService rest = new RestService();
+            Busyo createdbusyo = await rest.PostBusyoAsync(busyo);
+            return createdbusyo;
+        }
+        public async Task<Busyo> DeleteBusyoAsync(int Id)
+        {
+            IRestService rest = new RestService();
+            Busyo deletedbusyo = await rest.DeleteBusyoAsync(Id);
+            return deletedbusyo;
+        }
 
     }
 }

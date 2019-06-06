@@ -95,6 +95,18 @@ namespace TNKCDLivet.Models
             List<Ka> ka = await rest.GetKaAsync();
             return ka;
         }
+        public async Task<Ka> PostKaAsync(Ka ka)
+        {
+            IRestService rest = new RestService();
+            Ka createdka = await rest.PostKaAsync(ka);
+            return createdka;
+        }
+        public async Task<Ka> DeleteKaAsync(int Id)
+        {
+            IRestService rest = new RestService();
+            Ka deletedKa = await rest.DeleteKaAsync(Id);
+            return deletedKa;
+        }
 
     }
 }
