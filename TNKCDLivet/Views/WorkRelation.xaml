@@ -58,8 +58,8 @@
             <Button Content="変更" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="363"/>
 
             <!-- 新規作成 -->
-            <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="470"/>
-            <Button Content="作成" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="470"/>
+            <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="470" Text="{Binding Work.Count}"/>
+            <Button Content="作成" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="470" Command="{Binding SubmitCommand}"/>
 
             <!-- 戻るボタン -->
             <Button Content="戻る" FontSize="20" Height="40" Width="50" Canvas.Right="20" Canvas.Top="619" RenderTransformOrigin="0.62,3" Canvas.Left="657"

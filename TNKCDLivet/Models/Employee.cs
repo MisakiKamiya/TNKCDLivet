@@ -153,6 +153,8 @@ namespace TNKCDLivet.Models
 
         #endregion
 
+      
+
         public async Task<Employee> LogonAsync()
         {
             IRestService rest = new RestService();
@@ -163,10 +165,14 @@ namespace TNKCDLivet.Models
         public async Task<List<Employee>> GetEmployeeAsync()
         {
             IRestService rest = new RestService();
-            List<Employee> employee = await rest.PutEmployeeAsync();
+            List<Employee> employee = await rest.GetEmployeeAsync();
             return employee;
         }
-
-   
+        public async Task<Employee> PostEmployeeAsync(Employee employee)
+        {
+            IRestService rest = new RestService();
+            Employee createdemproyee = await rest.PostEmployeeAsync(employee);
+            return createdemproyee;
+        }
     }
 }

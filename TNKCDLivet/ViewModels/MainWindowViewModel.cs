@@ -10,7 +10,7 @@ using Livet.Messaging;
 using Livet.Messaging.IO;
 using Livet.EventListeners;
 using Livet.Messaging.Windows;
-
+using TNKCDLivet.Views;
 using TNKCDLivet.Models;
 using System.Windows;
 

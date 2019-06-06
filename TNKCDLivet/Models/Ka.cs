@@ -20,7 +20,7 @@ namespace TNKCDLivet.Models
             get
             { return _Id; }
             set
-            { 
+            {
                 if (_Id == value)
                     return;
                 _Id = value;
@@ -89,9 +89,12 @@ namespace TNKCDLivet.Models
 
         #endregion
 
-        
-        
-        
+        public async Task<List<Ka>> GetKaAsync()
+        {
+            IRestService rest = new RestService();
+            List<Ka> ka = await rest.GetKaAsync();
+            return ka;
+        }
 
     }
 }

@@ -50,23 +50,22 @@
             <Button Background="White" Canvas.Left="505" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding LogonCommand}"/>
             <Button Background="White" Canvas.Top="345" Content="新規作成へ" Height="50" Width="165" FontSize="30" Command="{Binding UserCreateCommand}"  Canvas.Left="505" RenderTransformOrigin="0.758,1"/>
 
-            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40">
-                <ComboBoxItem Content="Eric" TabIndex='0' Width="350" Canvas.Left="180" Canvas.Top="165" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Employee}" DisplayMemberPath="Ka.KaName" >
             </ComboBox>
 
 
-            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40">
-                <ComboBoxItem Content="Eric" TabIndex='0' Width="350" Canvas.Left="180" Canvas.Top="165" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Employee}" DisplayMemberPath="Ka.Busyo.BusyoName" >
+                
             </ComboBox>
-            <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="65" Height="55" Width="175"/>
+            <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="65" Height="55" Width="175"  />
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="185" Height="55" Width="175"/>
 
-            <DataGrid Name="dataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" >
-                //SelectionChanged="DataGrid_SelectionChanged"//
+            <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" >
+              
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="名前" Binding="{Binding Employee.Name}" Width="50"/>
-                    <DataGridTextColumn Header="ふりがな" Binding="{Binding Employee.NameKana}" Width="50" />
-                    <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo}" Width="50" />
+                    <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="50"/>
+                    <DataGridTextColumn Header="ふりがな" Binding="{Binding NameKana}" Width="50" />
+                    <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo.BusyoName}" Width="50" />
                     <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" Width="50" />
                 </DataGrid.Columns>
             </DataGrid>

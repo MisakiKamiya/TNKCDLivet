@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Livet;
+using Newtonsoft.Json;
 using TNKCDLivet.Services;
 
 namespace TNKCDLivet.Models
@@ -51,7 +52,7 @@ namespace TNKCDLivet.Models
         #region WorkRelation
 
         private int _WorkRelation;
-
+        [JsonProperty("WorkRelation")]
         public int WorkRelation
         {
             get
@@ -76,5 +77,7 @@ namespace TNKCDLivet.Models
             List<Work> work = await rest.GetWorkAsync();
             return work;
         }
+
+       
     }
 }
