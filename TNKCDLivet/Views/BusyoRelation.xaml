@@ -28,6 +28,7 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+         
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -38,7 +39,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox FontSize="25" SelectedIndex='0' Grid.Column="0" Margin="30,140,30,500">
+        <ComboBox FontSize="25" SelectedIndex='0' Grid.Column="0" Margin="30,140,30,500" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem Content="管理部"/>
         </ComboBox>
 
@@ -48,7 +49,18 @@
                 <DataGridTextColumn Header="カード枚数" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
-
+<DataGrid ItemsSource="{Binding テーブル名}" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding カラム}" />
+                    <DataGridTextColumn Header="タイトル" Binding="{Binding カラム.カラム}" />
+                </DataGrid.Columns>
+            </DataGrid>
         <Button Content="戻る" FontSize="25" Margin="170,620,60,30" Grid.Column="1"/>
+        <DataGrid ItemsSource="{Binding }" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding BusyoName}" />
+                <DataGridTextColumn Header="タイトル" Binding="{Binding BusyoName.Poe}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

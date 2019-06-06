@@ -161,6 +161,11 @@ namespace TNKCDLivet.Models
             }
         }
 
+        internal Task<string> GetKaAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Work

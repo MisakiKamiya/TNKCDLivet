@@ -15,7 +15,8 @@ namespace TNKCDLivet.Services
     class RestService : IRestService
     {
         private HttpClient Client;
-        private string BaseUrl;
+        private  string BaseUrl;
+        private List<Work> responseWork;
 
         public RestService()
         {
@@ -70,8 +71,11 @@ namespace TNKCDLivet.Services
                 System.Diagnostics.Debug.WriteLine("Exception in RestService.GetTAsync: " + e);
             }
             return responseTNKCD;
+            #endregion
+
+
         }
-        public async Task<List<Work>> GetWorkAsync()
+        public async Task<List<Work>> GetKaAsync()
         {
             List<Work> responseWork = null;
             try
@@ -108,6 +112,43 @@ namespace TNKCDLivet.Services
             return responseEmployee;
         }
 
+        public Task<List<Ka>> GetKa()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<Work>> GetWorkAsync()
+        {
+            List<Work> responseBusyo = null;
+            try
+            {
+                var response = await Client.GetAsync(this.BaseUrl + "/api/Work");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseWork = JsonConvert.DeserializeObject<List<Work>>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.GetWorkAsync: " + e);
+            }
+            return responseBusyo;
+        }
+
+        public Task<List<Ka>> PostKaAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task LogonAsync(Ka ka)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<Busyo>> IRestService.GetBusyoAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

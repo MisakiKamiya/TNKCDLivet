@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Livet;
+using TNKCDLivet.Services;
 
 namespace TNKCDLivet.Models
 {
@@ -62,6 +63,11 @@ namespace TNKCDLivet.Models
             }
         }
 
+        internal Task<string> GetTAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Power
@@ -82,5 +88,12 @@ namespace TNKCDLivet.Models
         }
 
         #endregion
+        public async Task<List<Busyo>> GetBusyoAsync()
+        {
+            IRestService rest = new RestService();
+            List<Busyo> employee = await rest.GetBusyoAsync();
+            return employee;
+        }
+
     }
 }
