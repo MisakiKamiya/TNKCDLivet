@@ -4,7 +4,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
-        Title="TNKCDCreate"  Height="720" Width="740">
+        Title="感謝カード入力画面"  Height="720" Width="740">
 
     <Window.Background>
         <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
@@ -30,33 +30,46 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="ShowSubmitCommand" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
 
     <Grid >
 
-
+        <TextBlock Text="To" Foreground="White"  FontSize="15" Margin="145,55,410,604"  />
         <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
-                       FontSize="15" Height="30" Width="165" Margin="145,85,385,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+                   SelectedValue="{Binding TNKCD}" SelectedValuePath="Name" SelectedItem="{Binding TNKCD.EmployeeTo}"
+                       FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
-        <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
-                       FontSize="15" Height="30" Width="165" Margin="455,85,80,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+        <TextBlock Text="From" Foreground="White"  FontSize="15" Margin="456,55,99,599"  />
+        <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValue="{Binding TNKCD.EmployeeFrom}" SelectedValuePath="Id" SelectedItem="{Binding Employee}"
+                       FontSize="15" Height="30" Margin="440,90,111,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
-        <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="455,145,80,500"/>
+        <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="440,140,111,519" RenderTransformOrigin="0.5,0.5"/>
 
-        <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-            Text="Title:" FontSize="15" Height="42" Width="476"  Margin="145,185,0,0" />
+        <TextBlock Text="Title" Foreground="White"  FontSize="15" Margin="150,160,473,499" RenderTransformOrigin="0.5,0.5" />
+        <TextBox Text="{Binding TNKCD.Title}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
+             FontSize="25" Height="33" Width="471"  Margin="150,195,0,0" AcceptsReturn="True" />
 
-        <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-            Text="Body:" FontSize="15" Height="194" Width="476"  Margin="145,250,0,0" />
+        <TextBlock Text="Body" Foreground="White"  FontSize="15" RenderTransformOrigin="0.5,0.5" Margin="150,228,422,429" Grid.RowSpan="2"  />
+        <TextBox Text="{Binding TNKCD.Body}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
+             FontSize="20" Height="189" Width="476"  Margin="150,260,0,0" AcceptsReturn="True"/>
 
+        <TextBlock Text="業務関連度" Foreground="White"  FontSize="15" Margin="145,455,422,209"  />
         <ComboBox  ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" 
-                       FontSize="15" Height="25" Margin="145,465,415,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+                       FontSize="15" Height="25" Margin="150,480,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
-        <Button Content="Send" Margin="300,510,240,150" Command="{Binding Command}" />
+        <Button Content="Send" Margin="300,525,240,134" Command="{Binding SubmitCommand}" />
 
-        <Button Content="Clear" Margin="300,570,240,90" Command="{Binding Command}" />
+        <Button Content="Clear" Margin="300,580,240,79" Command="{Binding Command}" />
+
+
 
     </Grid>
 </Window>

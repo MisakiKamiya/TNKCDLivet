@@ -76,25 +76,22 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region Work
-        private List<Work> _Work;
+        #region TNKCD2
+        private List<TNKCD> _TNKCD2;
 
-        public List<Work> Work
+        public List<TNKCD> TNKCD2
         {
             get
-            { return _Work; }
+            { return _TNKCD2; }
             set
             {
-                if (_Work == value)
-                {
+                if (_TNKCD2 == value)
                     return;
-                }
-
-                _Work = value;
+                _TNKCD2 = value;
                 RaisePropertyChanged();
             }
         }
-        #endregion
+        #endregion 
 
         #region Employee
         private List<Employee> _Employee;
@@ -116,17 +113,39 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region CloseCommand
+        private ViewModelCommand _CloseCommand;
+
+        public ViewModelCommand CloseCommand
+        {
+            get
+            {
+                if (_CloseCommand == null)
+                {
+                    _CloseCommand = new ViewModelCommand(Close);
+                }
+                return _CloseCommand;
+            }
+        }
+
+        public void Close()
+        {
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
+        }
+        #endregion
 
         public async void Initialize()
         {
             TNKCD tnkcd = new TNKCD();
             this.TNKCD = await tnkcd.GetTNKCDAsync();
 
-            Work work = new Work();
-            this.Work = await work.GetWorkAsync();
+            
 
             Employee employee = new Employee();
             this.Employee = await employee.GetEmployeeAsync();
+
+          
+
         }
     }
 }

@@ -35,8 +35,27 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-       
-        
+
+        #region CloseCommand
+        private ViewModelCommand _CloseCommand;
+
+        public ViewModelCommand CloseCommand
+        {
+            get
+            {
+                if (_CloseCommand == null)
+                {
+                    _CloseCommand = new ViewModelCommand(Close);
+                }
+                return _CloseCommand;
+            }
+        }
+
+        public void Close()
+        {
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
+        }
+        #endregion
 
         #region UserCreateCommand
         private ViewModelCommand _UserCreateCommand;
@@ -61,7 +80,7 @@ namespace TNKCDLivet.ViewModels
             window.Hide();
 
 
-            var message= new TransitionMessage(typeof(Views.CreateUser), new MainWindowViewModel(), TransitionMode.Modal, "UserCreate");
+            var message= new TransitionMessage(typeof(Views.CreateUser), new UserPropertiesViewModel(), TransitionMode.Modal, "UserCreate");
             Messenger.Raise(message);
 
 

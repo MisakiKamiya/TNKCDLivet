@@ -32,6 +32,10 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -43,22 +47,22 @@
         </Grid.ColumnDefinitions>
 
 
-        <ListView x:Name="TNKCD" ItemsSource="{Binding TNKCD}" Margin="16,10,10,10">
+        <ListView x:Name="TNKCD" ItemsSource="{Binding TNKCD}" Margin="16,10,10,10" SelectionChanged="TNKCD_SelectionChanged">
             <ListView.View>
                 <GridView ColumnHeaderToolTip="People">
                     <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}" />
                     <GridViewColumn Header="To" DisplayMemberBinding="{Binding EmployeeTo.Name}" />
                     <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFrom.Name}" />
                     <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}" />
-                    <GridViewColumn Header="業務関連度" DisplayMemberBinding="{Binding Work.WorkRelation}" />
+                    <GridViewColumn Header="業務関連度" DisplayMemberBinding="{Binding Work}" />
                 </GridView>
             </ListView.View>
         </ListView>
 
         <StackPanel  Grid.Column="2">
             <TextBlock Margin="10" ><Run Text="業務関連度▼" Foreground="White" FontSize="15" /></TextBlock>
-            <ComboBox  ItemsSource="{Binding Work, Mode=OneWay}" SelectedValuePath="Id"  DisplayMemberPath="WorkRelation" />
-
+            <ComboBox  ItemsSource="{Binding Work}"  DisplayMemberPath="WorkRelation" />
+            <Button Content="戻る" Margin="50,500,50,0" Grid.Column="1" Command="{Binding CloseCommand}"/>
         </StackPanel>
 
     </Grid>

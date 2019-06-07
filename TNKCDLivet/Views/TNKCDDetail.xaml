@@ -11,7 +11,7 @@
     <Window.Background>
         <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
     </Window.Background>
-    
+
     <Window.DataContext>
         <vm:TNKCDDetailViewModel/>
     </Window.DataContext>
@@ -32,31 +32,28 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="245*"/>
-            <RowDefinition Height="444*"/>
-        </Grid.RowDefinitions>
-        <Canvas Grid.RowSpan="2">
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-         Text="From:" FontSize="25" Canvas.Left="120" Canvas.Top="147" Height="52" Width="171"  />
+        <TextBlock Text="To" Foreground="White"  FontSize="15" Margin="145,55,410,604"  />
+        <TextBlock Text="{Binding Employee}" Foreground="Black"  FontSize="15" Height="30" Width="165" Margin="145,90,422,569" Background="White" />
 
+        <TextBlock Text="Title" Foreground="White"  FontSize="15" Margin="150,160,473,499" RenderTransformOrigin="0.5,0.5" />
 
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-         Text="タイトルを入れてください。" FontSize="25" Canvas.Left="188" Canvas.Top="353" Height="50" Width="377"  />
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-                Text="文字を入力してください。" FontSize="25" Canvas.Left="183" Canvas.Top="442" Height="90" Width="383"  RenderTransformOrigin="0.578,1.511" />
-            <Button Content="戻る" FontSize="25" Width="104" Canvas.Left="318" Canvas.Top="574" Height="50" />
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-                Text="To:" FontSize="25" Canvas.Left="448" Canvas.Top="147" Height="50" Width="167"  RenderTransformOrigin="0.805,0.786" />
-            <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-                Text="" FontSize="25" Canvas.Left="450" Canvas.Top="225" Height="50" Width="165"  />
-
-        </Canvas>
+        <TextBlock Text="Body" Foreground="White"  FontSize="15" RenderTransformOrigin="0.5,0.5" Margin="150,228,422,429" Grid.RowSpan="2"  />
+        <TextBlock Text="From" Foreground="White"  FontSize="15" Margin="456,55,99,599"  />
+        <TextBlock Text="{Binding Employee}" Foreground="Black"  FontSize="15" Height="30" Width="165" Margin="456,90,111,569" Background="White" />
+        <TextBlock Text="{Binding Employee}" Foreground="Black"  FontSize="15" Height="30" Width="165" Margin="456,145,111,514" Background="White" />
+        <TextBlock Text="{Binding Employee}" Foreground="Black"  FontSize="15" Height="30" Margin="150,190,111,469" Background="White" />
+        <TextBlock Text="{Binding Employee}" Foreground="Black"  FontSize="15" Margin="150,260,111,254" Background="White" />
+        
 
     </Grid>
 </Window>

@@ -281,9 +281,9 @@ namespace TNKCDLivet.Services
         }
         #endregion
         #region Post
-        public async Task<TNKCD> PostTNKCDAsync(TNKCD tNKCD)
+        public async Task<TNKCD> PostTNKCDAsync(TNKCD TNKCD)
         {
-            var jObject = JsonConvert.SerializeObject(tNKCD);
+            var jObject = JsonConvert.SerializeObject(TNKCD);
 
             //Make Json object into content type
             var content = new StringContent(jObject);

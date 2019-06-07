@@ -1,4 +1,4 @@
-﻿<Window x:Class="TNKCDLivet.Views.UserProperties"
+<Window x:Class="TNKCDLivet.Views.UserProperties"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -6,7 +6,7 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:TNKCDLivet.Views"
         xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
-        Title="UserProperties" Height="720" Width="740">
+        Title="アカウント管理" Height="720" Width="740">
 
     <Window.Background>
         <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
@@ -33,15 +33,15 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
-        <l:InteractionMessageTrigger MessageKey="CreateUser" Messenger="{Binding Messenger}">
+
+        <l:InteractionMessageTrigger MessageKey="UserCreate" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション 
                  Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
-        <l:InteractionMessageTrigger MessageKey="UserDeleteCommand" Messenger="{Binding Messenger}">
-            <!-- Window を表示するメッセージアクション 
-                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
-            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
         </l:InteractionMessageTrigger>
 
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
@@ -50,8 +50,12 @@
     
     <Grid>
         <Canvas Grid.ColumnSpan="2">
-            <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand}" CommandParameter="{Binding}"/>
-            <Button Background="White" Canvas.Left="595" Canvas.Top="606" Content="戻る" Height="50" Width="91" FontSize="30" Command="{Binding LogonCommand}" />
+
+           
+
+            <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+            <Button Background="White" Canvas.Left="595" Canvas.Top="606" Content="戻る" Height="50" Width="91" FontSize="30" Command="{Binding  CloseCommand}" />
+
             <Button Background="White" Canvas.Left="505" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding LogonCommand}"/>
             <Button Background="White" Canvas.Top="345" Content="新規作成へ" Height="50" Width="165" FontSize="30" Command="{Binding UserCreateCommand}"  Canvas.Left="505" RenderTransformOrigin="0.758,1"/>
 

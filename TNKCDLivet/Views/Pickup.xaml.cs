@@ -31,5 +31,10 @@ namespace TNKCDLivet.Views
         {
             InitializeComponent();
         }
+
+        private void TNKCD_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

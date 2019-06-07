@@ -204,7 +204,7 @@
     <Content Include="img\aho.jpg" />
     <Content Include="img\air.png" />
     <Content Include="img\backcara.png" />
-    <Content Include="img\D112EB7B-B390-4E0D-9BEC-5266A96FD0DE.jpeg" />
+    <Resource Include="img\D112EB7B-B390-4E0D-9BEC-5266A96FD0DE.jpeg" />
     <Content Include="img\date - コピー.jpg" />
     <Content Include="img\date.jpg" />
     <Content Include="img\emoihamedorikun.png" />

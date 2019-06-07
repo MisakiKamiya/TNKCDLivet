@@ -32,6 +32,10 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -52,6 +56,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="戻る" FontSize="25" Margin="170,620,60,30" Grid.Column="1"/>
+        <Button Content="戻る" FontSize="25" Margin="170,620,60,30" Grid.Column="1" Command="{Binding CloseCommand}"/>
     </Grid>
 </Window>
