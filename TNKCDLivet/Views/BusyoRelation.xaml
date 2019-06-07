@@ -15,13 +15,13 @@
     <Window.DataContext>
         <vm:BusyoRelationViewModel/>
     </Window.DataContext>
-    
-     <i:Interaction.Triggers>
-     
-     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
-    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
-    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
-        
+
+    <i:Interaction.Triggers>
+
+        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+        <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+        <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
         <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
         <i:EventTrigger EventName="ContentRendered">
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
@@ -39,23 +39,25 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-       
-        <ComboBox  ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" Margin="30,140,30,500" FontSize="25" />
 
-        <DataGrid ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="25" Grid.Column="1" Margin="0,100,30,200">
+        <ComboBox  ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" Margin="26,106,34,534" FontSize="25" />
+
+        <DataGrid ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" FontSize="25" Grid.Column="1" Margin="0,114,30,186">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="部署" Binding="{Binding Busyo}" Width="1*"/>
                 <DataGridTextColumn Header="カード枚数" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="戻る" FontSize="25" Margin="170,620,60,30" Grid.Column="1" Command="{Binding CloseCommand}"/>
+        <!-- 戻るボタン -->
+        <Button Content="戻る" FontSize="30" Canvas.Right="20" Canvas.Top="619" RenderTransformOrigin="0.62,3" Canvas.Left="657"
+                    Command="{Binding CloseCommand}" Margin="179,590,56,36" Grid.Column="1"/>
     </Grid>
 </Window>

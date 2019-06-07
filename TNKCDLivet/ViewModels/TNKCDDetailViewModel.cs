@@ -83,5 +83,6 @@ namespace TNKCDLivet.ViewModels
         public void Initialize()
         {
         }
+
     }
 }
