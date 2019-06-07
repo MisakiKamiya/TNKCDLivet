@@ -77,9 +77,12 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+
+
+
         public  void Initialize()
         {
-    
+
         }
     }
 }

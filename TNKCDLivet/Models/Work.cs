@@ -20,7 +20,7 @@ namespace TNKCDLivet.Models
             get
             { return _Id; }
             set
-            { 
+            {
                 if (_Id == value)
                     return;
                 _Id = value;
@@ -77,6 +77,8 @@ namespace TNKCDLivet.Models
             List<Work> work = await rest.GetWorkAsync();
             return work;
         }
+
+
         public async Task<Work> PostWorkAsync(Work work)
         {
             IRestService rest = new RestService();
@@ -89,7 +91,5 @@ namespace TNKCDLivet.Models
             Work deletedWork = await rest.DeleteWorkAsync(Id);
             return deletedWork;
         }
-
-
     }
 }
