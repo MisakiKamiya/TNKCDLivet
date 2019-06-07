@@ -60,6 +60,66 @@ namespace TNKCDLivet.ViewModels
          * 自動的にUIDispatcher上での通知に変換されます。変更通知に際してUIDispatcherを操作する必要はありません。
          */
 
+        #region Employee
+        private List<Employee> _Employee;
+
+        public List<Employee> Employee
+        {
+            get
+            { return _Employee; }
+            set
+            {
+                if (_Employee == value)
+                {
+                    return;
+                }
+
+                _Employee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Busyo
+        private List<Busyo> _Busyo;
+
+        public List<Busyo> Busyo
+        {
+            get
+            { return _Busyo; }
+            set
+            {
+                if (_Busyo == value)
+                {
+                    return;
+                }
+
+                _Busyo = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Ka
+        private List<Ka> _Ka;
+
+        public List<Ka> Ka
+        {
+            get
+            { return _Ka; }
+            set
+            {
+                if (_Ka == value)
+                {
+                    return;
+                }
+
+                _Ka = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
         #region CloseCommand
         private ViewModelCommand _CloseCommand;
 
@@ -81,8 +141,13 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        public void Initialize()
+        public async void Initialize()
         {
+            Busyo busyo = new Busyo();
+            this.Busyo = await busyo.GetBusyoAsync();
+
+           // Ka ka = new Ka();
+           // this.Ka = await ka.GetKaAsync();
         }
     }
 }

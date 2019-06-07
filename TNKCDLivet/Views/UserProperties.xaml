@@ -69,14 +69,14 @@
             <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="65" Height="55" Width="175"  />
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="185" Height="55" Width="175"/>
 
-            <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" SelectedValue="{Binding Enmpoyee.Id}" >
+            <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" SelectedValue="{Binding Enmpoyee.Id}" >
               
                 <DataGrid.Columns>
                    
-                    <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="50" IsReadOnly="True" />
-                    <DataGridTextColumn Header="ふりがな" Binding="{Binding NameKana}" Width="50" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo.BusyoName}" Width="50" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" Width="50" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="*" IsReadOnly="True" />
+                    <DataGridTextColumn Header="ふりがな" Binding="{Binding NameKana}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo.BusyoName}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" Width="*" IsReadOnly="True"/>
                 
                 </DataGrid.Columns>
             </DataGrid>
