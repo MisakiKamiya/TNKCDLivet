@@ -56,6 +56,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="戻る" FontSize="25" Margin="170,620,60,30" Grid.Column="1" Command="{Binding CloseCommand}"/>
+        <Button Content="戻る" FontSize="25" Margin="186,595,30,49" Grid.Column="1" Command="{Binding CloseCommand}"/>
     </Grid>
 </Window>

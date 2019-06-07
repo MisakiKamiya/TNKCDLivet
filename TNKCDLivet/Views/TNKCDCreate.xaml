@@ -35,35 +35,33 @@
     </i:Interaction.Triggers>
 
     <Grid >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="240*"/>
-            <RowDefinition Height="449*"/>
-        </Grid.RowDefinitions>
 
 
+        <TextBlock Text="To" Foreground="White"  FontSize="15" Margin="145,60,422,604"  />
         <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
-                       FontSize="15" Height="30" Width="165" Margin="145,85,422,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+                       FontSize="15" Height="30" Margin="145,85,415,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
+        <TextBlock Text="From" Foreground="White"  FontSize="15" Margin="437,60,130,604"  />
         <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
-                       FontSize="15" Height="30" Width="165" Margin="456,85,111,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+                       FontSize="15" Height="30" Margin="437,85,111,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
-        <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="424,146,111,50" RenderTransformOrigin="0.5,0.5"/>
+        <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="424,146,111,514" RenderTransformOrigin="0.5,0.5"/>
 
-        <TextBlock Text="Title" Foreground="White"  FontSize="15" Margin="150,165,473,49" RenderTransformOrigin="0.5,0.5" />
+        <TextBlock Text="Title" Foreground="White"  FontSize="15" Margin="150,165,473,494" RenderTransformOrigin="0.5,0.5" />
         <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
              FontSize="25" Height="33" Width="476"  Margin="145,195,0,0" AcceptsReturn="True" />
 
         <TextBlock Text="Body" Foreground="White"  FontSize="15" RenderTransformOrigin="0.5,0.5" Margin="150,228,422,429" Grid.RowSpan="2"  />
         <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-             FontSize="20" Height="189" Width="476"  Margin="145,20,0,0" AcceptsReturn="True" Grid.Row="1"/>
+             FontSize="20" Height="189" Width="476"  Margin="145,260,0,0" AcceptsReturn="True"/>
 
-        <TextBlock Text="業務関連度" Foreground="White"  FontSize="15" Margin="145,214,422,209" Grid.Row="1"  />
+        <TextBlock Text="業務関連度" Foreground="White"  FontSize="15" Margin="145,459,422,204"  />
         <ComboBox  ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" 
-                       FontSize="15" Height="25" Margin="145,240,415,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636" Grid.Row="1"/>
+                       FontSize="15" Height="25" Margin="145,490,415,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
-        <Button Content="Send" Margin="300,286,240,134" Command="{Binding Command}" Grid.Row="1" />
+        <Button Content="Send" Margin="300,535,240,114" Command="{Binding SendCommand}" RenderTransformOrigin="0.495,1.143" />
 
-        <Button Content="Clear" Margin="300,340,240,80" Command="{Binding Command}" Grid.Row="1" />
+        <Button Content="Clear" Margin="300,595,240,54" Command="{Binding SubmitCommand}" />
 
 
     </Grid>

@@ -55,9 +55,8 @@
 
 
         <StackPanel Grid.Column="2">
-            <ComboBox Width="140" SelectedIndex="0" Margin="20">
-                <ComboBoxItem Content="氏名" />
-            </ComboBox>
+
+            <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" Width="140" Margin="20" />
 
             <ComboBox Width="140" SelectedIndex="0" Margin="20">
                 <ComboBoxItem Content="部署" />

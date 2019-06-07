@@ -100,8 +100,29 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region TNKCD
+        private TNKCD _TNKCD;
 
+        public  TNKCD TNKCD
+        {
+            get
+            { return _TNKCD; }
+            set
+            {
+                if (_TNKCD == value)
+                    return;
+                _TNKCD = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
 
+        public async void Submit()
+        {
+            TNKCD tnkcd = await TNKCD.PostTNKCDAsync(this.TNKCD);
+            //TODO: Error handling
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Created"));
+        }
         public async void Initialize()
         {
 
@@ -111,6 +132,13 @@ namespace TNKCDLivet.ViewModels
             Employee employee = new Employee();
             this.Employee = await employee.GetEmployeeAsync();
 
+           
+             
+                
+                    
+               
+            }
+
         }
     }
-}
+

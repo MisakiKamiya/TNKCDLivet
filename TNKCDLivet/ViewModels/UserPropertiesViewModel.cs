@@ -20,7 +20,7 @@ namespace TNKCDLivet.ViewModels
     public class UserPropertiesViewModel : ViewModel
     {
         #region Employee
-       private List<Employee> _Employee;
+        private List<Employee> _Employee;
 
         public List<Employee> Employee
         {
@@ -35,67 +35,53 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-       
-        
 
-        #region UserCreateCommand
-        private ViewModelCommand _UserCreateCommand;
+        #region ShowCreateUserCommand
+        private ViewModelCommand _ShowCreateUserCommand;
 
-        public ViewModelCommand UserCreateCommand
-
+        public ViewModelCommand ShowCreateUserpCommand
         {
             get
             {
-                if (_UserCreateCommand == null)
+                if (_ShowCreateUserCommand == null)
                 {
-                    _UserCreateCommand = new ViewModelCommand(UserCreate);
+                    _ShowCreateUserCommand = new ViewModelCommand(ShowCreateUser);
                 }
-                return _UserCreateCommand;
+                return _ShowCreateUserCommand;
             }
         }
 
-        public void UserCreate()
+        public void ShowCreateUser()
         {
-
+            System.Diagnostics.Debug.WriteLine("ShowCreateUser");
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
-            window.Hide();
 
-
-            var message= new TransitionMessage(typeof(Views.CreateUser), new MainWindowViewModel(), TransitionMode.Modal, "UserCreate");
-            Messenger.Raise(message);
-
-
-        }
-        #endregion
-
-        #region UserDeleteCommand
-        private ListenerCommand<Employee> _UserDeleteCommand;
-
-        public ListenerCommand<Employee> UserDeleteCommand
-        {
-            get
+            try
             {
-                if (_UserDeleteCommand == null)
-                {
-                    _UserDeleteCommand = new ListenerCommand<Employee>(UserDelete);
-                }
-                return _UserDeleteCommand;
+                // MainWindow を非表示
+                window.Hide();
+                CreateUserViewModel ViewModel = new CreateUserViewModel();
+                var message = new TransitionMessage(typeof(Views.CreateUser), ViewModel, TransitionMode.Modal, "ShowCreateUser");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
             }
         }
-
-        public async void UserDelete(Employee Employee)
-        {
-            System.Diagnostics.Debug.WriteLine("DeleteCommand" + Employee.Id);
-            Employee deletedUser = await Employee.DeleteEmployeeAsync(Employee.Id);
-            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowUserMst"));
-            this.Initialize();
-        }
         #endregion
+
+
+
+
 
         public async void Initialize()
         {
             Employee employee = new Employee();
             this.Employee = await employee.GetEmployeeAsync();
+
+
         }
     }
 }
