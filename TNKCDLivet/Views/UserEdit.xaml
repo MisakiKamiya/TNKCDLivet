@@ -32,6 +32,10 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -55,7 +59,7 @@
             </ComboBox>
             <TextBlock Text="パスワード" Foreground="white"  FontSize="36" Canvas.Left="355" Canvas.Top="360" Height="55" Width="195"/>
             <TextBox Text="{Binding User.Password}" Width="195" Canvas.Left="360" Canvas.Top="420" Height="55" Background="black" Foreground="white"  FontSize="40"/>
-
+            <Button Content="戻る" Width="100" FontSize="25" Margin="550,600,00,0" Command="{Binding CloseCommand}"/>
         </Canvas>
     </Grid>
 </Window>

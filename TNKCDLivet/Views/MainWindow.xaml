@@ -101,8 +101,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
-
+        
         <StackPanel  Grid.Column="2">
             <TextBlock Margin="10" ><Run Text="To一覧▼" Foreground="White" FontSize="15" /></TextBlock>
             <ComboBox  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" Margin="10,0,12,0" />
