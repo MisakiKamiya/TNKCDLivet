@@ -33,6 +33,12 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
+
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -66,6 +72,8 @@
             <ComboBox Width="140" SelectedIndex="0" Margin="20">
                 <ComboBoxItem Content="課" />
             </ComboBox>
+
+            <Button Content="戻る" Margin="0,400,0,0" Grid.Column="1" Command="{Binding CloseCommand}"/>
 
         </StackPanel>
     </Grid>

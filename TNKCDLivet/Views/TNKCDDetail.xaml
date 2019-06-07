@@ -32,6 +32,11 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -50,7 +55,7 @@
          Text="タイトルを入れてください。" FontSize="25" Canvas.Left="188" Canvas.Top="353" Height="50" Width="377"  />
             <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
                 Text="文字を入力してください。" FontSize="25" Canvas.Left="183" Canvas.Top="442" Height="90" Width="383"  RenderTransformOrigin="0.578,1.511" />
-            <Button Content="戻る" FontSize="25" Width="104" Canvas.Left="318" Canvas.Top="574" Height="50" />
+            <Button Content="戻る" FontSize="25" Width="104" Canvas.Left="318" Canvas.Top="574" Height="50" Command="{Binding CloseCommand}"/>
             <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
                 Text="To:" FontSize="25" Canvas.Left="448" Canvas.Top="147" Height="50" Width="167"  RenderTransformOrigin="0.805,0.786" />
             <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
