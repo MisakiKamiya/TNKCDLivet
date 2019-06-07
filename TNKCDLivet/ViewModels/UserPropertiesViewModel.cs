@@ -80,7 +80,7 @@ namespace TNKCDLivet.ViewModels
             window.Hide();
 
 
-            var message= new TransitionMessage(typeof(Views.CreateUser), new MainWindowViewModel(), TransitionMode.Modal, "UserCreate");
+            var message= new TransitionMessage(typeof(Views.CreateUser), new UserPropertiesViewModel(), TransitionMode.Modal, "UserCreate");
             Messenger.Raise(message);
 
 
