@@ -33,12 +33,8 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
-        <l:InteractionMessageTrigger MessageKey="CreateUser" Messenger="{Binding Messenger}">
-            <!-- Window を表示するメッセージアクション 
-                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
-            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
-        </l:InteractionMessageTrigger>
-        <l:InteractionMessageTrigger MessageKey="UserDeleteCommand" Messenger="{Binding Messenger}">
+
+        <l:InteractionMessageTrigger MessageKey="UserCreate" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション 
                  Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
