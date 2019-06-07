@@ -95,7 +95,6 @@ namespace TNKCDLivet.ViewModels
         public void Close()
         {
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
-        }
-        #endregion        
+     #endregion
     }
 }

@@ -7,7 +7,7 @@ using Livet;
 
 namespace TNKCDLivet.Models
 {
-    public class Model : NotificationObject
+    public class Models : NotificationObject
     {
         /*
          * NotificationObjectはプロパティ変更通知の仕組みを実装したオブジェクトです。

@@ -93,11 +93,11 @@
 
         <ListView x:Name="TNKCD" ItemsSource="{Binding TNKCD}" Margin="16,10,10,10">
             <ListView.View>
-                <GridView ColumnHeaderToolTip="People">
+                <GridView ColumnHeaderToolTip="People"  >
                     <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}" />
                     <GridViewColumn Header="To" DisplayMemberBinding="{Binding EmployeeTo.Name}" />
                     <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFrom.Name}" />
-                    <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}"  />
                 </GridView>
             </ListView.View>
         </ListView>
