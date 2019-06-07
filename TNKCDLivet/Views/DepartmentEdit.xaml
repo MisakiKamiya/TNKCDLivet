@@ -45,7 +45,7 @@
 
             <!-- 部署・課の選択と削除ボタン -->
 
-            <ComboBox  ItemsSource="{Binding Busyo}" SelectedValuePath="Id" DisplayMemberPath="BusyoName" Canvas.Left="182" Canvas.Top="72" Height="42" Width="299" SelectionChanged="ComboBox_SelectionChanged"/>
+            <ComboBox  ItemsSource="{Binding Busyo,Mode=OneWay}" SelectedValuePath="Id,Mode=OneWay" DisplayMemberPath="BusyoName,Mode=OneWay" Canvas.Left="182" Canvas.Top="72" Height="42" Width="299" SelectionChanged="ComboBox_SelectionChanged"/>
 
 
             <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="70"/>
