@@ -290,7 +290,7 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-
+            
         #region TNKCD
         private List<TNKCD> _TNKCD;
 
@@ -308,7 +308,45 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        
+        private IEnumerable<TNKCD> _Tocombo;
+
+        public IEnumerable<TNKCD> Tocombo
+        {
+            get
+            { return _Tocombo; }
+            set
+            {
+                if (_Tocombo == value)
+                    return;
+                _Tocombo = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #region SelectToCommand
+        private ListenerCommand<int> _SelectToCommand;
+
+        public ListenerCommand<int> SelectToCommand
+        {
+            get
+
+            {
+                if (_SelectToCommand == null)
+                {
+                    _SelectToCommand = new ListenerCommand<int>(SelectTo);
+                }
+                return _SelectToCommand;
+            }
+        }
+
+        public void SelectTo(int parameter)
+        {
+            this.Tocombo = TNKCD.Where(t => parameter == t.EmployeeTo.Id);
+        }
+        #endregion
+
+    
+
 
         public async  void Initialize()
         {

@@ -10,13 +10,15 @@ using Livet.Messaging;
 using Livet.Messaging.IO;
 using Livet.EventListeners;
 using Livet.Messaging.Windows;
-
+using TNKCDLivet.Views;
 using TNKCDLivet.Models;
+using System.Windows;
 
 namespace TNKCDLivet.ViewModels
 {
     public class CreateUserViewModel : ViewModel
     {
+        #region Employee
         private Employee _Employee;
 
         public Employee Employee
@@ -31,11 +33,12 @@ namespace TNKCDLivet.ViewModels
                 RaisePropertyChanged(nameof(Employee));
             }
         }
+        #endregion
 
         #region Ka
-        private List<Ka> _Ka;
+        private List<Ka>  _Ka;
 
-        public List<Ka> Ka
+        public List<Ka> Ka 
         {
             get
             { return _Ka; }
@@ -48,18 +51,6 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-
-        
-
-        public async void Initialize()
-        {
-            Ka ka = new Ka();
-            this.Ka = await ka.GetKaAsync();
-
-            this.Employee = new Employee();
-        }
-
-
 
         #region SubmitCommand
         private ViewModelCommand _SubmitCommand;
@@ -80,8 +71,22 @@ namespace TNKCDLivet.ViewModels
         {
             Employee createdEmployee = await Employee.PostEmployeeAsync(this.Employee);
             //TODO: Error handling
-            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowSubmitCommand"));
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "SubmitCommand"));
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Created"));
         }
         #endregion
+
+        public async void Initialize()
+        {
+            Ka ka = new Ka();
+            this.Ka = await ka.GetKaAsync();
+
+            this.Employee = new Employee();
+        }
+
+
+
+
+
     }
 }

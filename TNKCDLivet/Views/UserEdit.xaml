@@ -40,20 +40,30 @@
         <Canvas Grid.ColumnSpan="2">
             <TextBlock Text="ユーザー名" Foreground="white"  FontSize="40" Canvas.Left="115" Canvas.Top="87" Height="55" Width="175"/>
             <TextBox Width="195" Canvas.Left="115" Canvas.Top="147" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+           
             <TextBlock Text="ふりがな" Foreground="white"  FontSize="40" Canvas.Left="355" Canvas.Top="87" Height="55" Width="175"/>
             <TextBox Text="{Binding User.Name}" Width="200" Canvas.Left="355" Canvas.Top="147" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+           
             <Button Background="White" Canvas.Top="505" Content="編集" Height="50" Width="165" FontSize="30" Command="{Binding LogonCommand}"  Canvas.Left="265"/>
+            
             <TextBlock Text="メールアドレス" Foreground="white"  FontSize="36" Canvas.Left="115" Canvas.Top="360" Height="55" Width="195"/>
+            
             <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="115" Canvas.Top="220" Height="55" Width="175"/>
+            
             <TextBox Text="{Binding User.Mail}" Width="195" Canvas.Left="115" Canvas.Top="420" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            
             <ComboBox Width="180" Canvas.Left="115" Canvas.Top="280" Height="55" SelectedIndex='0' FontSize="40" RenderTransformOrigin="0.361,2.909">
                 <ComboBoxItem Content="Eric" TabIndex='0' Width="350" Canvas.Left="180" Canvas.Top="165" Height="55" Background="black" Foreground="white"  FontSize="40"/>
             </ComboBox>
+            
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="355" Canvas.Top="220" Height="55" Width="65"/>
+            
             <ComboBox Width="180" Canvas.Left="355" Canvas.Top="280" Height="55" SelectedIndex='0' FontSize="40" RenderTransformOrigin="0.361,2.909">
                 <ComboBoxItem Content="Eric" TabIndex='0' Width="350" Canvas.Left="180" Canvas.Top="165" Height="55" Background="black" Foreground="white"  FontSize="40"/>
             </ComboBox>
+            
             <TextBlock Text="パスワード" Foreground="white"  FontSize="36" Canvas.Left="355" Canvas.Top="360" Height="55" Width="195"/>
+            
             <TextBox Text="{Binding User.Password}" Width="195" Canvas.Left="360" Canvas.Top="420" Height="55" Background="black" Foreground="white"  FontSize="40"/>
 
         </Canvas>

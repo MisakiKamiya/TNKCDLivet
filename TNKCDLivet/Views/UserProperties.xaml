@@ -40,6 +40,13 @@
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="UserEdit" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+
         <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
             <l:WindowInteractionMessageAction/>
         </l:InteractionMessageTrigger>
@@ -52,20 +59,20 @@
         <Canvas Grid.ColumnSpan="2">
             <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
             <Button Background="White" Canvas.Left="595" Canvas.Top="606" Content="戻る" Height="50" Width="91" FontSize="30" Command="{Binding  CloseCommand}" />
-            <Button Background="White" Canvas.Left="505" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding LogonCommand}"/>
+            <Button Background="White" Canvas.Left="505" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding UserEditCommand}"/>
             <Button Background="White" Canvas.Top="345" Content="新規作成へ" Height="50" Width="165" FontSize="30" Command="{Binding UserCreateCommand}"  Canvas.Left="505" RenderTransformOrigin="0.758,1"/>
 
-            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Employee}" DisplayMemberPath="Ka.KaName" >
+            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" >
             </ComboBox>
 
 
-            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Employee}" DisplayMemberPath="Ka.Busyo.BusyoName" >
+            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" >
                 
             </ComboBox>
             <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="65" Height="55" Width="175"  />
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="185" Height="55" Width="175"/>
 
-            <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" SelectedValue="{Binding Enmpoyee.Id}" >
+            <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="107" Width="280" SelectedValue="{Binding Enmpoyee.Id}" >
               
                 <DataGrid.Columns>
                    

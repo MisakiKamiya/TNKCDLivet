@@ -30,11 +30,17 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
-        <l:InteractionMessageTrigger MessageKey="ShowSubmitCommand" Messenger="{Binding Messenger}">
+        <l:InteractionMessageTrigger MessageKey="SubmitCommand" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション 
                  Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
-            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+            <l:TransitionInteractionMessageAction/>
         </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="Created" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+        
+
 
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
@@ -43,12 +49,17 @@
     <Grid >
 
         <TextBlock Text="To" Foreground="White"  FontSize="15" Margin="145,55,410,604"  />
-        <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
-                   SelectedValue="{Binding TNKCD}" SelectedValuePath="Name" SelectedItem="{Binding TNKCD.EmployeeTo}"
-                       FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+        <!--<ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
+                   SelectedValue="{Binding TNKCD.EmployeeTo}"  SelectedValuePath="Id" 
+                   FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>-->
+
+        <ComboBox  FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"
+                  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValue="{Binding TNKCD.EmployeeTo}"  />
+
 
         <TextBlock Text="From" Foreground="White"  FontSize="15" Margin="456,55,99,599"  />
-        <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValue="{Binding TNKCD.EmployeeFrom}" SelectedValuePath="Id" SelectedItem="{Binding Employee}"
+        <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
+                    SelectedValue="{Binding TNKCD.EmployeeFrom}"  SelectedValuePath="Id" 
                        FontSize="15" Height="30" Margin="440,90,111,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
         <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="440,140,111,519" RenderTransformOrigin="0.5,0.5"/>
@@ -63,6 +74,7 @@
 
         <TextBlock Text="業務関連度" Foreground="White"  FontSize="15" Margin="145,455,422,209"  />
         <ComboBox  ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" 
+                   SelectedValue="{Binding TNKCD.Work}"  SelectedValuePath="Id" 
                        FontSize="15" Height="25" Margin="150,480,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
         <Button Content="Send" Margin="300,525,240,134" Command="{Binding SubmitCommand}" />
