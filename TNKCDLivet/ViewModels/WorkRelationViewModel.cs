@@ -33,6 +33,9 @@ namespace TNKCDLivet.ViewModels
                 RaisePropertyChanged(nameof(CWork));
             }
         }
+        
+
+
         #region Work
         private List<Work> _work;
         public List<Work> Work
@@ -53,9 +56,9 @@ namespace TNKCDLivet.ViewModels
         #endregion
 
 
+
         public async void Initialize()
         {
-
             Work work = new Work();
             this.Work = await work.GetWorkAsync();
 
@@ -86,30 +89,27 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region DelCommand
-        private ListenerCommand<Work> _WorkDelCommand;
+        #region WorkDeleteCommand
+        private ListenerCommand<Work> _WorkDeleteCommand;
 
-        public ListenerCommand<Work> WorkDelCommand
+        public ListenerCommand<Work> WorkDeleteCommand
         {
             get
             {
-                if (_WorkDelCommand == null)
+                if (_WorkDeleteCommand == null)
                 {
-                    _WorkDelCommand = new ListenerCommand<Work>(WorkDel);
+                    _WorkDeleteCommand = new ListenerCommand<Work>(WorkDelete);
                 }
-                return _WorkDelCommand;
+                return _WorkDeleteCommand;
             }
         }
 
-        public async void WorkDel(Work Work)
+        public async void WorkDelete(Work Work)
         {
-            System.Diagnostics.Debug.WriteLine("WorkDeleteCommand" + Work.Id);
-            Work deletedUser = await Work.DeleteWorkAsync(Work.Id);
-            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowUserMst"));
+            Work deletedWork = await Work.DeleteWorkAsync(Work.Id);
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowDeleteCommand"));
         }
         #endregion
-        
-
 
     }
 }

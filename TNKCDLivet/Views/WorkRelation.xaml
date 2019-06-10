@@ -11,7 +11,7 @@
     <Window.Background>
         <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
     </Window.Background>
-   
+
     <Window.DataContext>
         <vm:WorkRelationViewModel/>
     </Window.DataContext>
@@ -21,7 +21,7 @@
         <l:InteractionMessageTrigger MessageKey="ShowSubmitCommand" Messenger="{Binding Messenger}">
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
-        <l:InteractionMessageTrigger MessageKey="WorkDeleteCommand" Messenger="{Binding Messenger}">
+        <l:InteractionMessageTrigger MessageKey="ShowDeleteCommand" Messenger="{Binding Messenger}">
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
         <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
@@ -53,21 +53,15 @@
 
             <!-- 部署・課の選択と削除ボタン -->
 
+            <ComboBox x:Name="ComboBox1"   FontSize="30"  Width="300" Canvas.Left="180" Canvas.Top="186" RenderTransformOrigin="0.361,2.909" ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" SelectedValue="{Binding CWork.Id}" SelectedValuePath="Id" SelectedItem="{Binding CWork.Id}"/>
 
-            <ComboBox  ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" 
-                       FontSize="30"  Width="300" Canvas.Left="180" Canvas.Top="186" SelectedIndex='0' RenderTransformOrigin="0.361,2.909" SelectedValue="{Binding Id}" />
-
-            <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="186" Command="{Binding WorkDelCommand}"/>
-
+            <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="186"  Command="{Binding WorkDeleteCommand}" CommandParameter="{Binding CWork}"/>
             <!-- 変更ボタン -->
-            <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="363"/>
+            <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="360" Text="{Binding SelectedValue, ElementName=ComboBox1}"/>
             <Button Content="変更" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="363"/>
 
             <!-- 新規作成 -->
-
             <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="470" Text="{Binding CWork.WorkRelation}"/>
-
-
             <Button Content="作成" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="470" Command="{Binding SubmitCommand}"/>
 
             <!-- 戻るボタン -->

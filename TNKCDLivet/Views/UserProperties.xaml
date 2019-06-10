@@ -53,7 +53,7 @@
 
            
 
-            <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+            <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand}"/>
             <Button Background="White" Canvas.Left="595" Canvas.Top="606" Content="戻る" Height="50" Width="91" FontSize="30" Command="{Binding  CloseCommand}" />
 
             <Button Background="White" Canvas.Left="505" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding LogonCommand}"/>
