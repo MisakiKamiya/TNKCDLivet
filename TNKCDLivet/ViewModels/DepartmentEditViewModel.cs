@@ -147,26 +147,49 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region SubmitCommand
-        private ViewModelCommand _SubmitCommand;
+        #region SubmitCommandB
+        private ViewModelCommand _SubmitCommandB;
 
-        public ViewModelCommand SubmitCommand
+        public ViewModelCommand SubmitCommandB
         {
             get
             {
-                if (_SubmitCommand == null)
+                if (_SubmitCommandB == null)
                 {
-                    _SubmitCommand = new ViewModelCommand(Submit);
+                    _SubmitCommandB = new ViewModelCommand(SubmitB);
                 }
-                return _SubmitCommand;
+                return _SubmitCommandB;
             }
         }
 
-        public async void Submit()
+        public async void SubmitB()
         {
-            Busyo createdEmployee =    await BusyoP.PostBusyoAsync(this.BusyoP);
+            Busyo createdBusyo = await BusyoP.PostBusyoAsync(this.BusyoP);
             //TODO: Error handling
-            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowSubmitCommand"));
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowSubmitCommandB"));
+        }
+        #endregion
+
+        #region SubmitCommandK
+        private ViewModelCommand _SubmitCommandK;
+
+        public ViewModelCommand SubmitCommandK
+        {
+            get
+            {
+                if (_SubmitCommandK == null)
+                {
+                    _SubmitCommandK = new ViewModelCommand(SubmitK);
+                }
+                return _SubmitCommandK;
+            }
+        }
+
+        public async void SubmitK()
+        {
+            Ka createdKa = await KaP.PostKaAsync(this.KaP);
+            //TODO: Error handling
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowSubmitCommandK"));
         }
         #endregion
 
