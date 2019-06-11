@@ -39,6 +39,7 @@
             <l:TransitionInteractionMessageAction/>
         </l:InteractionMessageTrigger>
 
+
         <l:InteractionMessageTrigger MessageKey="ShowThanksCardCreate" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション 
                  Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
@@ -82,6 +83,12 @@
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="ShowLogout" Messenger="{Binding Messenger}">
+            <!-- Window を表示するメッセージアクション 
+                 Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
 
     </i:Interaction.Triggers>
 
@@ -101,8 +108,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
-
+        
         <StackPanel  Grid.Column="2">
             
             <TextBlock  Margin="10" ><Run Text="To一覧▼" Foreground="White" FontSize="15" /></TextBlock>
@@ -122,8 +128,8 @@
             <Button Content="部署・課管理" Margin="10" Command="{Binding ShowDepartmentMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
             <Button Content="業務関連度" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />
             <Button Content="マニュアル" Margin="10" Command="{Binding ShowManualCommand}" />
-            <Button Content="ログアウト" Margin="10"  />
-           
+            <Button Content="ログアウト" Margin="10"  Command="{Binding ShowLogoutCommand}"/>
+
         </StackPanel>
 
     </Grid>

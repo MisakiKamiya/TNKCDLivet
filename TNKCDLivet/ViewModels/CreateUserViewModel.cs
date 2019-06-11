@@ -10,7 +10,9 @@ using Livet.Messaging;
 using Livet.Messaging.IO;
 using Livet.EventListeners;
 using Livet.Messaging.Windows;
+
 using TNKCDLivet.Views;
+using System.Windows;
 using TNKCDLivet.Models;
 using System.Windows;
 
@@ -52,6 +54,8 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+ 
+
         #region SubmitCommand
         private ViewModelCommand _SubmitCommand;
 
@@ -74,6 +78,7 @@ namespace TNKCDLivet.ViewModels
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "SubmitCommand"));
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Created"));
         }
+
         #endregion
 
         public async void Initialize()
@@ -87,6 +92,7 @@ namespace TNKCDLivet.ViewModels
 
 
 
+        #endregion     
 
     }
 }

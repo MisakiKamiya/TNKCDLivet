@@ -135,7 +135,7 @@ namespace TNKCDLivet.ViewModels
 
         public async void UserDelete(Employee Employee)
         {
-            System.Diagnostics.Debug.WriteLine("DeleteCommand" + Employee.Id);
+            System.Diagnostics.Debug.WriteLine("UserDeleteCommand" + Employee.Id);
             Employee deletedUser = await Employee.DeleteEmployeeAsync(Employee.Id);
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowUserMst"));
             this.Initialize();
@@ -222,6 +222,7 @@ namespace TNKCDLivet.ViewModels
             Employee employee = new Employee();
             this.Employee = await employee.GetEmployeeAsync();
             
+
             Ka ka = new Ka();
             this.Ka = await ka.GetKaAsync();
 

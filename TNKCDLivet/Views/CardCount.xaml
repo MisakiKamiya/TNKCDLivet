@@ -6,8 +6,7 @@
         xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
         xmlns:v="clr-namespace:TNKCDLivet.Views"
         xmlns:vm="clr-namespace:TNKCDLivet.ViewModels"
-       
-        Title="CardCount" Height="720" Width="740">
+        Title="枚数集計" Height="720" Width="740">
 
     <Window.Background>
         <ImageBrush ImageSource = "../img/emoi_haikei.jpg" Stretch="UniformToFill"/>
@@ -37,8 +36,6 @@
             <l:WindowInteractionMessageAction/>
         </l:InteractionMessageTrigger>
 
-
-
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -50,28 +47,29 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid Name="CardCounts" ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="16,10,10,10">
+        <DataGrid Name="CardCounts" ItemsSource="{Binding TNKCD}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False" Margin="16,10,10,10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="氏名" Binding="{Binding Employee.Name}" />
-                <DataGridTextColumn Header="部署" Binding="{Binding Busyo.BusyoName}" />
-                <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" />
-                <DataGridTextColumn Header="カード枚数" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="氏名" Binding="{Binding Employee.Name}" Width="*"/>
+                <DataGridTextColumn Header="部署" Binding="{Binding Busyo}" Width="*" />
+                <DataGridTextColumn Header="課" Binding="{Binding Ka}" Width="*"/>
+                <DataGridTextColumn Header="カード枚数" Binding="{Binding Title}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 
 
         <StackPanel Grid.Column="2">
-            <ComboBox Width="140" SelectedIndex="0" Margin="20">
-                <ComboBoxItem Content="氏名" />
+            <TextBlock Text="氏名" Width="140" Foreground="White"  FontSize="15" Margin="0,20,0,0"/>
+            <ComboBox Width="140" SelectedIndex="0">
+                <ComboBoxItem/>
             </ComboBox>
 
-            <ComboBox Width="140" SelectedIndex="0" Margin="20">
-                <ComboBoxItem Content="部署" />
+            <TextBlock Text="部署" Width="140" Foreground="White"  FontSize="15" Margin="0,20,0,0"/>
+            <ComboBox Width="140" ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName">
+                <ComboBoxItem/>
             </ComboBox>
 
-            <ComboBox Width="140" SelectedIndex="0" Margin="20">
-                <ComboBoxItem Content="課" />
-            </ComboBox>
+            <TextBlock Text="課" Width="140" Foreground="White"  FontSize="15" Margin="0,20,0,0"/>
+            <ComboBox Width="140" ItemsSource="{Binding Ka}" DisplayMemberPath="KaName"/>
 
             <Button Content="戻る" Margin="0,400,0,0" Grid.Column="1" Command="{Binding CloseCommand}"/>
 

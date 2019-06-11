@@ -63,11 +63,9 @@
             <TextBox Text="{Binding Employee.Mail}" Width="195" Canvas.Left="115" Canvas.Top="420" Height="55" Background="black" Foreground="white"  FontSize="40"/>
 
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="245" Canvas.Top="210" Height="55" Width="65"/>
+          
+          <ComboBox Width="180" Canvas.Left="250" Canvas.Top="260" Height="55" FontSize="40" ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" SelectedValue="{Binding Enmpoyee.KaId}" SelectedValuePath="Id" SelectedItem="{Binding Employee.Ka}"/>
 
-
-
-            <ComboBox Width="180" Canvas.Left="250" Canvas.Top="260" Height="55" FontSize="40" 
-                ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" SelectedValue="{Binding Employee.KaId}" SelectedValuePath="Id"/>
             
             <TextBlock Text="パスワード" Foreground="white"  FontSize="36" Canvas.Left="355" Canvas.Top="360" Height="55" Width="195"/>
             

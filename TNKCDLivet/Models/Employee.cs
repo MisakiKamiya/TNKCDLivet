@@ -16,13 +16,14 @@ namespace TNKCDLivet.Models
          */
 
         #region Id
-
         private int _Id;
 
         public int Id
         {
             get
-            { return _Id; }
+            {
+                return _Id;
+            }
             set
             { 
                 if (_Id == value)

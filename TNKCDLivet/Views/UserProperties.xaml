@@ -1,4 +1,4 @@
-﻿<Window x:Class="TNKCDLivet.Views.UserProperties"
+<Window x:Class="TNKCDLivet.Views.UserProperties"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -57,9 +57,14 @@
 
     <Grid>
         <Canvas Grid.ColumnSpan="2">
-            <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+
+           
+
+            <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand}"/>
             <Button Background="White" Canvas.Left="595" Canvas.Top="606" Content="戻る" Height="50" Width="91" FontSize="30" Command="{Binding  CloseCommand}" />
+
             <Button Background="White" Canvas.Left="505" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding UserEditCommand}"/>
+
             <Button Background="White" Canvas.Top="345" Content="新規作成へ" Height="50" Width="165" FontSize="30" Command="{Binding UserCreateCommand}"  Canvas.Left="505" RenderTransformOrigin="0.758,1"/>
 
             <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" >
@@ -86,23 +91,17 @@
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="185" Height="55" Width="175"/>
 
 
-            <ListView x:Name="Employee" ItemsSource="{Binding BusyoCombo}" Height="560" Canvas.Left="40" Canvas.Top="65" Width="365">
-                <ListView.View>
-                    <GridView ColumnHeaderToolTip="People"  >
-                        <GridViewColumn Header="名前" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="ふりがな" DisplayMemberBinding="{Binding NameKana}" />
-                        <GridViewColumn Header="部署" DisplayMemberBinding="{Binding Ka.Busyo.BusyoName}" />
-                        <GridViewColumn Header="課" DisplayMemberBinding="{Binding Ka.KaName}"  />
-                    </GridView>
-                </ListView.View>
-            </ListView>
 
-            <!--> <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="107" Width="280" SelectedValue="{Binding Enmpoyee.Id}" >
-                <DataGrid.Columns>                   
-                    <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="50" IsReadOnly="True" />
-                    <DataGridTextColumn Header="ふりがな" Binding="{Binding NameKana}" Width="50" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo.BusyoName}" Width="50" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" Width="50" IsReadOnly="True"/>
+            <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" SelectedValue="{Binding Enmpoyee.Id}" >
+
+              
+                <DataGrid.Columns>
+                   
+                    <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="*" IsReadOnly="True" />
+                    <DataGridTextColumn Header="ふりがな" Binding="{Binding NameKana}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo.BusyoName}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" Width="*" IsReadOnly="True"/>
+
                 </DataGrid.Columns>
             </DataGrid>-->
 
