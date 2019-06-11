@@ -49,7 +49,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        
+
 
         public async void Initialize()
         {
@@ -82,6 +82,6 @@ namespace TNKCDLivet.ViewModels
             //TODO: Error handling
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowSubmitCommand"));
         }
-        #endregion
+        #endregion     
     }
 }
