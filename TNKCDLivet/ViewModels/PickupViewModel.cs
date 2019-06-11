@@ -76,22 +76,24 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region TNKCD2
-        private List<TNKCD> _TNKCD2;
+        #region Work
 
-        public List<TNKCD> TNKCD2
+        private List<Work> _Work;
+
+        public List<Work> Work
         {
             get
-            { return _TNKCD2; }
+            { return _Work; }
             set
-            {
-                if (_TNKCD2 == value)
+            { 
+                if (_Work == value)
                     return;
-                _TNKCD2 = value;
+                _Work = value;
                 RaisePropertyChanged();
             }
         }
-        #endregion 
+
+        #endregion
 
         #region Employee
         private List<Employee> _Employee;
@@ -139,7 +141,8 @@ namespace TNKCDLivet.ViewModels
             TNKCD tnkcd = new TNKCD();
             this.TNKCD = await tnkcd.GetTNKCDAsync();
 
-            
+            Work work = new Work();
+            this.Work = await work.GetWorkAsync();
 
             Employee employee = new Employee();
             this.Employee = await employee.GetEmployeeAsync();

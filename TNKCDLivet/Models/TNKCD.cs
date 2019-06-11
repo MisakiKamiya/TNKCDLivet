@@ -87,6 +87,25 @@ namespace TNKCDLivet.Models
 
         #endregion
 
+        #region EmployeeToId
+
+        private int _EmployeeToId;
+
+        public int EmployeeToId
+        {
+            get
+            { return _EmployeeToId; }
+            set
+            { 
+                if (_EmployeeToId == value)
+                    return;
+                _EmployeeToId = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion
+
         #region EmployeeTo
 
         private Employee _EmployeeTo;
@@ -100,6 +119,25 @@ namespace TNKCDLivet.Models
                 if (_EmployeeTo == value)
                     return;
                 _EmployeeTo = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region EmployeeFromId
+
+        private int _EmployeeFromId;
+
+        public int EmployeeFromId
+        {
+            get
+            { return _EmployeeFromId; }
+            set
+            { 
+                if (_EmployeeFromId == value)
+                    return;
+                _EmployeeFromId = value;
                 RaisePropertyChanged();
             }
         }
@@ -157,6 +195,26 @@ namespace TNKCDLivet.Models
                 if (_Body == value)
                     return;
                 _Body = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region WorkId
+
+        private int _WorkId;
+
+
+        public int WorkId
+        {
+            get
+            { return _WorkId; }
+            set
+            { 
+                if (_WorkId == value)
+                    return;
+                _WorkId = value;
                 RaisePropertyChanged();
             }
         }

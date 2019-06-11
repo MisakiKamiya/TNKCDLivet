@@ -290,7 +290,7 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-
+            
         #region TNKCD
         private List<TNKCD> _TNKCD;
 
@@ -307,6 +307,67 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
+
+
+        #region Employee
+
+        private List<Employee> _Employee;
+
+        public List<Employee> Employee
+        {
+            get
+            { return _Employee; }
+            set
+            { 
+                if (_Employee == value)
+                    return;
+                _Employee = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion         
+
+        #region ToCombo(絞り込み)
+        private IEnumerable<TNKCD> _Tocombo;
+
+        public IEnumerable<TNKCD> Tocombo
+        {
+            get
+            { return _Tocombo; }
+            set
+            {
+                if (_Tocombo == value)
+                    return;
+                _Tocombo = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region SelectToCommand(絞り込み)
+        private ListenerCommand<int> _SelectToCommand;
+
+        public ListenerCommand<int> SelectToCommand
+        {
+            get
+
+            {
+                if (_SelectToCommand == null)
+                {
+                    _SelectToCommand = new ListenerCommand<int>(SelectTo);
+                }
+                return _SelectToCommand;
+            }
+        }
+
+        public void SelectTo(int parameter)
+        {
+            this.Tocombo = TNKCD.Where(t => parameter == t.EmployeeToId);
+        }
+        #endregion
+
+      
 
         #region ShowLogoutCommand
         private ViewModelCommand _ShowLogoutCommand;
@@ -335,11 +396,14 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+
         public async  void Initialize()
         {
             var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogout");
             Messenger.Raise(message);
 
+            Employee employee = new Employee();
+            this.Employee = await employee.GetEmployeeAsync();
 
             TNKCD tnkcd = new TNKCD();
             this.TNKCD = await tnkcd.GetTNKCDAsync();
