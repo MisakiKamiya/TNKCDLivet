@@ -14,7 +14,6 @@ using Livet.Messaging.Windows;
 using TNKCDLivet.Views;
 using System.Windows;
 using TNKCDLivet.Models;
-using System.Windows;
 
 namespace TNKCDLivet.ViewModels
 {
@@ -88,11 +87,5 @@ namespace TNKCDLivet.ViewModels
 
             this.Employee = new Employee();
         }
-
-
-
-
-        #endregion     
-
     }
 }

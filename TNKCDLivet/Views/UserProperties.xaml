@@ -32,7 +32,9 @@
         <i:EventTrigger EventName="Closed">
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
-
+        <l:InteractionMessageTrigger MessageKey="ShowDeleteCommand" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
 
         <l:InteractionMessageTrigger MessageKey="UserCreate" Messenger="{Binding Messenger}">
             <!-- Window を表示するメッセージアクション 
@@ -92,18 +94,18 @@
 
 
 
-            <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" SelectedValue="{Binding Enmpoyee.Id}" >
+            <DataGrid AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" ItemsSource="{Binding Employee}" SelectedValue="{Binding CEmployee.Id}" SelectedValuePath="Id" SelectedItem="{Binding CEmployee.Id}" >
 
-              
+
                 <DataGrid.Columns>
-                   
+
                     <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="*" IsReadOnly="True" />
                     <DataGridTextColumn Header="ふりがな" Binding="{Binding NameKana}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo.BusyoName}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" Width="*" IsReadOnly="True"/>
 
                 </DataGrid.Columns>
-            </DataGrid>-->
+            </DataGrid>
 
         </Canvas>
     </Grid>

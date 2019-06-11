@@ -19,8 +19,22 @@ namespace TNKCDLivet.ViewModels
 {
     public class UserPropertiesViewModel : ViewModel
     {
+        private Employee _CEmployee;
+
+        public Employee CEmployee
+        {
+            get
+            { return _CEmployee; }
+            set
+            {
+                if (_CEmployee == value)
+                    return;
+                _CEmployee = value;
+                RaisePropertyChanged(nameof(CEmployee));
+            }
+        }
         #region Employee
-       private List<Employee> _Employee;
+        private List<Employee> _Employee;
 
         public List<Employee> Employee
         {
@@ -36,7 +50,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-          #region CloseCommand
+        #region CloseCommand
         private ViewModelCommand _CloseCommand;
 
         public ViewModelCommand CloseCommand
@@ -135,14 +149,12 @@ namespace TNKCDLivet.ViewModels
 
         public async void UserDelete(Employee Employee)
         {
-            System.Diagnostics.Debug.WriteLine("UserDeleteCommand" + Employee.Id);
-            Employee deletedUser = await Employee.DeleteEmployeeAsync(Employee.Id);
-            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowUserMst"));
-            this.Initialize();
+            Employee deletedemployee = await Employee.DeleteEmployeeAsync(Employee.Id);
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowDeleteCommand"));
         }
         #endregion
 
-          #region BusyoCombo(絞り込み)
+        #region BusyoCombo(絞り込み)
         private IEnumerable<Employee> _BusyoCombo;
 
         public IEnumerable<Employee> BusyoCombo
@@ -221,7 +233,7 @@ namespace TNKCDLivet.ViewModels
         {
             Employee employee = new Employee();
             this.Employee = await employee.GetEmployeeAsync();
-            
+            this.CEmployee = new Employee();
 
             Ka ka = new Ka();
             this.Ka = await ka.GetKaAsync();
