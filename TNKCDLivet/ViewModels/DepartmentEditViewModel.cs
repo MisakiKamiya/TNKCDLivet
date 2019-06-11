@@ -164,7 +164,7 @@ namespace TNKCDLivet.ViewModels
 
         public async void Submit()
         {
-            Busyo createdEmployee = await BusyoP.PostBusyoAsync(this.BusyoP);
+            Busyo createdEmployee =    await BusyoP.PostBusyoAsync(this.BusyoP);
             //TODO: Error handling
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowSubmitCommand"));
         }
