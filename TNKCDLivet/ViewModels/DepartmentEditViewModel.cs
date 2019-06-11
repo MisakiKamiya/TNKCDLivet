@@ -67,10 +67,61 @@ namespace TNKCDLivet.ViewModels
             { return _Busyo; }
             set
             {
-                if (_Busyo == value)
+                if (_Busyo == value)               
                     return;
                 _Busyo = value;
                 RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region BusyoPost
+        private Busyo _BusyoP;
+
+        public Busyo BusyoP
+        {
+            get
+            { return _BusyoP; }
+            set
+            {
+                if (_BusyoP == value)
+                    return;
+                _BusyoP = value;
+                RaisePropertyChanged(nameof(BusyoP));
+            }
+        }
+        #endregion
+
+        #region Ka
+        private List<Ka> _Ka;
+
+        public List<Ka> Ka
+        {
+            get
+            { return _Ka; }
+            set
+            {
+                if (_Ka == value)
+                    return;
+                _Ka = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region KaPost
+        private Ka _KaP;
+
+        public Ka KaP
+        {
+            get
+            { return _KaP; }
+            set
+            {
+                if (_KaP == value)
+                    return;
+                _KaP = value;
+                RaisePropertyChanged(nameof(KaP));
             }
         }
         #endregion
@@ -96,11 +147,39 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region SubmitCommand
+        private ViewModelCommand _SubmitCommand;
+
+        public ViewModelCommand SubmitCommand
+        {
+            get
+            {
+                if (_SubmitCommand == null)
+                {
+                    _SubmitCommand = new ViewModelCommand(Submit);
+                }
+                return _SubmitCommand;
+            }
+        }
+
+        public async void Submit()
+        {
+            Busyo createdEmployee = await BusyoP.PostBusyoAsync(this.BusyoP);
+            //TODO: Error handling
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowSubmitCommand"));
+        }
+        #endregion
+
         public async void Initialize()
         {
             Busyo busyo = new Busyo();
             this.Busyo = await busyo.GetBusyoAsync();
 
+            Ka ka = new Ka();
+            this.Ka = await ka.GetKaAsync();
+
+            this.BusyoP = new Busyo();
+            this.KaP = new Ka();
         }
     }
 }

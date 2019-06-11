@@ -46,14 +46,16 @@
         <Canvas Grid.ColumnSpan="2">
             <TextBlock Text="ユーザー名" Foreground="white"  FontSize="40" Canvas.Left="115" Canvas.Top="87" Height="55" Width="175"/>
             <TextBox Width="195" Canvas.Left="115" Canvas.Top="147" Height="55" Background="black" Foreground="white"  FontSize="40" Text="{Binding Employee.Name}" />
+            
             <TextBlock Text="ふりがな" Foreground="white"  FontSize="40" Canvas.Left="355" Canvas.Top="87" Height="55" Width="175"/>
             <TextBox Text="{Binding Employee.NameKana}" Width="200" Canvas.Left="355" Canvas.Top="147" Height="55" Background="black" Foreground="white"  FontSize="40"/>
+            
             <Button Background="White" Canvas.Top="505" Content="作成" Height="50" Width="165" FontSize="30" Command="{Binding SubmitCommand}"  Canvas.Left="265"/>
+            
             <TextBlock Text="メールアドレス" Foreground="white"  FontSize="36" Canvas.Left="115" Canvas.Top="360" Height="55" Width="195"/>
             <TextBox Text="{Binding Employee.Mail}" Width="195" Canvas.Left="115" Canvas.Top="420" Height="55" Background="black" Foreground="white"  FontSize="40"/>
 
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="245" Canvas.Top="210" Height="55" Width="65"/>
-
             <ComboBox Width="180" Canvas.Left="250" Canvas.Top="260" Height="55" FontSize="40" ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" SelectedValue="{Binding Enmpoyee.KaId}" SelectedValuePath="Id" SelectedItem="{Binding Employee.Ka}"/>
 
             <TextBlock Text="パスワード" Foreground="white"  FontSize="36" Canvas.Left="355" Canvas.Top="360" Height="55" Width="195"/>
