@@ -12,6 +12,7 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using TNKCDLivet.Models;
+using System.Windows;
 
 namespace TNKCDLivet.ViewModels
 {
@@ -61,7 +62,13 @@ namespace TNKCDLivet.ViewModels
 
             if (authorizedUser != null) // Logon 成功
             {
+                System.Diagnostics.Debug.WriteLine("Authorized");
+                var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+                window.Hide();
+
+                var showlogout = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, "Authorized");
                 Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Authorized"));
+
             }
             else // Logon 失敗
             {
@@ -71,5 +78,6 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        
     }
 }
