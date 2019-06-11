@@ -66,7 +66,26 @@ namespace TNKCDLivet.Models
             }
         }
 
-       
+
+
+        #endregion
+
+        #region BusyoId
+
+        private int _BusyoId;
+
+        public int BusyoId
+        {
+            get
+            { return _BusyoId; }
+            set
+            { 
+                if (_BusyoId == value)
+                    return;
+                _BusyoId = value;
+                RaisePropertyChanged();
+            }
+        }
 
         #endregion
 

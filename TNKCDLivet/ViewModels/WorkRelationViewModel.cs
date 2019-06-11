@@ -39,11 +39,14 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+   
         public async void Initialize()
         {
             Work work = new Work();
             this.Work = await work.GetWorkAsync();
-            
+
+       
+          
         }
 
         

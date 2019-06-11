@@ -51,15 +51,18 @@
         <TextBlock Text="To" Foreground="White"  FontSize="15" Margin="145,55,410,604"  />
         <!--<ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
                    SelectedValue="{Binding TNKCD.EmployeeTo}"  SelectedValuePath="Id" 
-                   FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>-->
+                   FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
+        
+        <ComboBox Width="180" Canvas.Left="250" Canvas.Top="260" Height="55" FontSize="40" ItemsSource="{Binding Ka}" DisplayMemberPath="KaName"
+        SelectedValue="{Binding Enmpoyee.KaId}" SelectedValuePath="Id" SelectedItem="{Binding Employee.Ka}"/>
+        -->
 
-        <ComboBox  FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"
-                  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValue="{Binding TNKCD.EmployeeTo}"  />
+        <ComboBox  FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636" 
+                 SelectedValuePath="Id"  DisplayMemberPath="Name"  ItemsSource="{Binding Employee}" SelectedValue="{Binding TNKCD.ToId}"/>
 
 
         <TextBlock Text="From" Foreground="White"  FontSize="15" Margin="456,55,99,599"  />
-        <ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
-                    SelectedValue="{Binding TNKCD.EmployeeFrom}"  SelectedValuePath="Id" 
+        <ComboBox SelectedValuePath="Id"  DisplayMemberPath="Name"  ItemsSource="{Binding Employee}" SelectedValue="{Binding TNKCD.FromId}"  
                        FontSize="15" Height="30" Margin="440,90,111,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
 
         <DatePicker SelectedDate="{Binding ThanksCard.CreatedDateTime}" Margin="440,140,111,519" RenderTransformOrigin="0.5,0.5"/>

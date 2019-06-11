@@ -134,6 +134,25 @@ namespace TNKCDLivet.Models
 
         #endregion
 
+        #region KaId
+
+        private int _KaId;
+
+        public int KaId
+        {
+            get
+            { return _KaId; }
+            set
+            { 
+                if (_KaId == value)
+                    return;
+                _KaId = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion
+
         #region Ka
 
         private Ka _Ka;

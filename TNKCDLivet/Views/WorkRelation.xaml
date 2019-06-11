@@ -49,6 +49,7 @@
             
             
             <ComboBox  ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" 
+                       SelectedValue="{Binding Work}" SelectedValuePath="Id" SelectedItem="{Binding Work}"
                        FontSize="30"  Width="300" Canvas.Left="180" Canvas.Top="186" SelectedIndex='0' RenderTransformOrigin="0.361,2.909" />
             
             <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="186"/>
