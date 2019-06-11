@@ -87,19 +87,19 @@ namespace TNKCDLivet.Models
 
         #endregion
 
-        #region ToId
+        #region EmployeeToId
 
-        private int _ToId;
+        private int _EmployeeToId;
 
-        public int ToId
+        public int EmployeeToId
         {
             get
-            { return _ToId; }
+            { return _EmployeeToId; }
             set
             { 
-                if (_ToId == value)
+                if (_EmployeeToId == value)
                     return;
-                _ToId = value;
+                _EmployeeToId = value;
                 RaisePropertyChanged();
             }
         }
@@ -125,19 +125,19 @@ namespace TNKCDLivet.Models
 
         #endregion
 
-        #region FromId
+        #region EmployeeFromId
 
-        private int _FromId;
+        private int _EmployeeFromId;
 
-        public int FromId
+        public int EmployeeFromId
         {
             get
-            { return _FromId; }
+            { return _EmployeeFromId; }
             set
             { 
-                if (_FromId == value)
+                if (_EmployeeFromId == value)
                     return;
-                _FromId = value;
+                _EmployeeFromId = value;
                 RaisePropertyChanged();
             }
         }

@@ -16,13 +16,13 @@
     <Window.DataContext>
         <vm:UserPropertiesViewModel/>
     </Window.DataContext>
-    
-     <i:Interaction.Triggers>
-     
-     	<!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
-    	<!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
-    	<!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています --> 
-        
+
+    <i:Interaction.Triggers>
+
+        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+        <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
+        <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
+
         <!--WindowのContentRenderedイベントのタイミングでViewModelのInitializeメソッドが呼ばれます-->
         <i:EventTrigger EventName="ContentRendered">
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
@@ -54,7 +54,7 @@
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
-    
+
     <Grid>
         <Canvas Grid.ColumnSpan="2">
             <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
@@ -65,24 +65,46 @@
             <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" >
             </ComboBox>
 
+            <!-- <ComboBox x:Name="Tocombo"  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" SelectedValuePath="Id" Margin="10,0,12,0" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectToCommand}" CommandParameter="{Binding ElementName= Tocombo,Path=SelectedValue}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>-->
 
-            <ComboBox Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" >
-                
+            <ComboBox x:Name="Busyo" ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" SelectedValuePath="Id"
+                    Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectBusyoCommand}" CommandParameter="{Binding ElementName= BusyoCombo,Path=SelectedValue}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ComboBox>
+
             <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="65" Height="55" Width="175"  />
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="185" Height="55" Width="175"/>
 
-            <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="107" Width="280" SelectedValue="{Binding Enmpoyee.Id}" >
-              
-                <DataGrid.Columns>
-                   
+
+            <ListView x:Name="Employee" ItemsSource="{Binding BusyoCombo}" Height="560" Canvas.Left="40" Canvas.Top="65" Width="365">
+                <ListView.View>
+                    <GridView ColumnHeaderToolTip="People"  >
+                        <GridViewColumn Header="名前" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="ふりがな" DisplayMemberBinding="{Binding NameKana}" />
+                        <GridViewColumn Header="部署" DisplayMemberBinding="{Binding Ka.Busyo.BusyoName}" />
+                        <GridViewColumn Header="課" DisplayMemberBinding="{Binding Ka.KaName}"  />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!--> <DataGrid  ItemsSource="{Binding Employee}" AutoGenerateColumns="False" Height="425" Canvas.Left="120" Canvas.Top="107" Width="280" SelectedValue="{Binding Enmpoyee.Id}" >
+                <DataGrid.Columns>                   
                     <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="50" IsReadOnly="True" />
                     <DataGridTextColumn Header="ふりがな" Binding="{Binding NameKana}" Width="50" IsReadOnly="True"/>
                     <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo.BusyoName}" Width="50" IsReadOnly="True"/>
                     <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" Width="50" IsReadOnly="True"/>
-                
                 </DataGrid.Columns>
-            </DataGrid>
+            </DataGrid>-->
 
         </Canvas>
     </Grid>

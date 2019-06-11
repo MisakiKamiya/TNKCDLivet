@@ -36,7 +36,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region CloseCommand
+          #region CloseCommand
         private ViewModelCommand _CloseCommand;
 
         public ViewModelCommand CloseCommand
@@ -57,7 +57,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region UserCreateCommand
+          #region UserCreateCommand
         private ViewModelCommand _UserCreateCommand;
 
         public ViewModelCommand UserCreateCommand
@@ -88,7 +88,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region UserEditCommand
+          #region UserEditCommand
         private ViewModelCommand _UserEditCommand;
 
         public ViewModelCommand UserEditCommand
@@ -118,7 +118,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region UserDeleteCommand
+          #region UserDeleteCommand
         private ListenerCommand<Employee> _UserDeleteCommand;
 
         public ListenerCommand<Employee> UserDeleteCommand
@@ -139,6 +139,45 @@ namespace TNKCDLivet.ViewModels
             Employee deletedUser = await Employee.DeleteEmployeeAsync(Employee.Id);
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowUserMst"));
             this.Initialize();
+        }
+        #endregion
+
+          #region BusyoCombo(絞り込み)
+        private IEnumerable<Employee> _BusyoCombo;
+
+        public IEnumerable<Employee> BusyoCombo
+        {
+            get
+            { return _BusyoCombo; }
+            set
+            {
+                if (_BusyoCombo == value)
+                    return;
+                _BusyoCombo = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+          #region SelectBusyoCommand(絞り込み)
+        private ListenerCommand<Ka> _SelectBusyoCommand;
+
+        public ListenerCommand<Ka> SelectBusyoCommand
+        {
+            get
+
+            {
+                if (_SelectBusyoCommand == null)
+                {
+                    _SelectBusyoCommand = new ListenerCommand<Ka>(SelectBusyo);
+                }
+                return _SelectBusyoCommand;
+            }
+        }
+
+        public void SelectBusyo(Ka parameter)
+        {
+            this.BusyoCombo = Employee.Where(t => parameter == t.Ka);
         }
         #endregion
 

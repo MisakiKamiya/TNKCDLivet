@@ -137,7 +137,7 @@ namespace TNKCDLivet.Models
         #region KaId
 
         private int _KaId;
-
+        [JsonProperty("KaId")]
         public int KaId
         {
             get

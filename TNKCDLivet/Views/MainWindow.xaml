@@ -106,7 +106,7 @@
         <StackPanel  Grid.Column="2">
             
             <TextBlock  Margin="10" ><Run Text="To一覧▼" Foreground="White" FontSize="15" /></TextBlock>
-            <ComboBox x:Name="Tocombo"  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" SelectedValuePath="Id" Margin="10,0,12,0" >
+            <ComboBox x:Name="Tocombo"  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="10,0,12,0" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding SelectToCommand}" CommandParameter="{Binding ElementName= Tocombo,Path=SelectedValue}"/>
@@ -123,6 +123,7 @@
             <Button Content="業務関連度" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />
             <Button Content="マニュアル" Margin="10" Command="{Binding ShowManualCommand}" />
             <Button Content="ログアウト" Margin="10"  />
+           
         </StackPanel>
 
     </Grid>
