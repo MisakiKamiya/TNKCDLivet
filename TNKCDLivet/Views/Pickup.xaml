@@ -54,7 +54,7 @@
                     <GridViewColumn Header="To" DisplayMemberBinding="{Binding EmployeeTo.Name}" />
                     <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFrom.Name}" />
                     <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}" />
-                    <GridViewColumn Header="業務関連度" DisplayMemberBinding="{Binding Work}" />
+                    <GridViewColumn Header="業務関連度" DisplayMemberBinding="{Binding Work.WorkRelation}" />
                 </GridView>
             </ListView.View>
         </ListView>

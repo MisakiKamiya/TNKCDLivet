@@ -81,6 +81,7 @@ namespace TNKCDLivet.ViewModels
         private ViewModelCommand _CloseCommand;
 
         public ViewModelCommand CloseCommand
+
         {
             get
             {
@@ -96,6 +97,8 @@ namespace TNKCDLivet.ViewModels
         {
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
             #endregion
+
         }
     }
 }
+
