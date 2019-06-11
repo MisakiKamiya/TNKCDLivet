@@ -376,7 +376,33 @@ namespace TNKCDLivet.Services
             return responseWork;
         }
         #endregion
+        public async Task<Work> PutWorkAsync(Work work)
+        {
+            var jObject = JsonConvert.SerializeObject(work);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Work responseUser = null;
+            try
+            {
+                var response = await Client.PutAsync(this.BaseUrl + "/api/Work/" + work.Id, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseUser = JsonConvert.DeserializeObject<Work>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PutWorkAsync: " + e);
+            }
+            return responseUser;
+        }
         #region Del
+
         public async Task<Work> DeleteWorkAsync(int Id)
         {
             Work responseWork = null;

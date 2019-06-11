@@ -308,11 +308,36 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        
+        #region ShowLogoutCommand
+        private ViewModelCommand _ShowLogoutCommand;
+
+        public ViewModelCommand ShowLogoutCommand
+        {
+            get
+            {
+                if (_ShowLogoutCommand == null)
+                {
+                    _ShowLogoutCommand = new ViewModelCommand(ShowLogout);
+                }
+                return _ShowLogoutCommand;
+            }
+        }
+
+        public void ShowLogout()
+        {
+            System.Diagnostics.Debug.WriteLine("ShowLogout");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+            window.Hide();
+
+            var showlogout = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogout");
+            Messenger.Raise(showlogout);
+
+        }
+        #endregion
 
         public async  void Initialize()
         {
-            var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogon");
+            var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogout");
             Messenger.Raise(message);
 
 

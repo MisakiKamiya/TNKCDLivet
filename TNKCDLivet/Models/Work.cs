@@ -92,5 +92,12 @@ namespace TNKCDLivet.Models
             Work deletedWork = await rest.DeleteWorkAsync(Id);
             return deletedWork;
         }
+
+        public async Task<Work> PutWorkAsync(Work work)
+        {
+            IRestService rest = new RestService();
+            Work updatedWork = await rest.PutWorkAsync(work);
+            return updatedWork;
+        }
     }
 }

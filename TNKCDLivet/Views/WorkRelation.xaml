@@ -57,8 +57,8 @@
 
             <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="186"  Command="{Binding WorkDeleteCommand}" CommandParameter="{Binding CWork}"/>
             <!-- 変更ボタン -->
-            <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="360" Text="{Binding SelectedValue, ElementName=ComboBox1}"/>
-            <Button Content="変更" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="363"/>
+            <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="360" Text="{Binding CWork.WorkRelation}"/>
+            <Button Content="変更" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="363"  Command="{Binding WorkPutCommand}" CommandParameter="{Binding CWork}"/>
 
             <!-- 新規作成 -->
             <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="470" Text="{Binding CWork.WorkRelation}"/>

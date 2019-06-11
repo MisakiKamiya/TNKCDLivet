@@ -111,5 +111,30 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region WorkPutCommand
+        private ListenerCommand<Work> _WorkPutCommand;
+
+        public ListenerCommand<Work> WorkPutCommand
+        {
+            get
+            {
+                if (_WorkPutCommand == null)
+                {
+                    _WorkPutCommand = new ListenerCommand<Work>(WorkPut);
+                }
+                return _WorkPutCommand;
+            }
+        }
+
+        public async void WorkPut(Work Work)
+        {
+            System.Diagnostics.Debug.WriteLine("PutCommand" + Work.Id);
+            CWork = Work;
+
+            Work putwork = await Work.PutWorkAsync(this.CWork);
+            //TODO: Error handling
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Put"));
+        }
+        #endregion
     }
 }
