@@ -79,6 +79,7 @@ namespace TNKCDLivet.Models
         }
 
 
+
         public async Task<Work> PostWorkAsync(Work work)
         {
             IRestService rest = new RestService();
@@ -90,6 +91,13 @@ namespace TNKCDLivet.Models
             IRestService rest = new RestService();
             Work deletedWork = await rest.DeleteWorkAsync(Id);
             return deletedWork;
+        }
+
+        public async Task<Work> PutWorkAsync(Work work)
+        {
+            IRestService rest = new RestService();
+            Work updatedWork = await rest.PutWorkAsync(work);
+            return updatedWork;
         }
     }
 }

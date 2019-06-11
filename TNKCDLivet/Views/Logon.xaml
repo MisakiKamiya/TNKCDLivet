@@ -33,8 +33,10 @@
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
 
+
         <l:InteractionMessageTrigger MessageKey="Authorized" Messenger="{Binding Messenger}">
             <l:WindowInteractionMessageAction/>
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 

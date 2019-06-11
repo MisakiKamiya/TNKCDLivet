@@ -17,7 +17,8 @@ namespace TNKCDLivet.Services
         Task<List<Work>> GetWorkAsync();
         Task<Work> PostWorkAsync(Work work);
         Task<Work> DeleteWorkAsync(int Id);
-
+        Task<Work> PutWorkAsync(Work work);
+        
 
         //Employeeの情報やり取り用
         Task<List<Employee>> GetEmployeeAsync();
