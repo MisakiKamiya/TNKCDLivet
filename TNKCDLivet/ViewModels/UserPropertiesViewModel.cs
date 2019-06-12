@@ -154,44 +154,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region BusyoCombo(絞り込み)
-        private IEnumerable<Employee> _BusyoCombo;
-
-        public IEnumerable<Employee> BusyoCombo
-        {
-            get
-            { return _BusyoCombo; }
-            set
-            {
-                if (_BusyoCombo == value)
-                    return;
-                _BusyoCombo = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-
-        #region SelectBusyoCommand(絞り込み)
-        private ListenerCommand<Ka> _SelectBusyoCommand;
-
-        public ListenerCommand<Ka> SelectBusyoCommand
-        {
-            get
-
-            {
-                if (_SelectBusyoCommand == null)
-                {
-                    _SelectBusyoCommand = new ListenerCommand<Ka>(SelectBusyo);
-                }
-                return _SelectBusyoCommand;
-            }
-        }
-
-        public void SelectBusyo(Ka parameter)
-        {
-            this.BusyoCombo = Employee.Where(t => parameter == t.Ka);
-        }
-        #endregion
+       
 
         #region Ka
 
@@ -244,29 +207,5 @@ namespace TNKCDLivet.ViewModels
            
 
         }
-        #region UserEditCommand
-        private ListenerCommand<Employee> _EmployeeEditCommand;
-
-        public ListenerCommand<Employee> EmployeeEditCommand
-        {
-            get
-            {
-                if (_EmployeeEditCommand == null)
-                {
-                    _EmployeeEditCommand = new ListenerCommand<Employee>(UserEdit);
-                }
-                return _EmployeeEditCommand;
-            }
-        }
-
-        public void UserEdit(Employee Employee)
-        {
-            System.Diagnostics.Debug.WriteLine("EmployeeEditCommand" + Employee.Id);
-            UserEditViewModel ViewModel = new UserEditViewModel();
-            ViewModel.Employee = Employee;
-            var message = new TransitionMessage(typeof(Views.UserEdit), ViewModel, TransitionMode.Modal, "UserEdit");
-            Messenger.Raise(message);
-        }
-        #endregion
     }
 }

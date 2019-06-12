@@ -19,6 +19,7 @@ namespace TNKCDLivet.ViewModels
 {
     public class WorkRelationViewModel : ViewModel
     {
+        #region CWork(POST)
         private Work _Work;
 
         public Work CWork
@@ -33,7 +34,7 @@ namespace TNKCDLivet.ViewModels
                 RaisePropertyChanged(nameof(CWork));
             }
         }
-        
+        #endregion
 
 
         #region Work

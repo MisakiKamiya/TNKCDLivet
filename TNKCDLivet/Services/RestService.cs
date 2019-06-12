@@ -75,6 +75,9 @@ namespace TNKCDLivet.Services
         #region Post
         public async Task<Employee> PostEmployeeAsync(Employee employee)
         {
+            //部署の実体を持たなくする
+            employee.Ka = null;
+
             var jObject = JsonConvert.SerializeObject(employee);
 
             //Make Json object into content type

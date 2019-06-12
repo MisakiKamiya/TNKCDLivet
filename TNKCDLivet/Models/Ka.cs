@@ -72,9 +72,9 @@ namespace TNKCDLivet.Models
 
         #region BusyoId
 
-        private int _BusyoId;
+        private int? _BusyoId;
 
-        public int BusyoId
+        public int? BusyoId
         {
             get
             { return _BusyoId; }

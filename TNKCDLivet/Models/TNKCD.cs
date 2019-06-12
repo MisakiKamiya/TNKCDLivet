@@ -52,7 +52,7 @@ namespace TNKCDLivet.Models
         #region DateSend  
 
         private DateTime _DateSend;
-
+        [JsonProperty("DateSend")]
         public DateTime DateSend
         {
             get
@@ -71,7 +71,7 @@ namespace TNKCDLivet.Models
         #region DateHelp
 
         private DateTime _DateHelp;
-
+        [JsonProperty("DateHelp")]
         public DateTime DateHelp
         {
             get
@@ -89,9 +89,9 @@ namespace TNKCDLivet.Models
 
         #region EmployeeToId
 
-        private int _EmployeeToId;
+        private int? _EmployeeToId;
 
-        public int EmployeeToId
+        public int? EmployeeToId
         {
             get
             { return _EmployeeToId; }
@@ -127,9 +127,9 @@ namespace TNKCDLivet.Models
 
         #region EmployeeFromId
 
-        private int _EmployeeFromId;
+        private int? _EmployeeFromId;
 
-        public int EmployeeFromId
+        public int? EmployeeFromId
         {
             get
             { return _EmployeeFromId; }
@@ -166,7 +166,7 @@ namespace TNKCDLivet.Models
         #region Title
 
         private string _Title;
-
+        [JsonProperty("Title")]
         public string Title
         {
             get
@@ -185,7 +185,7 @@ namespace TNKCDLivet.Models
         #region Body
 
         private string _Body;
-
+        [JsonProperty("Body")]
         public string Body
         {
             get
