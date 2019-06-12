@@ -39,7 +39,7 @@
         <l:InteractionMessageTrigger MessageKey="Created" Messenger="{Binding Messenger}">
             <l:WindowInteractionMessageAction/>
         </l:InteractionMessageTrigger>
-        
+
 
 
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
@@ -48,41 +48,36 @@
 
     <Grid >
 
-        <TextBlock Text="To" Foreground="White"  FontSize="15" Margin="145,55,410,604"  />
-        <!--<ComboBox  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" 
-                   SelectedValue="{Binding TNKCD.EmployeeTo}"  SelectedValuePath="Id" 
-                   FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
-        
-        <ComboBox Width="180" Canvas.Left="250" Canvas.Top="260" Height="55" FontSize="40" ItemsSource="{Binding Ka}" DisplayMemberPath="KaName"
-        SelectedValue="{Binding Enmpoyee.KaId}" SelectedValuePath="Id" SelectedItem="{Binding Employee.Ka}"/>
-        -->
+
+        <TextBlock Text="To" Foreground="White"  FontSize="15" Margin="145,55,410,604" Grid.ColumnSpan="2"  />
+
 
         <ComboBox  FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636" 
-                 ItemsSource="{Binding Employee}" DisplayMemberPath="Name"  SelectedValue="{Binding TNKCD.EmployeeToId}" SelectedValuePath="Id"   />
+                 ItemsSource="{Binding Employee}" DisplayMemberPath="Name"  SelectedValue="{Binding TNKCD.EmployeeToId}" SelectedValuePath="Id" Grid.ColumnSpan="2"   />
 
-        <TextBlock Text="From" Foreground="White"  FontSize="15" Margin="456,55,99,599"  />
-        <ComboBox  FontSize="15" Height="30" Margin="440,90,111,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"
+        <TextBlock Text="From" Foreground="White"  FontSize="15" Margin="450,55,111,599"  />
+        <ComboBox  FontSize="15" Height="30" Margin="450,90,111,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"
             ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValue="{Binding TNKCD.EmployeeFromId}" SelectedValuePath="Id"   />
 
-        <DatePicker SelectedDate="{Binding TNKCD.DateHelp}" Margin="440,140,111,519" RenderTransformOrigin="0.5,0.5"                    
+        <DatePicker SelectedDate="{Binding TNKCD.DateHelp}" Margin="450,140,111,519" RenderTransformOrigin="0.5,0.5"                    
                     Text="{Binding Mode=TwoWay, ElementName=calender1, Path=SelectedDate,StringFormat='yyyy年MM月dd日'}" />
 
-        <TextBlock Text="Title" Foreground="White"  FontSize="15" Margin="150,160,473,499" RenderTransformOrigin="0.5,0.5" />
+        <TextBlock Text="Title" Foreground="White"  FontSize="15" Margin="150,160,473,499" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" />
         <TextBox Text="{Binding TNKCD.Title}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-             FontSize="25" Height="33" Width="471"  Margin="150,195,0,0" AcceptsReturn="True" />
+             FontSize="25" Height="33" Width="471"  Margin="150,195,0,0" AcceptsReturn="True" Grid.ColumnSpan="2" />
 
-        <TextBlock Text="Body" Foreground="White"  FontSize="15" RenderTransformOrigin="0.5,0.5" Margin="150,228,422,429" Grid.RowSpan="2"  />
+        <TextBlock Text="Body" Foreground="White"  FontSize="15" RenderTransformOrigin="0.5,0.5" Margin="150,228,422,429" Grid.ColumnSpan="2"  />
         <TextBox Text="{Binding TNKCD.Body}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"
-             FontSize="20" Height="189" Width="476"  Margin="150,260,0,0" AcceptsReturn="True"/>
+             FontSize="20" Height="189" Width="476"  Margin="150,260,0,0" AcceptsReturn="True" Grid.ColumnSpan="2"/>
 
-        <TextBlock Text="業務関連度" Foreground="White"  FontSize="15" Margin="145,455,422,209"  />
+        <TextBlock Text="業務関連度" Foreground="White"  FontSize="15" Margin="145,455,422,209" Grid.ColumnSpan="2"  />
         <ComboBox ItemsSource="{Binding Work}" DisplayMemberPath="WorkRelation" 
                   SelectedValue="{Binding TNKCD.WorkId}" SelectedValuePath="Id"  
-                  FontSize="15" Height="25" Margin="150,480,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"/>
-        
-        <Button Content="Send" Margin="300,525,240,134" Command="{Binding SubmitCommand}" />
+                  FontSize="15" Height="25" Margin="150,0,410,184" VerticalAlignment="Bottom" RenderTransformOrigin="0.45,0.636" Grid.ColumnSpan="2"/>
 
-        <Button Content="Clear" Margin="300,580,240,79" Command="{Binding Command}" />
+        <Button Content="Send" Margin="320,525,240,134" Command="{Binding SubmitCommand}" />
+
+        <Button Content="Clear" Margin="320,580,240,79" Command="{Binding Command}" />
 
 
 

@@ -291,24 +291,24 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region LogoutCommand
-        private ViewModelCommand _LogoutCommand;
+        #region LOGOUTCommand
+        private ViewModelCommand _LOGOUTCommand;
 
-        public ViewModelCommand LogoutCommand
+        public ViewModelCommand LOGOUTCommand
         {
             get
             {
-                if (_LogoutCommand == null)
+                if (_LOGOUTCommand == null)
                 {
-                    _LogoutCommand = new ViewModelCommand(Logout);
+                    _LOGOUTCommand = new ViewModelCommand(LOGOUT);
                 }
-                return _LogoutCommand;
+                return _LOGOUTCommand;
             }
         }
 
-        public void Logout()
+        public void LOGOUT()
         {
-            System.Diagnostics.Debug.WriteLine(" Logout");
+            System.Diagnostics.Debug.WriteLine(" LOGOUT");
             var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
 
             try
@@ -316,7 +316,7 @@ namespace TNKCDLivet.ViewModels
                 // MainWindow を非表示
                 window.Hide();
                 BusyoRelationViewModel ViewModel = new BusyoRelationViewModel();
-                var message = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, " Logout");
+                var message = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, "LOGOUT");
                 Messenger.Raise(message);
             }
             finally
@@ -343,8 +343,7 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-
-
+        
         #region Employee
 
         private List<Employee> _Employee;
@@ -408,7 +407,7 @@ namespace TNKCDLivet.ViewModels
 
         public async  void Initialize()
         {
-            var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogout");
+            var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogon");
             Messenger.Raise(message);
 
             Employee employee = new Employee();

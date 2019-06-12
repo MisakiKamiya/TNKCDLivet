@@ -278,5 +278,10 @@ namespace TNKCDLivet.Models
             TNKCD deletedTNKCD = await rest.DeleteTNKCDAsync(Id);
             return deletedTNKCD;
         }
+        public TNKCD()
+        {
+            this.DateHelp = DateTime.Now;
+            this.DateSend = DateTime.Now;
+        }
     }
 }
