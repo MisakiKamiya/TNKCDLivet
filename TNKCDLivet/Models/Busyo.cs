@@ -50,7 +50,7 @@ namespace TNKCDLivet.Models
         #region BusyoName
 
         private string _BusyoName;
-
+        [JsonProperty("BusyoName")]
         public string BusyoName
         {
             get
@@ -69,7 +69,7 @@ namespace TNKCDLivet.Models
         #region Power
 
         private bool _Power;
-
+        [JsonProperty("Power")]
         public bool Power
         {
             get

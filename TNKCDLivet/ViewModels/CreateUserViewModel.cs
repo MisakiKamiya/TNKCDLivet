@@ -52,9 +52,7 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-
- 
-
+        
         #region SubmitCommand
         private ViewModelCommand _SubmitCommand;
 

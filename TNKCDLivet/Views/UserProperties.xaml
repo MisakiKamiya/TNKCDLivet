@@ -72,21 +72,10 @@
             <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" >
             </ComboBox>
 
-            <!-- <ComboBox x:Name="Tocombo"  ItemsSource="{Binding TNKCD}" DisplayMemberPath="EmployeeTo.Name" SelectedValuePath="Id" Margin="10,0,12,0" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding SelectToCommand}" CommandParameter="{Binding ElementName= Tocombo,Path=SelectedValue}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </ComboBox>-->
+            
 
             <ComboBox x:Name="Busyo" ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" SelectedValuePath="Id"
-                    Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding SelectBusyoCommand}" CommandParameter="{Binding ElementName= BusyoCombo,Path=SelectedValue}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+                    Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40" >               
             </ComboBox>
 
             <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="65" Height="55" Width="175"  />
@@ -94,8 +83,9 @@
 
 
 
-            <DataGrid AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" Height="425" Canvas.Left="120" Canvas.Top="125" Width="200" ItemsSource="{Binding Employee}" SelectedValue="{Binding CEmployee.Id}" SelectedValuePath="Id" SelectedItem="{Binding CEmployee.Id}" >
-
+            <DataGrid AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" Height="425"
+                      Canvas.Left="120" Canvas.Top="125" Width="200" 
+            ItemsSource="{Binding Employee}" SelectedValue="{Binding CEmployee.Id}" SelectedValuePath="Id" SelectedItem="{Binding CEmployee.Id}" >
 
                 <DataGrid.Columns>
 

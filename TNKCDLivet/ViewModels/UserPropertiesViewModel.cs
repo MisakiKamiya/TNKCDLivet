@@ -154,44 +154,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region BusyoCombo(絞り込み)
-        private IEnumerable<Employee> _BusyoCombo;
-
-        public IEnumerable<Employee> BusyoCombo
-        {
-            get
-            { return _BusyoCombo; }
-            set
-            {
-                if (_BusyoCombo == value)
-                    return;
-                _BusyoCombo = value;
-                RaisePropertyChanged();
-            }
-        }
-        #endregion
-
-          #region SelectBusyoCommand(絞り込み)
-        private ListenerCommand<Ka> _SelectBusyoCommand;
-
-        public ListenerCommand<Ka> SelectBusyoCommand
-        {
-            get
-
-            {
-                if (_SelectBusyoCommand == null)
-                {
-                    _SelectBusyoCommand = new ListenerCommand<Ka>(SelectBusyo);
-                }
-                return _SelectBusyoCommand;
-            }
-        }
-
-        public void SelectBusyo(Ka parameter)
-        {
-            this.BusyoCombo = Employee.Where(t => parameter == t.Ka);
-        }
-        #endregion
+       
 
         #region Ka
 
