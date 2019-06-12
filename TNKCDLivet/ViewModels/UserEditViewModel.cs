@@ -40,6 +40,7 @@ namespace TNKCDLivet.ViewModels
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
         }
         #endregion
+
         #region EmployeeProperty
         private Employee _Employee;
 
@@ -100,6 +101,7 @@ namespace TNKCDLivet.ViewModels
             Employee updatedUser = await Employee.PutEmployeeAsync(this.Employee);
             //TODO: Error handling
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Edited"));
+
         }
         #endregion
     }

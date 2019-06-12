@@ -69,8 +69,10 @@
 
             <!-- 部署・課の選択と削除ボタン -->
 
+
             <ComboBox ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" SelectedValue="{Binding BusyoP.Id}" SelectedValuePath="Id" SelectedItem="{Binding BusyoP.Id}" Canvas.Left="180" Canvas.Top="72" Height="42" Width="299"/>
             <Button Content="削除" Command="{Binding BusyoDeleteCommand}" CommandParameter="{Binding BusyoP}" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="70"/>
+
 
             <ComboBox ItemsSource="{Binding Ka}" DisplayMemberPath="KaName"  SelectedValue="{Binding KaP.Id}" SelectedValuePath="Id" SelectedItem="{Binding Ka}" FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="400"/>
             <Button Content="削除" Command="{Binding KaDeleteCommand}" CommandParameter="{Binding KaP}" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="400"/>

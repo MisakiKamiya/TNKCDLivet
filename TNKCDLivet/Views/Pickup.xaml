@@ -17,8 +17,7 @@
     </Window.DataContext>
 
     <i:Interaction.Triggers>
-
-        <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
+  <!--Viewに特別な要件が存在しない限りは、トリガーやアクションの自作にこだわらず積極的にコードビハインドを使いましょう -->
         <!--Viewのコードビハインドは、基本的にView内で完結するロジックとViewModelからのイベントの受信(専用リスナを使用する)に限るとトラブルが少なくなります -->
         <!--Livet1.1からはコードビハインドでViewModelのイベントを受信するためのWeakEventLisnterサポートが追加されています -->
 
@@ -47,13 +46,15 @@
         </Grid.ColumnDefinitions>
 
 
-        <ListView x:Name="TNKCD" ItemsSource="{Binding TNKCD}" Margin="16,10,10,10" SelectionChanged="TNKCD_SelectionChanged">
+        <ListView x:Name="PTNKCD" ItemsSource="{Binding PTcombo}"                 
+                  Margin="16,10,10,10" >
             <ListView.View>
                 <GridView ColumnHeaderToolTip="People">
                     <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}" />
                     <GridViewColumn Header="To" DisplayMemberBinding="{Binding EmployeeTo.Name}" />
                     <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFrom.Name}" />
                     <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="本文" DisplayMemberBinding="{Binding Body}" />                    
                     <GridViewColumn Header="業務関連度" DisplayMemberBinding="{Binding Work.WorkRelation}" />
                 </GridView>
             </ListView.View>
@@ -61,8 +62,16 @@
 
         <StackPanel  Grid.Column="2">
             <TextBlock Margin="10" ><Run Text="業務関連度▼" Foreground="White" FontSize="15" /></TextBlock>
-            <ComboBox  ItemsSource="{Binding Work}"  DisplayMemberPath="WorkRelation" />
-            <Button Content="戻る" Margin="50,500,50,0" Grid.Column="1" Command="{Binding CloseCommand}"/>
+
+            <ComboBox x:Name="PTcombo" ItemsSource="{Binding Work}"  DisplayMemberPath="WorkRelation" SelectedValuePath="Id" Margin="10,0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectPTCommand}" CommandParameter="{Binding ElementName= PTcombo,Path=SelectedValue}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ComboBox>
+            <Button Content="戻る" Margin="30,500,30,0" Grid.Column="1" Command="{Binding CloseCommand}"/>
         </StackPanel>
 
     </Grid>

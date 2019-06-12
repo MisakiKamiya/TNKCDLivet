@@ -12,28 +12,31 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using TNKCDLivet.Models;
+using System.Windows;
 
 namespace TNKCDLivet.ViewModels
 {
     public class TNKCDDetailViewModel : ViewModel
     {
+       
+
         /* コマンド、プロパティの定義にはそれぞれ 
-         * 
-         *  lvcom   : ViewModelCommand
-         *  lvcomn  : ViewModelCommand(CanExecute無)
-         *  llcom   : ListenerCommand(パラメータ有のコマンド)
-         *  llcomn  : ListenerCommand(パラメータ有のコマンド・CanExecute無)
-         *  lprop   : 変更通知プロパティ(.NET4.5ではlpropn)
-         *  
-         * を使用してください。
-         * 
-         * Modelが十分にリッチであるならコマンドにこだわる必要はありません。
-         * View側のコードビハインドを使用しないMVVMパターンの実装を行う場合でも、ViewModelにメソッドを定義し、
-         * LivetCallMethodActionなどから直接メソッドを呼び出してください。
-         * 
-         * ViewModelのコマンドを呼び出せるLivetのすべてのビヘイビア・トリガー・アクションは
-         * 同様に直接ViewModelのメソッドを呼び出し可能です。
-         */
+* 
+*  lvcom   : ViewModelCommand
+*  lvcomn  : ViewModelCommand(CanExecute無)
+*  llcom   : ListenerCommand(パラメータ有のコマンド)
+*  llcomn  : ListenerCommand(パラメータ有のコマンド・CanExecute無)
+*  lprop   : 変更通知プロパティ(.NET4.5ではlpropn)
+*  
+* を使用してください。
+* 
+* Modelが十分にリッチであるならコマンドにこだわる必要はありません。
+* View側のコードビハインドを使用しないMVVMパターンの実装を行う場合でも、ViewModelにメソッドを定義し、
+* LivetCallMethodActionなどから直接メソッドを呼び出してください。
+* 
+* ViewModelのコマンドを呼び出せるLivetのすべてのビヘイビア・トリガー・アクションは
+* 同様に直接ViewModelのメソッドを呼び出し可能です。
+*/
 
         /* ViewModelからViewを操作したい場合は、View側のコードビハインド無で処理を行いたい場合は
          * Messengerプロパティからメッセージ(各種InteractionMessage)を発信する事を検討してください。
