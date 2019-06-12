@@ -13,12 +13,14 @@ using Livet.Messaging.Windows;
 using TNKCDLivet.Views;
 using TNKCDLivet.Models;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace TNKCDLivet.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
-       
+
         #region ThanksCardsProperty
         private List<TNKCD> _ThanksCards;
 
@@ -27,7 +29,7 @@ namespace TNKCDLivet.ViewModels
             get
             { return _ThanksCards; }
             set
-            { 
+            {
                 if (_ThanksCards == value)
                 {
                     return;
@@ -64,7 +66,7 @@ namespace TNKCDLivet.ViewModels
                 // MainWindow を非表示
                 window.Hide();
                 TNKCDCreateViewModel ViewModel = new TNKCDCreateViewModel();
-                var message = new TransitionMessage(typeof(Views.TNKCDCreate),new TNKCDCreateViewModel(), TransitionMode.Modal, "ShowThanksCardCreate");
+                var message = new TransitionMessage(typeof(Views.TNKCDCreate), new TNKCDCreateViewModel(), TransitionMode.Modal, "ShowThanksCardCreate");
                 Messenger.Raise(message);
             }
             finally
@@ -93,14 +95,14 @@ namespace TNKCDLivet.ViewModels
         public void ShowUserMst()
         {
             System.Diagnostics.Debug.WriteLine("ShowUserMst");
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive); 
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
 
             try
             {
                 // MainWindow を非表示
                 window.Hide();
                 UserPropertiesViewModel ViewModel = new UserPropertiesViewModel();
-                var message = new TransitionMessage(typeof(Views.UserProperties),new UserPropertiesViewModel(), TransitionMode.Modal, "ShowUserMst");
+                var message = new TransitionMessage(typeof(Views.UserProperties), new UserPropertiesViewModel(), TransitionMode.Modal, "ShowUserMst");
                 Messenger.Raise(message);
             }
             finally
@@ -136,7 +138,7 @@ namespace TNKCDLivet.ViewModels
                 // MainWindow を非表示
                 window.Hide();
                 DepartmentEditViewModel ViewModel = new DepartmentEditViewModel();
-                var message = new TransitionMessage(typeof(Views.DepartmentEdit),new DepartmentEditViewModel(), TransitionMode.Modal, "ShowDepartmentMst");
+                var message = new TransitionMessage(typeof(Views.DepartmentEdit), new DepartmentEditViewModel(), TransitionMode.Modal, "ShowDepartmentMst");
                 Messenger.Raise(message);
             }
             finally
@@ -172,7 +174,7 @@ namespace TNKCDLivet.ViewModels
                 // MainWindow を非表示
                 window.Hide();
                 CardCountViewModel ViewModel = new CardCountViewModel();
-                var message = new TransitionMessage(typeof(Views.CardCount),new CardCountViewModel(), TransitionMode.Modal, "ShowCardCount");
+                var message = new TransitionMessage(typeof(Views.CardCount), new CardCountViewModel(), TransitionMode.Modal, "ShowCardCount");
                 Messenger.Raise(message);
             }
             finally
@@ -208,7 +210,7 @@ namespace TNKCDLivet.ViewModels
                 // MainWindow を非表示
                 window.Hide();
                 WorkRelationViewModel ViewModel = new WorkRelationViewModel();
-                var message = new TransitionMessage(typeof(Views.WorkRelation),new WorkRelationViewModel(), TransitionMode.Modal, "ShowWorkRelation");
+                var message = new TransitionMessage(typeof(Views.WorkRelation), new WorkRelationViewModel(), TransitionMode.Modal, "ShowWorkRelation");
                 Messenger.Raise(message);
             }
             finally
@@ -244,7 +246,7 @@ namespace TNKCDLivet.ViewModels
                 // MainWindow を非表示
                 window.Hide();
                 PickupViewModel ViewModel = new PickupViewModel();
-                var message = new TransitionMessage(typeof(Views.Pickup),new PickupViewModel(), TransitionMode.Modal, "ShowPickup");
+                var message = new TransitionMessage(typeof(Views.Pickup), new PickupViewModel(), TransitionMode.Modal, "ShowPickup");
                 Messenger.Raise(message);
             }
             finally
@@ -280,7 +282,7 @@ namespace TNKCDLivet.ViewModels
                 // MainWindow を非表示
                 window.Hide();
                 BusyoRelationViewModel ViewModel = new BusyoRelationViewModel();
-                var message = new TransitionMessage(typeof(Views.BusyoRelation),new BusyoRelationViewModel(), TransitionMode.Modal, "ShowBusyoRelation");
+                var message = new TransitionMessage(typeof(Views.BusyoRelation), new BusyoRelationViewModel(), TransitionMode.Modal, "ShowBusyoRelation");
                 Messenger.Raise(message);
             }
             finally
@@ -315,7 +317,7 @@ namespace TNKCDLivet.ViewModels
             {
                 // MainWindow を非表示
                 window.Hide();
-                BusyoRelationViewModel ViewModel = new BusyoRelationViewModel();
+                MainWindowViewModel ViewModel = new MainWindowViewModel();
                 var message = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, "LOGOUT");
                 Messenger.Raise(message);
             }
@@ -343,7 +345,7 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-        
+
         #region Employee
 
         private List<Employee> _Employee;
@@ -353,7 +355,7 @@ namespace TNKCDLivet.ViewModels
             get
             { return _Employee; }
             set
-            { 
+            {
                 if (_Employee == value)
                     return;
                 _Employee = value;
@@ -402,10 +404,8 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-      
 
-
-        public async  void Initialize()
+        public async void Initialize()
         {
             var message = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogon");
             Messenger.Raise(message);
@@ -417,7 +417,10 @@ namespace TNKCDLivet.ViewModels
             this.TNKCD = await tnkcd.GetTNKCDAsync();
 
         }
+
+
         
 
     }
-       }
+}
+       

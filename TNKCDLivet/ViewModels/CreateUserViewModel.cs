@@ -72,11 +72,35 @@ namespace TNKCDLivet.ViewModels
         {
             Employee createdEmployee = await Employee.PostEmployeeAsync(this.Employee);
             //TODO: Error handling
-            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "SubmitCommand"));
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Created"));
         }
 
         #endregion
+
+        #region CloseCommand
+        private ViewModelCommand _CloseCommand;
+
+        public ViewModelCommand CloseCommand
+
+        {
+            get
+            {
+                if (_CloseCommand == null)
+                {
+                    _CloseCommand = new ViewModelCommand(Close);
+                }
+                return _CloseCommand;
+            }
+        }
+
+        public void Close()
+        {
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
+        }
+        #endregion
+
+
+
 
         public async void Initialize()
         {

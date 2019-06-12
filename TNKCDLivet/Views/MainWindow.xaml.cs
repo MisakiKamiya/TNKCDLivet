@@ -30,6 +30,8 @@ namespace TNKCDLivet.Views
         public MainWindow()
         {
             InitializeComponent();
+
+
         }
     }
 }

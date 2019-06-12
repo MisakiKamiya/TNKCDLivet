@@ -12,6 +12,7 @@ using Livet.EventListeners;
 using Livet.Messaging.Windows;
 
 using TNKCDLivet.Models;
+using System.Windows;
 
 namespace TNKCDLivet.ViewModels
 {
@@ -174,6 +175,9 @@ namespace TNKCDLivet.ViewModels
             this.PTcombo = TNKCD.Where(t => parameter == t.WorkId);
         }
         #endregion
+
+       
+
 
         public async void Initialize()
         {
