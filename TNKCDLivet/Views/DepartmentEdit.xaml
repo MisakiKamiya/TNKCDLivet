@@ -47,7 +47,15 @@
                  Window を非表示にしてもメッセージを送信できるようにするには InvokeActionOnlyWhenWindowIsActive="False" が必要 -->
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
-        
+
+        <l:InteractionMessageTrigger MessageKey="ShowBusyoDeleteCommand" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="ShowKaDeleteCommand" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
         <!--WindowのCloseキャンセル処理に対応する場合は、WindowCloseCancelBehaviorの使用を検討してください-->
 
     </i:Interaction.Triggers>
@@ -61,15 +69,15 @@
 
             <!-- 部署・課の選択と削除ボタン -->
 
-            <ComboBox ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName"  SelectedValue="Id" Canvas.Left="182" Canvas.Top="72" Height="42" Width="299"/>
-            <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="70"/>
+            <ComboBox ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" SelectedValue="{Binding BusyoP.Id}" SelectedValuePath="Id" SelectedItem="{Binding BusyoP.Id}" Canvas.Left="180" Canvas.Top="72" Height="42" Width="299"/>
+            <Button Content="削除" Command="{Binding BusyoDeleteCommand}" CommandParameter="{Binding BusyoP}" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="70"/>
 
-            <ComboBox ItemsSource="{Binding Ka}" DisplayMemberPath="KaName"  SelectedValue="Id" FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="400"/>
-            <Button Content="削除" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="400"/>
+            <ComboBox ItemsSource="{Binding Ka}" DisplayMemberPath="KaName"  SelectedValue="{Binding KaP.Id}" SelectedValuePath="Id" SelectedItem="{Binding Ka}" FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="400"/>
+            <Button Content="削除" Command="{Binding KaDeleteCommand}" CommandParameter="{Binding KaP}" FontSize="30" Height="46" Canvas.Left="480" Canvas.Top="400"/>
 
             <!-- 変更ボタン -->
-            <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="150"/>
-            <Button Content="変更" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="150"/>
+            <TextBox Text="{Binding BusyoP.BusyoName}" FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="150"/>
+            <Button Content="変更" Command="{Binding BusyoPutCommand}" CommandParameter="{Binding BusyoP}" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="150"/>
 
             <TextBox FontSize="30" Width="300" Canvas.Left="180" Canvas.Top="470"/>
             <Button Content="変更" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="470"/>
@@ -81,6 +89,12 @@
             <TextBox FontSize="30" Text="{Binding KaP.KaName}" Width="300" Canvas.Left="180" Canvas.Top="540"/>
             <Button Content="作成" Command="{Binding SubmitCommandK}" FontSize="30" Height="42" Canvas.Left="480" Canvas.Top="540"/>
 
+            <CheckBox Content="権限" IsChecked="{Binding BusyoP.Power}"  Canvas.Left="470" Canvas.Top="270">
+                <CheckBox.RenderTransform>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            
             <!-- 戻るボタン -->
             <Button Content="戻る" FontSize="20" Height="40" Width="50" Canvas.Right="20" Canvas.Top="619" RenderTransformOrigin="0.62,3" Canvas.Left="657" Command="{Binding CloseCommand}"/>
         </Canvas>
