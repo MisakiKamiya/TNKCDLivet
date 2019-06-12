@@ -171,7 +171,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-          #region SelectBusyoCommand(絞り込み)
+        #region SelectBusyoCommand(絞り込み)
         private ListenerCommand<Ka> _SelectBusyoCommand;
 
         public ListenerCommand<Ka> SelectBusyoCommand
@@ -244,5 +244,29 @@ namespace TNKCDLivet.ViewModels
            
 
         }
+        #region UserEditCommand
+        private ListenerCommand<Employee> _EmployeeEditCommand;
+
+        public ListenerCommand<Employee> EmployeeEditCommand
+        {
+            get
+            {
+                if (_EmployeeEditCommand == null)
+                {
+                    _EmployeeEditCommand = new ListenerCommand<Employee>(UserEdit);
+                }
+                return _EmployeeEditCommand;
+            }
+        }
+
+        public void UserEdit(Employee Employee)
+        {
+            System.Diagnostics.Debug.WriteLine("EmployeeEditCommand" + Employee.Id);
+            UserEditViewModel ViewModel = new UserEditViewModel();
+            ViewModel.Employee = Employee;
+            var message = new TransitionMessage(typeof(Views.UserEdit), ViewModel, TransitionMode.Modal, "UserEdit");
+            Messenger.Raise(message);
+        }
+        #endregion
     }
 }

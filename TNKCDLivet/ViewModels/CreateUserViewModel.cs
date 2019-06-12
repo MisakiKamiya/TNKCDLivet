@@ -53,7 +53,22 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
- 
+        #region CKa
+        private Ka _CKa;
+
+        public Ka CKa
+        {
+            get
+            { return _CKa; }
+            set
+            {
+                if (_CKa == value)
+                    return;
+                _CKa = value;
+                RaisePropertyChanged(nameof(CKa));
+            }
+        }
+        #endregion
 
         #region SubmitCommand
         private ViewModelCommand _SubmitCommand;
@@ -85,6 +100,7 @@ namespace TNKCDLivet.ViewModels
             Ka ka = new Ka();
             this.Ka = await ka.GetKaAsync();
 
+            this.CKa = new Ka();
             this.Employee = new Employee();
         }
     }

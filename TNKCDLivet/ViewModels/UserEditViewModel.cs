@@ -61,9 +61,9 @@ namespace TNKCDLivet.ViewModels
          */
 
         #region Employee
-        private List<Employee> _Employee;
+        private Employee _Employee;
 
-        public List<Employee> Employee
+        public Employee Employee
         {
             get
             { return _Employee; }
@@ -72,7 +72,7 @@ namespace TNKCDLivet.ViewModels
                 if (_Employee == value)
                     return;
                 _Employee = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(Employee));
             }
         }
         #endregion
@@ -96,9 +96,53 @@ namespace TNKCDLivet.ViewModels
         public void Close()
         {
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
+        }
             #endregion
 
+            #region Ka
+        private List<Ka> _Ka;
+
+        public List<Ka> Ka
+        {
+            get
+            { return _Ka; }
+            set
+            {
+                if (_Ka == value)
+                    return;
+                _Ka = value;
+                RaisePropertyChanged();
+            }
         }
+        #endregion
+        public async void Initialize()
+        {
+            Ka dept = new Ka();
+            this.Ka = await dept.GetKaAsync();
+
+            this.Employee = new Employee();
+        }
+        #region SubmitCommand
+        private ViewModelCommand _SubmitCommand;
+
+        public ViewModelCommand SubmitCommand
+        {
+            get
+            {
+                if (_SubmitCommand == null)
+                {
+                    _SubmitCommand = new ViewModelCommand(Submit);
+                }
+                return _SubmitCommand;
+            }
+        }
+
+        public async void Submit()
+        {
+            Employee updatedUser = await Employee.PutEmployeeAsync(this.Employee);
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Edited"));
+        }
+        #endregion
     }
 }
 

@@ -119,6 +119,31 @@ namespace TNKCDLivet.Services
             return responseEmployee;
         }
         #endregion
+        public async Task<Employee> PutEmployeeAsync(Employee employee)
+        {
+            var jObject = JsonConvert.SerializeObject(employee);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Employee responseUser = null;
+            try
+            {
+                var response = await Client.PutAsync(this.BaseUrl + "/api/Employee/" + employee.Id, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseUser = JsonConvert.DeserializeObject<Employee>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PutEmployeeAsync: " + e);
+            }
+            return responseUser;
+        }
         #endregion
         #region Ka        
         #region Get

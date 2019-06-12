@@ -24,6 +24,7 @@ namespace TNKCDLivet.Services
         Task<List<Employee>> GetEmployeeAsync();
         Task<Employee> PostEmployeeAsync(Employee employee);
         Task<Employee> DeleteEmployeeAsync(int Id);
+        Task<Employee> PutEmployeeAsync(Employee emplyee);
 
 
         //Busyoの情報やり取り用

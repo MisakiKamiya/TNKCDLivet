@@ -200,5 +200,11 @@ namespace TNKCDLivet.Models
             Employee deletedEmployee = await rest.DeleteEmployeeAsync(Id);
             return deletedEmployee;
         }
+        public async Task<Employee> PutEmployeeAsync(Employee Employee)
+        {
+            IRestService rest = new RestService();
+            Employee updatedWork = await rest.PutEmployeeAsync(Employee);
+            return updatedWork;
+        }
     }
 }
