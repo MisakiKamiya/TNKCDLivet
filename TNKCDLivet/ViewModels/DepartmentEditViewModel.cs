@@ -75,7 +75,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region BusyoPost
+        #region BusyoP
         private Busyo _BusyoP;
 
         public Busyo BusyoP
@@ -109,7 +109,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        #region KaPost
+        #region KaP
         private Ka _KaP;
 
         public Ka KaP
@@ -123,6 +123,76 @@ namespace TNKCDLivet.ViewModels
                 _KaP = value;
                 RaisePropertyChanged(nameof(KaP));
             }
+        }
+        #endregion
+
+        #region BusyoDeleteCommand
+        private ListenerCommand<Busyo> _BusyoDeleteCommand;
+
+        public ListenerCommand<Busyo> BusyoDeleteCommand
+        {
+            get
+            {
+                if (_BusyoDeleteCommand == null)
+                {
+                    _BusyoDeleteCommand = new ListenerCommand<Busyo>(BusyoDelete);
+                }
+                return _BusyoDeleteCommand;
+            }
+        }
+
+        public async void BusyoDelete(Busyo Busyo)
+        {
+            Busyo deletedBusyo = await Busyo.DeleteBusyoAsync(Busyo.Id);
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowBusyoDeleteCommand"));
+        }
+        #endregion
+
+        #region KaDeleteCommand
+        private ListenerCommand<Ka> _KaDeleteCommand;
+
+        public ListenerCommand<Ka> KaDeleteCommand
+        {
+            get
+            {
+                if (_KaDeleteCommand == null)
+                {
+                    _KaDeleteCommand = new ListenerCommand<Ka>(KaDelete);
+                }
+                return _KaDeleteCommand;
+            }
+        }
+
+        public async void KaDelete(Ka Ka)
+        {
+            Ka deletedKa = await Ka.DeleteKaAsync(Ka.Id);
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowKaDeleteCommand"));
+        }
+        #endregion
+
+        #region BusyoPutCommand
+        private ListenerCommand<Busyo> _BusyoPutCommand;
+
+        public ListenerCommand<Busyo> BusyoPutCommand
+        {
+            get
+            {
+                if (_BusyoPutCommand == null)
+                {
+                    _BusyoPutCommand = new ListenerCommand<Busyo>(BusyoPut);
+                }
+                return _BusyoPutCommand;
+            }
+        }
+
+        public async void BusyoPut(Busyo Busyo)
+        {
+            System.Diagnostics.Debug.WriteLine("PutCommand" + Busyo.Id);
+            BusyoP = Busyo;
+
+            Busyo putBusyo = await Busyo.PutBusyoAsync(this.BusyoP);
+            //TODO: Error handling
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Put"));
         }
         #endregion
 

@@ -31,13 +31,14 @@ namespace TNKCDLivet.Services
         Task<List<Busyo>> GetBusyoAsync();
         Task<Busyo> PostBusyoAsync(Busyo busyo);
         Task<Busyo> DeleteBusyoAsync(int Id);
+        Task<Busyo> PutBusyoAsync(Busyo busyo);
 
 
         //Kaの情報やり取り用
         Task<List<Ka>> GetKaAsync();
         Task<Ka> PostKaAsync(Ka ka);
         Task<Ka> DeleteKaAsync(int Id);
-
+        Task<Ka> PutKaAsync(Ka ka);
 
         //TNKCDの情報やり取り用
         Task<List<TNKCD>> GetTNKCDAsync();

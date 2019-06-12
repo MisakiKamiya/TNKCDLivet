@@ -196,6 +196,33 @@ namespace TNKCDLivet.Services
             return responseKa;
         }
         #endregion
+        #region put
+        public async Task<Ka> PutKaAsync(Ka ka)
+        {
+            var jObject = JsonConvert.SerializeObject(ka);
+
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Ka responseUser = null;
+            try
+            {
+                var response = await Client.PutAsync(this.BaseUrl + "/api/Ka/" + ka.Id, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseUser = JsonConvert.DeserializeObject<Ka>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PutKaAsync: " + e);
+            }
+            return responseUser;
+        }
+        #endregion
         #region Del
         public async Task<Ka> DeleteKaAsync(int Id)
         {
@@ -285,7 +312,33 @@ namespace TNKCDLivet.Services
             return responseBusyo;
         }
         #endregion
+        #region Put
+        public async Task<Busyo> PutBusyoAsync(Busyo busyo)
+        {
+            var jObject = JsonConvert.SerializeObject(busyo);
 
+            //Make Json object into content type
+            var content = new StringContent(jObject);
+            //Adding header of the contenttype
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            Busyo responseUser = null;
+            try
+            {
+                var response = await Client.PutAsync(this.BaseUrl + "/api/Busyo/" + busyo.Id, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    responseUser = JsonConvert.DeserializeObject<Busyo>(responseContent);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception in RestService.PutBusyoAsync: " + e);
+            }
+            return responseUser;
+        }
+        #endregion
         #endregion
         #region TNKCD
         #region Get
@@ -404,6 +457,7 @@ namespace TNKCDLivet.Services
             return responseWork;
         }
         #endregion
+        #region put
         public async Task<Work> PutWorkAsync(Work work)
         {
             var jObject = JsonConvert.SerializeObject(work);
@@ -429,6 +483,7 @@ namespace TNKCDLivet.Services
             }
             return responseUser;
         }
+        #endregion
         #region Del
 
         public async Task<Work> DeleteWorkAsync(int Id)
