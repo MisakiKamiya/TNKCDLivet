@@ -63,40 +63,60 @@
 
 
 
-            <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand}" CommandParameter="{Binding CEmployee}"/>
+            <Button Background="White" Canvas.Left="440" Canvas.Top="420" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand}" CommandParameter="{Binding CEmployee}"/>
             <Button Background="White" Canvas.Left="595" Canvas.Top="606" Content="戻る" Height="50" Width="91" FontSize="30" Command="{Binding  CloseCommand}" />
+            <Button Background="White" Canvas.Left="440" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding UserEditCommand}" CommandParameter="{Binding CEmployee}"/>
+            <Button Background="White" Canvas.Top="330" Content="新規作成へ" Height="50" Width="165" FontSize="30" Command="{Binding UserCreateCommand}"  Canvas.Left="440" RenderTransformOrigin="0.758,1"/>
 
-            <Button Background="White" Canvas.Left="505" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding UserEditCommand}" CommandParameter="{Binding CEmployee}"/>
-
-            <Button Background="White" Canvas.Top="345" Content="新規作成へ" Height="50" Width="165" FontSize="30" Command="{Binding UserCreateCommand}"  Canvas.Left="505" RenderTransformOrigin="0.758,1"/>
-
+            <!--ここから
             <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" >
             </ComboBox>
-
-            
-
             <ComboBox x:Name="Busyo" ItemsSource="{Binding Busyo}" DisplayMemberPath="BusyoName" SelectedValuePath="Id"
-                    Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40" >               
+                    Width="180" Canvas.Left="440" Canvas.Top="125" Height="55" SelectedIndex='0' FontSize="40" >
             </ComboBox>
 
             <TextBlock Text="部署" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="65" Height="55" Width="175"  />
             <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="185" Height="55" Width="175"/>
+            ここまで-->
+
+            <TextBlock Text="課" Foreground="white"  FontSize="40" Canvas.Left="440" Canvas.Top="85" Height="55" Width="175"/>
+            <ComboBox x:Name="UPEmployeecombo"  ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" SelectedValuePath="Id" Canvas.Left="440" Canvas.Top="145" Height="60" Width="230"  FontSize="40">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectUPECommand}" CommandParameter="{Binding ElementName= UPEmployeecombo,Path=SelectedValue}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
 
 
-
+            <!--ここから
             <DataGrid AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" Height="425"
                       Canvas.Left="120" Canvas.Top="125" Width="200" 
             ItemsSource="{Binding Employee}" SelectedValue="{Binding CEmployee.Id}" SelectedValuePath="Id" SelectedItem="{Binding CEmployee.Id}" >
 
                 <DataGrid.Columns>
-
                     <DataGridTextColumn Header="名前" Binding="{Binding Name}" Width="*" IsReadOnly="True" />
                     <DataGridTextColumn Header="ふりがな" Binding="{Binding NameKana}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="部署" Binding="{Binding Ka.Busyo.BusyoName}" Width="*" IsReadOnly="True"/>
                     <DataGridTextColumn Header="課" Binding="{Binding Ka.KaName}" Width="*" IsReadOnly="True"/>
-
                 </DataGrid.Columns>
             </DataGrid>
+            ここまで-->
+
+
+            <ListView x:Name="Employees" ItemsSource="{Binding UPEmployeecombo}"  
+                      SelectedValue="{Binding CEmployee.Id}" SelectedValuePath="Id" SelectedItem="{Binding CEmployee.Id}"
+                      Height="495" Canvas.Left="120" Canvas.Top="85" Width="285" >
+                <ListView.View>
+                    <GridView ColumnHeaderToolTip="People"  >
+                        <GridViewColumn Header="名前" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="ふりがな" DisplayMemberBinding="{Binding NameKana}" />
+                        <GridViewColumn Header="部署" DisplayMemberBinding="{Binding Ka.Busyo.BusyoName}" />
+                        <GridViewColumn Header="課" DisplayMemberBinding="{Binding Ka.KaName}"  />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
 
         </Canvas>
     </Grid>

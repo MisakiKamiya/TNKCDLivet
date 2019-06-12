@@ -121,7 +121,7 @@
 
             </ComboBox>
             <Button Content="カード作成" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
-            <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />
+          <!-- <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />-->
             <Button Content="部署関連情報" Margin="10" Command="{Binding ShowBusyoRelationCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
             <Button Content="事例抽出" Margin="10"  Command="{Binding ShowPickupCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
             <Button Content="アカウント管理" Margin="10" Command="{Binding ShowUserMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
