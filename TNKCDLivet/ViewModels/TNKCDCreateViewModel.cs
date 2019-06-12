@@ -155,6 +155,7 @@ namespace TNKCDLivet.ViewModels
            
             
             this.TNKCD = new TNKCD();
+            this.TNKCD.DateSend = DateTime.Now;
 
         }
 
