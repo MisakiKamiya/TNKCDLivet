@@ -290,7 +290,43 @@ namespace TNKCDLivet.ViewModels
             }
         }
         #endregion
-            
+
+        #region LogoutCommand
+        private ViewModelCommand _LogoutCommand;
+
+        public ViewModelCommand LogoutCommand
+        {
+            get
+            {
+                if (_LogoutCommand == null)
+                {
+                    _LogoutCommand = new ViewModelCommand(Logout);
+                }
+                return _LogoutCommand;
+            }
+        }
+
+        public void Logout()
+        {
+            System.Diagnostics.Debug.WriteLine(" Logout");
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
+
+            try
+            {
+                // MainWindow を非表示
+                window.Hide();
+                BusyoRelationViewModel ViewModel = new BusyoRelationViewModel();
+                var message = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, " Logout");
+                Messenger.Raise(message);
+            }
+            finally
+            {
+                // MainWindow を再表示
+                window.ShowDialog();
+            }
+        }
+        #endregion
+
         #region TNKCD
         private List<TNKCD> _TNKCD;
 
@@ -368,33 +404,6 @@ namespace TNKCDLivet.ViewModels
         #endregion
 
       
-
-        #region ShowLogoutCommand
-        private ViewModelCommand _ShowLogoutCommand;
-
-        public ViewModelCommand ShowLogoutCommand
-        {
-            get
-            {
-                if (_ShowLogoutCommand == null)
-                {
-                    _ShowLogoutCommand = new ViewModelCommand(ShowLogout);
-                }
-                return _ShowLogoutCommand;
-            }
-        }
-
-        public void ShowLogout()
-        {
-            System.Diagnostics.Debug.WriteLine("ShowLogout");
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
-            window.Hide();
-
-            var showlogout = new TransitionMessage(typeof(Views.Logon), new LogonViewModel(), TransitionMode.Modal, "ShowLogout");
-            Messenger.Raise(showlogout);
-
-        }
-        #endregion
 
 
         public async  void Initialize()
