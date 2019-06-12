@@ -19,6 +19,7 @@ namespace TNKCDLivet.ViewModels
 {
     public class UserPropertiesViewModel : ViewModel
     {
+        #region CEmployee
         private Employee _CEmployee;
 
         public Employee CEmployee
@@ -33,6 +34,8 @@ namespace TNKCDLivet.ViewModels
                 RaisePropertyChanged(nameof(CEmployee));
             }
         }
+        #endregion
+
         #region Employee
         private List<Employee> _Employee;
 
@@ -45,6 +48,42 @@ namespace TNKCDLivet.ViewModels
                 if (_Employee == value)
                     return;
                 _Employee = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Ka
+
+        private List<Ka> _Ka;
+
+        public List<Ka> Ka
+        {
+            get
+            { return _Ka; }
+            set
+            {
+                if (_Ka == value)
+                    return;
+                _Ka = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Busyo
+
+        private List<Busyo> _Busyo;
+
+        public List<Busyo> Busyo
+        {
+            get
+            { return _Busyo; }
+            set
+            {
+                if (_Busyo == value)
+                    return;
+                _Busyo = value;
                 RaisePropertyChanged();
             }
         }
@@ -71,7 +110,7 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-          #region UserCreateCommand
+        #region UserCreateCommand
         private ViewModelCommand _UserCreateCommand;
 
         public ViewModelCommand UserCreateCommand
@@ -149,41 +188,42 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-       
+        #region UPEmployeecombo(絞り込み)
+        private IEnumerable<Employee> _UPEmployeecombo;
 
-        #region Ka
-
-        private List<Ka> _Ka;
-
-        public List<Ka> Ka
+        public IEnumerable<Employee> UPEmployeecombo
         {
             get
-            { return _Ka; }
+            { return _UPEmployeecombo; }
             set
-            { 
-                if (_Ka == value)
+            {
+                if (_UPEmployeecombo == value)
                     return;
-                _Ka = value;
+                _UPEmployeecombo = value;
                 RaisePropertyChanged();
             }
         }
         #endregion
 
-        #region Busyo
+        #region SelectUPECommand(絞り込み)
+        private ListenerCommand<int> _SelectUPECommand;
 
-        private List<Busyo> _Busyo;
-
-        public List<Busyo> Busyo
+        public ListenerCommand<int> SelectUPECommand
         {
             get
-            { return _Busyo; }
-            set
-            { 
-                if (_Busyo == value)
-                    return;
-                _Busyo = value;
-                RaisePropertyChanged();
+
+            {
+                if (_SelectUPECommand == null)
+                {
+                    _SelectUPECommand = new ListenerCommand<int>(SelectUPE);
+                }
+                return _SelectUPECommand;
             }
+        }
+
+        public void SelectUPE(int parameter)
+        {
+            this.UPEmployeecombo = Employee.Where(t => parameter == t.KaId);
         }
         #endregion
 
