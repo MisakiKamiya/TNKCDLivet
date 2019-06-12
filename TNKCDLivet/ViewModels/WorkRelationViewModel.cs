@@ -56,16 +56,26 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-        public async void Initialize()
+        #region CloseCommand
+        private ViewModelCommand _CloseCommand;
+
+        public ViewModelCommand CloseCommand
         {
-            Work work = new Work();
-            this.Work = await work.GetWorkAsync();
-
-
-            this.CWork = new Work();
-
+            get
+            {
+                if (_CloseCommand == null)
+                {
+                    _CloseCommand = new ViewModelCommand(Close);
+                }
+                return _CloseCommand;
+            }
         }
 
+        public void Close()
+        {
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Close"));
+        }
+        #endregion
 
         #region SubmitCommand
         private ViewModelCommand _SubmitCommand;
@@ -137,5 +147,15 @@ namespace TNKCDLivet.ViewModels
             Messenger.Raise(new WindowActionMessage(WindowAction.Close, "Put"));
         }
         #endregion
+
+        public async void Initialize()
+        {
+            Work work = new Work();
+            this.Work = await work.GetWorkAsync();
+
+
+            this.CWork = new Work();
+
+        }
     }
 }

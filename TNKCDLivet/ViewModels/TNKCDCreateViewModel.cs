@@ -155,7 +155,7 @@ namespace TNKCDLivet.ViewModels
            
             
             this.TNKCD = new TNKCD();
-
+            
         }
 
        

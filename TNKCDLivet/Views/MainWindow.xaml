@@ -89,29 +89,31 @@
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
-       
+
 
     </i:Interaction.Triggers>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="344*" />
-            <ColumnDefinition Width="173*" />
+            <ColumnDefinition Width="575*" />
+            <ColumnDefinition Width="157*" />
         </Grid.ColumnDefinitions>
 
         <ListView x:Name="TNKCD" ItemsSource="{Binding Tocombo}" Margin="16,10,10,10">
             <ListView.View>
                 <GridView ColumnHeaderToolTip="People"  >
-                    <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}" />
+                    <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}"  />                    
                     <GridViewColumn Header="To" DisplayMemberBinding="{Binding EmployeeTo.Name}" />
                     <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFrom.Name}" />
-                    <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}"  />
+                    <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="本文" DisplayMemberBinding="{Binding Body}" />
+                    <GridViewColumn Header="助けて貰った日" DisplayMemberBinding="{Binding DateHelp}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        
-        <StackPanel  Grid.Column="2">
-            
+
+        <StackPanel  Grid.Column="1">
+
             <TextBlock  Margin="10" ><Run Text="To一覧▼" Foreground="White" FontSize="15" /></TextBlock>
             <ComboBox x:Name="Tocombo"  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="10,0,12,0" >
                 <i:Interaction.Triggers>
@@ -122,7 +124,7 @@
 
             </ComboBox>
             <Button Content="カード作成" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
-          <!-- <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />-->
+            <!-- <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />-->
             <Button Content="部署関連情報" Margin="10" Command="{Binding ShowBusyoRelationCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
             <Button Content="事例抽出" Margin="10"  Command="{Binding ShowPickupCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
             <Button Content="アカウント管理" Margin="10" Command="{Binding ShowUserMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
