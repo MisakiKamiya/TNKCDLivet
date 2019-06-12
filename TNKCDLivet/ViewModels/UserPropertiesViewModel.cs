@@ -102,37 +102,32 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
-          #region UserEditCommand
-        private ViewModelCommand _UserEditCommand;
+        #region UserEditCommand
+        private ListenerCommand<Employee> _UserEditCommand;
 
-        public ViewModelCommand UserEditCommand
-
+        public ListenerCommand<Employee> UserEditCommand
         {
             get
             {
                 if (_UserEditCommand == null)
                 {
-                    _UserEditCommand = new ViewModelCommand(UserEdit);
+                    _UserEditCommand = new ListenerCommand<Employee>(UserEdit);
                 }
                 return _UserEditCommand;
             }
         }
 
-        public void UserEdit()
+        public void UserEdit(Employee Employee)
         {
-
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault((w) => w.IsActive);
-            window.Hide();
-
-
-            var message = new TransitionMessage(typeof(Views.UserEdit), new UserPropertiesViewModel(), TransitionMode.Modal, "UserEdit");
+            System.Diagnostics.Debug.WriteLine("EditCommand" + Employee.Id);
+            UserEditViewModel ViewModel = new UserEditViewModel();
+            ViewModel.Employee = Employee;
+            var message = new TransitionMessage(typeof(Views.UserEdit), ViewModel, TransitionMode.Modal, "UserEdit");
             Messenger.Raise(message);
-
-
         }
         #endregion
 
-          #region UserDeleteCommand
+        #region UserDeleteCommand
         private ListenerCommand<Employee> _UserDeleteCommand;
 
         public ListenerCommand<Employee> UserDeleteCommand

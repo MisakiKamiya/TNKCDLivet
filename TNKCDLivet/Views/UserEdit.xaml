@@ -27,9 +27,6 @@
             <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
         </i:EventTrigger>
 
-        <l:InteractionMessageTrigger MessageKey="Edited" Messenger="{Binding Messenger}">
-            <l:WindowInteractionMessageAction/>
-        </l:InteractionMessageTrigger>
 
         <!--Windowが閉じたタイミングでViewModelのDisposeメソッドが呼ばれます-->
         <i:EventTrigger EventName="Closed">
