@@ -136,6 +136,45 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region PTCombo(絞り込み)
+        private IEnumerable<TNKCD> _PTcombo;
+
+        public IEnumerable<TNKCD> PTcombo
+        {
+            get
+            { return _PTcombo; }
+            set
+            {
+                if (_PTcombo == value)
+                    return;
+                _PTcombo = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region SelectPTCommand(絞り込み)
+        private ListenerCommand<int> _SelectPTCommand;
+
+        public ListenerCommand<int> SelectPTCommand
+        {
+            get
+
+            {
+                if (_SelectPTCommand == null)
+                {
+                    _SelectPTCommand = new ListenerCommand<int>(SelectPT);
+                }
+                return _SelectPTCommand;
+            }
+        }
+
+        public void SelectPT(int parameter)
+        {
+            this.PTcombo = TNKCD.Where(t => parameter == t.WorkId);
+        }
+        #endregion
+
         public async void Initialize()
         {
             TNKCD tnkcd = new TNKCD();

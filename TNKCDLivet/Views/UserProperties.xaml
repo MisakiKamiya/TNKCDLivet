@@ -65,9 +65,7 @@
 
             <Button Background="White" Canvas.Left="505" Canvas.Top="425" Content="削除" Height="50" Width="115" FontSize="30" Command="{Binding UserDeleteCommand}" CommandParameter="{Binding CEmployee}"/>
             <Button Background="White" Canvas.Left="595" Canvas.Top="606" Content="戻る" Height="50" Width="91" FontSize="30" Command="{Binding  CloseCommand}" />
-
             <Button Background="White" Canvas.Left="505" Canvas.Top="510" Content="編集" Height="50" Width="115" FontSize="30" Command="{Binding UserEditCommand}" CommandParameter="{Binding CEmployee}"/>
-
             <Button Background="White" Canvas.Top="345" Content="新規作成へ" Height="50" Width="165" FontSize="30" Command="{Binding UserCreateCommand}"  Canvas.Left="505" RenderTransformOrigin="0.758,1"/>
 
             <ComboBox Width="180" Canvas.Left="440" Canvas.Top="235" Height="55" SelectedIndex='0' FontSize="40"  ItemsSource="{Binding Ka}" DisplayMemberPath="KaName" >

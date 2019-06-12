@@ -47,12 +47,12 @@
         </Grid.ColumnDefinitions>
 
 
-        <ListView x:Name="TNKCD" ItemsSource="{Binding TNKCD}" Margin="16,10,10,10" SelectionChanged="TNKCD_SelectionChanged">
+        <ListView x:Name="PTNKCD" ItemsSource="{Binding PTcombo}" Margin="16,10,10,10" >
             <ListView.View>
                 <GridView ColumnHeaderToolTip="People">
                     <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}" />
                     <GridViewColumn Header="To" DisplayMemberBinding="{Binding EmployeeTo.Name}" />
-                    <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFrom.Name}" />
+                    <GridViewColumn Header="From" DisplayMemberBinding="{Binding EmployeeFromId.Name}" />
                     <GridViewColumn Header="タイトル" DisplayMemberBinding="{Binding Title}" />
                     <GridViewColumn Header="業務関連度" DisplayMemberBinding="{Binding Work.WorkRelation}" />
                 </GridView>
@@ -61,7 +61,16 @@
 
         <StackPanel  Grid.Column="2">
             <TextBlock Margin="10" ><Run Text="業務関連度▼" Foreground="White" FontSize="15" /></TextBlock>
-            <ComboBox  ItemsSource="{Binding Work}"  DisplayMemberPath="WorkRelation" />
+
+            <ComboBox x:Name="PTcombo" ItemsSource="{Binding Work}"  DisplayMemberPath="WorkRelation" SelectedValuePath="Id">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectPTCommand}" CommandParameter="{Binding ElementName= PTcombo,Path=SelectedValue}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            </ComboBox>
+
             <Button Content="戻る" Margin="50,500,50,0" Grid.Column="1" Command="{Binding CloseCommand}"/>
         </StackPanel>
 
