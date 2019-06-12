@@ -152,7 +152,8 @@ namespace TNKCDLivet.ViewModels
             Employee employee = new Employee();
             this.Employee = await employee.GetEmployeeAsync();
 
-                       
+           
+            
             this.TNKCD = new TNKCD();
 
         }
