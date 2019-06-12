@@ -89,6 +89,9 @@
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
 
+        <l:InteractionMessageTrigger MessageKey="ShowDeleteCommand" Messenger="{Binding Messenger}">
+            <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
 
 
     </i:Interaction.Triggers>
@@ -99,7 +102,8 @@
             <ColumnDefinition Width="157*" />
         </Grid.ColumnDefinitions>
 
-        <ListView x:Name="TNKCD" ItemsSource="{Binding Tocombo}" Margin="16,10,10,10">
+        <ListView x:Name="TNKCD" ItemsSource="{Binding Tocombo}"
+                  SelectedValue="{Binding CTNKCD.Id}" SelectedValuePath="Id" SelectedItem="{Binding CTNKCD.Id}" Margin="16,10,10,10">
             <ListView.View>
                 <GridView ColumnHeaderToolTip="People"  >
                     <GridViewColumn Header="送信日" DisplayMemberBinding="{Binding DateSend}"  />                    
@@ -132,7 +136,8 @@
             <Button Content="業務関連度" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />
             <Button Content="マニュアル" Margin="10" Command="{Binding ShowManualCommand}" />
             <Button Content="ログアウト" Margin="10"  Command="{Binding LOGOUTCommand}"/>
-
+            <Button Background="White" Margin="20" Content="削除" 
+                    Command="{Binding UserDeleteCommand}" CommandParameter="{Binding CTNKCD}"/>
         </StackPanel>
 
     </Grid>

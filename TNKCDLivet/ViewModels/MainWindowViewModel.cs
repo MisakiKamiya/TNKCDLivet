@@ -318,7 +318,7 @@ namespace TNKCDLivet.ViewModels
                 // MainWindow を非表示
                 window.Hide();
                 MainWindowViewModel ViewModel = new MainWindowViewModel();
-                var message = new TransitionMessage(typeof(Views.MainWindow), new MainWindowViewModel(), TransitionMode.Modal, "LOGOUT");
+                var message = new TransitionMessage(typeof(Views.MainWindow), ViewModel, TransitionMode.Modal, "LOGOUT");
                 Messenger.Raise(message);
             }
             finally
@@ -404,6 +404,44 @@ namespace TNKCDLivet.ViewModels
         }
         #endregion
 
+        #region UserDeleteCommand
+        private ListenerCommand<TNKCD> _UserDeleteCommand;
+
+        public ListenerCommand<TNKCD> UserDeleteCommand
+        {
+            get
+            {
+                if (_UserDeleteCommand == null)
+                {
+                    _UserDeleteCommand = new ListenerCommand<TNKCD>(UserDelete);
+                }
+                return _UserDeleteCommand;
+            }
+        }
+
+        public async void UserDelete(TNKCD tNKCD)
+        {
+            TNKCD deletedemployee = await tNKCD.DeleteTNKCDAsync(tNKCD.Id);
+            Messenger.Raise(new WindowActionMessage(WindowAction.Close, "ShowDeleteCommand"));
+        }
+        #endregion
+
+        #region CTNKCD
+        private TNKCD _CTNKCD;
+
+        public TNKCD CTNKCD
+        {
+            get
+            { return _CTNKCD; }
+            set
+            {
+                if (_CTNKCD == value)
+                    return;
+                _CTNKCD = value;
+                RaisePropertyChanged(nameof(CTNKCD));
+            }
+        }
+        #endregion
 
         public async void Initialize()
         {
@@ -415,7 +453,7 @@ namespace TNKCDLivet.ViewModels
 
             TNKCD tnkcd = new TNKCD();
             this.TNKCD = await tnkcd.GetTNKCDAsync();
-
+            this.CTNKCD = new TNKCD();
         }
 
 

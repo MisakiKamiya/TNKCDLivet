@@ -32,6 +32,7 @@
         <i:EventTrigger EventName="Closed">
             <l:DataContextDisposeAction/>
         </i:EventTrigger>
+        
         <l:InteractionMessageTrigger MessageKey="ShowDeleteCommand" Messenger="{Binding Messenger}">
             <l:TransitionInteractionMessageAction  Mode="Modal"  InvokeActionOnlyWhenWindowIsActive="False" />
         </l:InteractionMessageTrigger>
