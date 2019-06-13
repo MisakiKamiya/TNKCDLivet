@@ -49,17 +49,17 @@
     <Grid >
 
 
-        <TextBlock Text="To" Foreground="White"  FontSize="15" Margin="145,55,410,604" Grid.ColumnSpan="2"  />
+        <TextBlock Text="To" Foreground="White"  FontSize="25" Margin="145,55,410,604" Grid.ColumnSpan="2"  />
 
 
         <ComboBox  FontSize="15" Height="30" Margin="145,90,410,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636" 
                  ItemsSource="{Binding Employee}" DisplayMemberPath="Name"  SelectedValue="{Binding TNKCD.EmployeeToId}" SelectedValuePath="Id" Grid.ColumnSpan="2"   />
 
-        <TextBlock Text="From" Foreground="White"  FontSize="15" Margin="450,55,111,599"  />
+        <TextBlock Text="From" Foreground="White"  FontSize="25" Margin="450,55,111,599"/>
         <ComboBox  FontSize="15" Height="30" Margin="450,90,111,0" VerticalAlignment="Top" RenderTransformOrigin="0.45,0.636"
             ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValue="{Binding TNKCD.EmployeeFromId}" SelectedValuePath="Id"   />
-
-        <DatePicker SelectedDate="{Binding TNKCD.DateHelp}" Margin="450,140,111,519" RenderTransformOrigin="0.5,0.5"                    
+        <TextBlock Text="助けてもらった日" FontSize="20" Foreground="White" Margin="452,120,106,539" />
+        <DatePicker SelectedDate="{Binding TNKCD.DateHelp}" Margin="452,150,109,509" RenderTransformOrigin="0.5,0.5"                    
                     Text="{Binding Mode=TwoWay, ElementName=calender1, Path=SelectedDate,StringFormat='yyyy年MM月dd日'}" />
 
         <TextBlock Text="Title" Foreground="White"  FontSize="15" Margin="150,160,473,499" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" />

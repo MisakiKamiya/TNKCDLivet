@@ -118,8 +118,8 @@
 
         <StackPanel  Grid.Column="1">
 
-            <TextBlock  Margin="10" ><Run Text="To一覧▼" Foreground="White" FontSize="15" /></TextBlock>
-            <ComboBox x:Name="Tocombo"  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="10,0,12,0" >
+            <TextBlock  Margin="10" ><Run Text="To一覧▼" Foreground="White" FontSize="25" /></TextBlock>
+            <ComboBox x:Name="Tocombo"  ItemsSource="{Binding Employee}" DisplayMemberPath="Name" SelectedValuePath="Id" FontSize="20" Margin="10,0,12,0" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding SelectToCommand}" CommandParameter="{Binding ElementName= Tocombo,Path=SelectedValue}"/>
@@ -127,16 +127,16 @@
                 </i:Interaction.Triggers>
 
             </ComboBox>
-            <Button Content="カード作成" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
+            <Button Content="カード作成" FontSize="20" Margin="10" Command="{Binding ShowThanksCardCreateCommand}"/>
             <!-- <Button Content="枚数集計" Margin="10" Command="{Binding ShowCardCountCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}" />-->
-            <Button Content="部署関連情報" Margin="10" Command="{Binding ShowBusyoRelationCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-            <Button Content="事例抽出" Margin="10"  Command="{Binding ShowPickupCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-            <Button Content="アカウント管理" Margin="10" Command="{Binding ShowUserMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-            <Button Content="部署・課管理" Margin="10" Command="{Binding ShowDepartmentMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
-            <Button Content="業務関連度" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />
-            <Button Content="マニュアル" Margin="10" Command="{Binding ShowManualCommand}" />
-            <Button Content="ログアウト" Margin="10"  Command="{Binding LOGOUTCommand}"/>
-            <Button Background="White" Margin="20" Content="削除" 
+            <Button Content="部署関連情報" FontSize="20" Margin="10" Command="{Binding ShowBusyoRelationCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+            <Button Content="事例抽出" FontSize="20" Margin="10"  Command="{Binding ShowPickupCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+            <Button Content="アカウント管理" FontSize="20" Margin="10" Command="{Binding ShowUserMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+            <Button Content="部署・課管理" FontSize="20" Margin="10" Command="{Binding ShowDepartmentMstCommand}" IsEnabled="{Binding AuthorizedUser.IsAdmin}"/>
+            <Button Content="業務関連度" FontSize="20" Margin="10"  Command="{Binding ShowWorkRelationCommand}" />
+            <Button Content="マニュアル" FontSize="20" Margin="10" Command="{Binding ShowManualCommand}" />
+            <Button Content="ログアウト" FontSize="20" Margin="10"  Command="{Binding LOGOUTCommand}"/>
+            <Button Background="White" FontSize="20" Margin="20" Content="削除" 
                     Command="{Binding UserDeleteCommand}" CommandParameter="{Binding CTNKCD}"/>
         </StackPanel>
 
